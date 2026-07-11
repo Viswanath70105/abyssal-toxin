@@ -9,10 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/notebook.css">
+    <!-- CSS will be imported via Vite in main.js -->
 </head>
 <body>
     <div id="game-container">
@@ -26,9 +23,15 @@
     </div>
 
     <div id="hud">
-        <button id="notebook-btn" class="glass-btn pulse-glow">
-            <span class="icon">🔍</span> Notebook
-        </button>
+        <div id="chapter-title" class="chapter-title-hud"></div>
+        <div class="hud-buttons" style="display: flex; gap: 12px; margin-top: 10px;">
+            <button id="history-btn" class="glass-btn">
+                <span class="icon">📜</span> History
+            </button>
+            <button id="notebook-btn" class="glass-btn pulse-glow">
+                <span class="icon">🔍</span> Notebook
+            </button>
+        </div>
     </div>
 
     <!-- Detective Notebook Modal -->
@@ -55,14 +58,20 @@
         </div>
     </div>
 
+    <!-- History Modal -->
+    <div id="history-modal" class="modal-overlay hidden">
+        <div class="notebook-content glass-panel" style="max-width: 700px;">
+            <div class="notebook-header">
+                <h2>Transcript Log</h2>
+                <button id="close-history-btn" class="close-btn">&times;</button>
+            </div>
+            <div class="tab-content" id="history-log" style="display: flex; flex-direction: column; gap: 16px; padding: 12px;">
+                <!-- History items injected here -->
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
-    <script src="data/clues.js"></script>
-    <script src="data/characters.js"></script>
-    <script src="data/chapters/chapter_1.js"></script>
-    <script src="data/chapters/chapter_2.js"></script>
-    <script src="data/chapters/chapter_3.js"></script>
-    <script src="js/state.js"></script>
-    <script src="js/ui.js"></script>
-    <script src="js/engine.js"></script>
+    <script type="module" src="/src/js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,95 @@
+{
+  "ch2_start": {
+    "text": "You are awakened by the blaring of the station's general alarm. Red emergency lights bathe your quarters in a harsh glow. The intercom crackles to life.",
+    "speaker": "Intercom",
+    "choices": [
+      {
+        "text": "Listen to the announcement.",
+        "nextNodeId": "ch2_announcement"
+      }
+    ]
+  },
+  "ch2_announcement": {
+    "text": "'Attention all personnel. Station lockdown initiated. All bulkheads sealed. Please remain calm. We have a... situation in the Mess Hall.' Gideon Stroud's voice is calm, but tense.",
+    "speaker": "Gideon Stroud",
+    "choices": [
+      {
+        "text": "Rush to the Mess Hall.",
+        "nextNodeId": "ch2_mess_hall_scene"
+      }
+    ]
+  },
+  "ch2_mess_hall_scene": {
+    "text": "You manage to slip through the blast doors before they fully seal. In the Mess Hall, chaos has erupted. Miller is on the ground, clutching his throat, his face purple. Otto Finch, the cook, is standing near a tipped-over pot of stew, looking horrified.",
+    "speaker": "Otto Finch",
+    "choices": [
+      {
+        "text": "Run to Miller to help.",
+        "nextNodeId": "ch2_miller_dies"
+      },
+      {
+        "text": "Examine the stew.",
+        "nextNodeId": "ch2_examine_stew"
+      }
+    ]
+  },
+  "ch2_examine_stew": {
+    "text": "The stew smells faintly metallic, almost sweet. Before you can investigate further, Dr. Aris bursts in.",
+    "choices": [
+      {
+        "text": "Watch Dr. Aris.",
+        "nextNodeId": "ch2_miller_dies"
+      }
+    ]
+  },
+  "ch2_miller_dies": {
+    "text": "Dr. Aris drops to her knees next to Miller, pulling out a syringe, but she's too late. Miller gasps one last time, his eyes wide with a horrific realization, and goes still. The room falls dead silent.",
+    "speaker": "Dr. Aris",
+    "choices": [
+      {
+        "text": "'What happened to him?'",
+        "nextNodeId": "ch2_poison_suspect"
+      }
+    ]
+  },
+  "ch2_poison_suspect": {
+    "text": "'It looks like... acute poisoning,' Aris stammers, her hands shaking. 'Anaphylactic shock or a rapid neurotoxin. He was eating the stew...' Everyone slowly turns to look at Otto.",
+    "speaker": "Dr. Aris",
+    "choices": [
+      {
+        "text": "'Otto, what did you put in that stew?'",
+        "nextNodeId": "ch2_otto_defends"
+      }
+    ]
+  },
+  "ch2_otto_defends": {
+    "text": "'Nothing! I swear! Just standard rations! I've been telling you we are out of fresh supplies! I didn't do this!' Otto backs away, trembling.",
+    "speaker": "Otto Finch",
+    "choices": [
+      {
+        "text": "Wait for Gideon to arrive.",
+        "nextNodeId": "ch2_gideon_arrives"
+      }
+    ]
+  },
+  "ch2_gideon_arrives": {
+    "text": "Gideon Stroud steps into the room, flanked by David, the Security Officer. 'Seal the room. Nobody touches the body. We are under full quarantine protocol. David, I want a full lockdown.'",
+    "speaker": "Gideon Stroud",
+    "choices": [
+      {
+        "text": "'We need to find out who did this.'",
+        "nextNodeId": "ch2_end"
+      }
+    ]
+  },
+  "ch2_end": {
+    "text": "'That is exactly what we are going to do,' Gideon says coldly. 'Starting now, everyone is a suspect. Return to your quarters or designated safe zones. The investigation begins immediately.'",
+    "speaker": "Gideon Stroud",
+    "choices": [
+      {
+        "text": "Begin your investigation.",
+        "nextNodeId": "ch3_hub"
+      }
+    ]
+  }
+}
