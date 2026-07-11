@@ -1,7 +1,7 @@
 window.UI = {
     displayNode: function(text, choices) {
-        const storyTextContainer = document.getElementById('story-text');
-        const choicesContainer = document.getElementById('choices');
+        const storyTextContainer = document.getElementById('story-log');
+        const choicesContainer = document.getElementById('choices-container');
 
         if (storyTextContainer) {
             storyTextContainer.textContent = text;
@@ -22,7 +22,13 @@ window.UI = {
     },
 
     updateNotebook: function() {
-        const inventoryList = document.getElementById('inventory-list');
+        let inventoryList = document.getElementById('inventory-list');
+        if (!inventoryList) {
+            inventoryList = document.createElement('ul');
+            inventoryList.id = 'inventory-list';
+            const cluesTab = document.getElementById('clues-tab');
+            if (cluesTab) cluesTab.appendChild(inventoryList);
+        }
         
         if (inventoryList) {
             inventoryList.innerHTML = '';
@@ -37,7 +43,7 @@ window.UI = {
     bindNotebookButton: function() {
         const notebookBtn = document.getElementById('notebook-btn');
         const notebookModal = document.getElementById('notebook-modal');
-        const closeModalBtn = document.getElementById('close-modal-btn');
+        const closeModalBtn = document.getElementById('close-notebook-btn');
 
         if (notebookBtn && notebookModal) {
             notebookBtn.addEventListener('click', () => {
