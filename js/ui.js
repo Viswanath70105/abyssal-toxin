@@ -60,4 +60,8 @@ window.UI = {
 
 document.addEventListener('DOMContentLoaded', () => {
     window.UI.init();
+    // Start the game loop
+    if (window.GameEngine) {
+        window.GameEngine.renderNode("ch1_start");
+    }
 });
