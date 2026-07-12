@@ -22,8 +22,7 @@
     "choices": [
       {
         "text": "Xenobiology main lab — Victor",
-        "nextNodeId": "ch8_bio_lab",
-        "revisitAllowed": true
+        "nextNodeId": "ch8_bio_lab"
       },
       {
         "text": "Specimen vault",
@@ -58,10 +57,17 @@
             "saw_regen_trial": true
           },
           "infection": 3
-        }
+        },
+        "visitKey": "photo"
       }
     ],
-    "location": "Specimen Vault"
+    "location": "Specimen Vault",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "photo"
+    ],
+    "clearMode": "any",
+    "leafRoom": true
   },
   "ch8_vent_junction": {
     "text": "Wall schematics under a dying lamp. Routes from lab to lower decks inked red — a release map, not a maintenance plan.",
@@ -71,14 +77,23 @@
         "nextNodeId": "ch8_hub",
         "effects": {
           "giveClue": "altered_vent_schematics"
-        }
+        },
+        "visitKey": "schematics"
       },
       {
         "text": "Return to hub.",
-        "nextNodeId": "ch8_hub"
+        "nextNodeId": "ch8_hub",
+        "visitKey": "leave"
       }
     ],
-    "location": "Ventilation Junction"
+    "location": "Ventilation Junction",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "schematics",
+      "leave"
+    ],
+    "clearMode": "any",
+    "leafRoom": true
   },
   "ch8_bio_lab": {
     "text": "Mutated rats swarm the filters. Victor sits with a notebook open, grading a successful apocalypse.",
@@ -93,10 +108,17 @@
       },
       {
         "text": "Leave for now.",
-        "nextNodeId": "ch8_hub"
+        "nextNodeId": "ch8_hub",
+        "roomExit": true
       }
     ],
-    "location": "Xenobiology Lab"
+    "location": "Xenobiology Lab",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "ch8_desk",
+      "ch8_victor_confront"
+    ],
+    "clearMode": "all"
   },
   "ch8_desk": {
     "text": "Neurological scans with Victor's name. Margin: Losing time. Need a solution. Vent routes highlighted.",

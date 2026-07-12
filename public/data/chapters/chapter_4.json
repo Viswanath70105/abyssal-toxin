@@ -71,10 +71,18 @@
       },
       {
         "text": "Return to corridor hub.",
-        "nextNodeId": "ch4_hub"
+        "nextNodeId": "ch4_hub",
+        "roomExit": true
       }
     ],
-    "location": "Mess Hall"
+    "location": "Mess Hall",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "ch4_confront_menu",
+      "ch4_soft_ask",
+      "ch4_mess_search"
+    ],
+    "clearMode": "all"
   },
   "ch4_mess_search": {
     "text": "While Otto is distracted, you recheck the pantry seam. If you missed evidence earlier, this is your second chance — crumbs, crayon wax, a blanket thread.",
@@ -296,14 +304,23 @@
         "effects": {
           "giveClue": "hydroponics_spores",
           "infection": 2
-        }
+        },
+        "visitKey": "bag_sample"
       },
       {
         "text": "Leave it. Return to hub.",
-        "nextNodeId": "ch4_hub"
+        "nextNodeId": "ch4_hub",
+        "visitKey": "leave"
       }
     ],
-    "location": "Hydroponics Bay"
+    "location": "Hydroponics Bay",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "bag_sample",
+      "leave"
+    ],
+    "clearMode": "any",
+    "leafRoom": true
   },
   "ch4_observation": {
     "text": "Beyond reinforced glass: absolute black, and the memory of pressure. Your comms unit catches a fragment of the drill team's last open channel — already half-eaten by static.",
@@ -317,14 +334,23 @@
         "nextNodeId": "ch4_hub",
         "effects": {
           "giveClue": "ghost_audio"
-        }
+        },
+        "visitKey": "record"
       },
       {
         "text": "Kill the channel. Return to hub.",
-        "nextNodeId": "ch4_hub"
+        "nextNodeId": "ch4_hub",
+        "visitKey": "kill_channel"
       }
     ],
-    "location": "Observation Blister"
+    "location": "Observation Blister",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "record",
+      "kill_channel"
+    ],
+    "clearMode": "any",
+    "leafRoom": true
   },
   "ch4_sector_b": {
     "text": "Sector B still smells of coolant and dust — not seawater. Not yet. A maintenance stencil reads: STRUCTURAL WATCH — MILLER. The lower bulkhead ticks like a bad tooth.",
@@ -336,17 +362,26 @@
           "flags": {
             "visited_sector_b_early": true
           }
-        }
+        },
+        "visitKey": "note_tags"
       },
       {
         "text": "Pry a secondary panel for another bypassed relay fragment.",
         "nextNodeId": "ch4_hub",
         "effects": {
           "giveClue": "bypassed_relay"
-        }
+        },
+        "visitKey": "pry_panel"
       }
     ],
-    "location": "Sector B — Access Tunnel"
+    "location": "Sector B — Access Tunnel",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "note_tags",
+      "pry_panel"
+    ],
+    "clearMode": "any",
+    "leafRoom": true
   },
   "ch4_end": {
     "text": "Rationing deepens. Trust thins. Whatever is in the walls has learned the sound of human desperation — and it is practicing. You will not get unlimited cycles to look around.",

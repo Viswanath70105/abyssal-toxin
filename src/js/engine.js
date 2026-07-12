@@ -20,10 +20,10 @@ export const GameEngine = {
     storyData: {},
     isBusy: false,
     loadedChapters: new Set(),
-    /** True while typewriter is running / waiting for reveal */
     reading: false,
-    /** Last resolved location label (for sticky location when sub-nodes omit it) */
     currentLocation: null,
+    /** Room entered from an investigation hub (survives sub-nodes until return to hub). */
+    activeInvestigationRoom: null,
 
     dataUrl(relativePath) {
         const base = import.meta.env.BASE_URL || '/';
@@ -83,68 +83,163 @@ export const GameEngine = {
         return this.storyData[nodeId] || null;
     },
 
-    /**
-     * Flag key for one-visit hub locations.
-     */
-    hubVisitFlagKey(choice) {
-        const id = choice?.nextNodeId;
-        if (!id) return null;
-        return `visited_hub_${id}`;
+    // ── Investigation visit system ─────────────────────────────────
+
+    /** Stable key for a room action (one-visit inside a room). */
+    actionVisitFlag(roomId, visitKey) {
+        return `visited_action_${roomId}__${visitKey}`;
+    },
+
+    /** Hub location locked only after room fully cleared + return. */
+    hubRoomClearedFlag(roomId) {
+        return `cleared_hub_room_${roomId}`;
+    },
+
+    getVisitKey(choice) {
+        if (choice.visitKey) return String(choice.visitKey);
+        if (choice.nextNodeId) return String(choice.nextNodeId);
+        return null;
+    },
+
+    isRoomExit(choice) {
+        return choice?.roomExit === true || choice?.hubExit === true;
     },
 
     /**
-     * Location options on an investigation hub are one-visit unless hubExit/revisitAllowed.
+     * One-visit room action: investigationRoom, not an exit, not revisitAllowed.
      */
-    isOneVisitHubChoice(node, choice) {
-        if (!node?.investigationHub || !choice) return false;
-        if (choice.hubExit === true) return false;
+    isOneVisitRoomAction(node, choice) {
+        if (!node?.investigationRoom || !choice) return false;
+        if (this.isRoomExit(choice)) return false;
         if (choice.revisitAllowed === true) return false;
         return true;
     },
 
-    isHubChoiceVisited(choice) {
-        const key = this.hubVisitFlagKey(choice);
-        return key ? getFlag(key) === true : false;
+    isRoomActionVisited(roomId, choice) {
+        const key = this.getVisitKey(choice);
+        if (!roomId || !key) return false;
+        return getFlag(this.actionVisitFlag(roomId, key)) === true;
     },
 
     /**
-     * Requirements-passing choices only (legacy helpers / non-display use).
-     * Visited hub locations are still "available" for display but disabled.
+     * Keys that must be visited to clear a room (for hub lock).
+     * Uses node.clearWhenVisited or derives from non-exit choices.
      */
-    getAvailableChoices(node) {
-        return (node.choices || []).filter((choice) => {
-            if (!meetsRequirements(choice.requires, choice.requiresClue || null)) {
-                return false;
-            }
-            // Fully hide visited one-visit options? No — grey them out via getDisplayChoices.
-            return true;
-        });
+    getRoomClearKeys(roomNode, roomId) {
+        if (Array.isArray(roomNode.clearWhenVisited) && roomNode.clearWhenVisited.length) {
+            return roomNode.clearWhenVisited.map(String);
+        }
+        const keys = [];
+        for (const c of roomNode.choices || []) {
+            if (this.isRoomExit(c)) continue;
+            if (c.revisitAllowed) continue;
+            const k = this.getVisitKey(c);
+            if (k && !keys.includes(k)) keys.push(k);
+        }
+        return keys;
+    },
+
+    isRoomFullyCleared(roomId) {
+        const room = this.storyData[roomId];
+        if (!room?.investigationRoom) return false;
+        const keys = this.getRoomClearKeys(room, roomId);
+        if (!keys.length) {
+            // No actions defined — treat as cleared once entered-and-exited via flag set on exit
+            return getFlag(this.hubRoomClearedFlag(roomId)) === true;
+        }
+        const mode = room.clearMode === 'any' ? 'any' : 'all';
+        if (mode === 'any') {
+            return keys.some((k) => getFlag(this.actionVisitFlag(roomId, k)) === true);
+        }
+        return keys.every((k) => getFlag(this.actionVisitFlag(roomId, k)) === true);
     },
 
     /**
-     * Choices for UI: hide failed requirements; grey out visited one-visit hub locations.
-     * @returns {Array<{ choice: object, disabled: boolean, visited: boolean }>}
+     * Hub location greys only when its target room is fully cleared.
+     */
+    isHubLocationLocked(choice) {
+        const roomId = choice?.nextNodeId;
+        if (!roomId) return false;
+        return getFlag(this.hubRoomClearedFlag(roomId)) === true;
+    },
+
+    getAvailableChoices(node) {
+        return (node.choices || []).filter((choice) =>
+            meetsRequirements(choice.requires, choice.requiresClue || null)
+        );
+    },
+
+    /**
+     * Display choices: hide failed requirements; grey visited room actions
+     * or cleared hub locations.
      */
     getDisplayChoices(node) {
         const raw = node?.choices || [];
+        const roomId = this.currentNodeId;
         const out = [];
 
         for (const choice of raw) {
             if (!meetsRequirements(choice.requires, choice.requiresClue || null)) {
-                continue; // still hidden when gates fail (flooded, locked, etc.)
+                continue;
             }
 
-            const oneVisit = this.isOneVisitHubChoice(node, choice);
-            const visited = oneVisit && this.isHubChoiceVisited(choice);
+            let visited = false;
+            let disabled = false;
 
-            out.push({
-                choice,
-                disabled: visited,
-                visited
-            });
+            if (node.investigationHub && !this.isRoomExit(choice) && !choice.revisitAllowed) {
+                // Hub: lock only after room fully investigated
+                if (this.isHubLocationLocked(choice)) {
+                    visited = true;
+                    disabled = true;
+                }
+            } else if (node.investigationRoom && this.isOneVisitRoomAction(node, choice)) {
+                if (this.isRoomActionVisited(roomId, choice)) {
+                    visited = true;
+                    disabled = true;
+                }
+            }
+
+            out.push({ choice, disabled, visited });
         }
 
         return out;
+    },
+
+    isHubNodeId(nodeId) {
+        if (!nodeId) return false;
+        if (this.storyData[nodeId]?.investigationHub) return true;
+        return /_hub$/i.test(nodeId);
+    },
+
+    /**
+     * Mark room actions; lock hub location only when room is fully cleared AND player returns to hub.
+     */
+    applyInvestigationVisit(node, nodeId, choice) {
+        if (!choice) return;
+
+        const nextId = choice.nextNodeId;
+
+        // Entering a room from the hub — remember it across sub-nodes
+        if (node?.investigationHub && nextId && !choice.hubExit) {
+            this.activeInvestigationRoom = nextId;
+        }
+
+        // Inside investigation room: mark one-visit actions
+        if (node?.investigationRoom && this.isOneVisitRoomAction(node, choice)) {
+            const visitKey = this.getVisitKey(choice);
+            if (visitKey) {
+                setFlag(this.actionVisitFlag(nodeId, visitKey), true);
+            }
+        }
+
+        // Returning to hub: lock that room's hub option only if fully investigated
+        if (this.isHubNodeId(nextId)) {
+            const roomId = node?.investigationRoom ? nodeId : this.activeInvestigationRoom;
+            if (roomId && this.isRoomFullyCleared(roomId)) {
+                setFlag(this.hubRoomClearedFlag(roomId), true);
+            }
+            this.activeInvestigationRoom = null;
+        }
     },
 
     applyNodeEnterEffects(node, nodeId) {
@@ -161,10 +256,6 @@ export const GameEngine = {
         applyEffects(node.effects);
     },
 
-    /**
-     * Resolve a display location for this node.
-     * Priority: node.location → node.cgCaption → keep previous only if same area prefix
-     */
     resolveLocation(node, nodeId) {
         if (node?.location && String(node.location).trim()) {
             return String(node.location).trim();
@@ -172,7 +263,6 @@ export const GameEngine = {
         if (node?.cgCaption && String(node.cgCaption).trim()) {
             return String(node.cgCaption).trim();
         }
-        // Clear location on chapter transitions / hubs without data rather than showing a lie
         if (nodeId && /_(start|hub|end)$/i.test(nodeId)) {
             return node?.location || this.currentLocation || null;
         }
@@ -185,6 +275,7 @@ export const GameEngine = {
         this.isBusy = false;
         this.reading = false;
         this.currentLocation = null;
+        this.activeInvestigationRoom = null;
         UI.cancelTypewriter();
         if (typeof UI.updateLocationLabel === 'function') {
             UI.updateLocationLabel(null);
@@ -214,8 +305,6 @@ export const GameEngine = {
         }
 
         this.applyNodeEnterEffects(node, nodeId);
-
-        // Silent-safe BGM / SFX / CG (location caption stays accurate; no sticky wrong room)
         Assets.applyNodePresentation(node);
 
         if (node.resolveEnding === true) {
@@ -245,7 +334,6 @@ export const GameEngine = {
         const displayText = resolveNodeText(node);
         const speaker = node.speaker || null;
 
-        // Full transcript: log scene when entered (not only after choice)
         recordNodeTranscript({
             speaker,
             text: displayText,
@@ -257,7 +345,6 @@ export const GameEngine = {
             UI.setInfectionAtmosphere(getInfection());
         }
 
-        // Reading layer: typewriter then reveal choices
         await UI.displayNode({
             text: displayText,
             speaker,
@@ -281,7 +368,8 @@ export const GameEngine = {
     makeChoice(choiceIndex) {
         if (this.isBusy || this.reading) return;
 
-        const node = this.storyData[this.currentNodeId];
+        const nodeId = this.currentNodeId;
+        const node = this.storyData[nodeId];
         if (!node) return;
 
         const displayChoices = this.getDisplayChoices(node);
@@ -293,11 +381,7 @@ export const GameEngine = {
 
         this.isBusy = true;
 
-        // Mark one-visit hub locations the moment the player leaves the hub
-        if (this.isOneVisitHubChoice(node, choice)) {
-            const flagKey = this.hubVisitFlagKey(choice);
-            if (flagKey) setFlag(flagKey, true);
-        }
+        this.applyInvestigationVisit(node, nodeId, choice);
 
         recordChoiceTranscript(choice.text);
         Assets.playChoiceSfx();

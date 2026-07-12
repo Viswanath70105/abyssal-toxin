@@ -21,8 +21,7 @@
     "choices": [
       {
         "text": "Override into main Medbay — Aris",
-        "nextNodeId": "ch7_medbay_enter",
-        "revisitAllowed": true
+        "nextNodeId": "ch7_medbay_enter"
       },
       {
         "text": "Records office (psych files, requisitions, logs)",
@@ -65,10 +64,17 @@
           "flags": {
             "lost_mess_evidence_window": true
           }
-        }
+        },
+        "visitKey": "look"
       }
     ],
-    "location": "Dry Storage — Sealed"
+    "location": "Dry Storage — Sealed",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "look"
+    ],
+    "clearMode": "any",
+    "leafRoom": true
   },
   "ch7_records": {
     "text": "The records office smells of warm plastic and panic-sweat. Drawers hang open like mouths mid-confession. You can spend time here properly — each document is a rung on someone else's ladder down.",
@@ -96,10 +102,18 @@
       },
       {
         "text": "Return to hub.",
-        "nextNodeId": "ch7_hub"
+        "nextNodeId": "ch7_hub",
+        "roomExit": true
       }
     ],
-    "location": "Records Office"
+    "location": "Records Office",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "ch7_records_read_arthur",
+      "ch7_records_read_req",
+      "ch7_records_read_audio"
+    ],
+    "clearMode": "all"
   },
   "ch7_records_read_arthur": {
     "text": "Mandatory evals. The therapist's notes are careful; Arthur's quotes are not. 'I can hear the rocks groaning again. They're pushing us too fast. Someone's going to die again.' PTSD stamped and filed and ignored by every system that needed the drill to keep turning.",
@@ -141,14 +155,23 @@
         "effects": {
           "giveClue": "mislabeled_vials",
           "infection": 3
-        }
+        },
+        "visitKey": "log_vials"
       },
       {
         "text": "Step back before the glass fogs with your breath.",
-        "nextNodeId": "ch7_hub"
+        "nextNodeId": "ch7_hub",
+        "visitKey": "step_back"
       }
     ],
-    "location": "Medbay — Cold Storage"
+    "location": "Medbay — Cold Storage",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "log_vials",
+      "step_back"
+    ],
+    "clearMode": "any",
+    "leafRoom": true
   },
   "ch7_medbay_enter": {
     "cg": "medbay_spores",
@@ -165,10 +188,16 @@
       },
       {
         "text": "Leave and gather more evidence first.",
-        "nextNodeId": "ch7_hub"
+        "nextNodeId": "ch7_hub",
+        "roomExit": true
       }
     ],
-    "location": "Medbay"
+    "location": "Medbay",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "ch7_aris_stage1"
+    ],
+    "clearMode": "all"
   },
   "ch7_aris_stage1": {
     "text": "You roll your sleeve. The black map under your skin does the talking. Aris finally turns. For a fraction of a second you see pure fear — not of you, of the pattern matching something she has already named in private. Then the professional mask clamps down. 'Deep-sea fatigue. Mineral imbalance. I can give you supplements.' A vial trembles between her fingers.",

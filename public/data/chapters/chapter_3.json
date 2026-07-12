@@ -46,10 +46,18 @@
       },
       {
         "text": "Return to corridor.",
-        "nextNodeId": "ch3_hub"
+        "nextNodeId": "ch3_hub",
+        "roomExit": true
       }
     ],
-    "location": "Security Hub"
+    "location": "Security Hub",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "ch3_security_terminal",
+      "ch3_security_ask",
+      "ch3_armory_vents"
+    ],
+    "clearMode": "all"
   },
   "ch3_security_ask": {
     "text": "'The cameras in the lower decks are down. They've been down for two days. Probably corrosion. Nothing I can do about it now.' He refuses to make eye contact.",
@@ -123,10 +131,18 @@
       },
       {
         "text": "Return to corridor.",
-        "nextNodeId": "ch3_hub"
+        "nextNodeId": "ch3_hub",
+        "roomExit": true
       }
     ],
-    "location": "Mess Hall"
+    "location": "Mess Hall",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "ch3_mess_inventory",
+      "ch3_mess_pantry",
+      "ch3_dry_storage"
+    ],
+    "clearMode": "all"
   },
   "ch3_mess_inventory": {
     "text": "The official ration manifest shows massive shortages of high-calorie stores — far more than spoilage or one greedy cook could explain.",
@@ -192,10 +208,17 @@
       },
       {
         "text": "Return to corridor.",
-        "nextNodeId": "ch3_hub"
+        "nextNodeId": "ch3_hub",
+        "roomExit": true
       }
     ],
-    "location": "Medbay"
+    "location": "Medbay",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "ch3_medbay_requisition",
+      "ch3_medbay_vials"
+    ],
+    "clearMode": "all"
   },
   "ch3_medbay_requisition": {
     "text": "Corporate stamp: DENIED. 'Too expensive. Treat with local supplies and keep the drill running.' Aris requested antivirals weeks ago — and was refused.",
@@ -247,10 +270,16 @@
       },
       {
         "text": "Return to corridor.",
-        "nextNodeId": "ch3_hub"
+        "nextNodeId": "ch3_hub",
+        "roomExit": true
       }
     ],
-    "location": "Crew Bay — Miller's Locker"
+    "location": "Crew Bay — Miller's Locker",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "ch3_miller_locker_more"
+    ],
+    "clearMode": "all"
   },
   "ch3_miller_locker_more": {
     "text": "Under the boots you find a fried relay switch — professional work. Someone silenced a structural alarm and left no secondary trip. Miller's tools. Miller's skill.",

@@ -15,8 +15,7 @@
     "choices": [
       {
         "text": "Security Hub — David",
-        "nextNodeId": "ch5_security",
-        "revisitAllowed": true
+        "nextNodeId": "ch5_security"
       },
       {
         "text": "David's quarters",
@@ -86,10 +85,17 @@
       },
       {
         "text": "Return to hub.",
-        "nextNodeId": "ch5_hub"
+        "nextNodeId": "ch5_hub",
+        "roomExit": true
       }
     ],
-    "location": "Security Hub"
+    "location": "Security Hub",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "ch5_confront_menu",
+      "ch5_soft"
+    ],
+    "clearMode": "all"
   },
   "ch5_quarters": {
     "text": "A worn novel hides a folded Earth-side diagnosis. Stage 4. Six months. Get your affairs in order.",
@@ -99,14 +105,23 @@
         "nextNodeId": "ch5_hub",
         "effects": {
           "giveClue": "medical_diagnosis"
-        }
+        },
+        "visitKey": "take_diag"
       },
       {
         "text": "Put it back. Return to hub.",
-        "nextNodeId": "ch5_hub"
+        "nextNodeId": "ch5_hub",
+        "visitKey": "put_back"
       }
     ],
-    "location": "David's Quarters"
+    "location": "David's Quarters",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "take_diag",
+      "put_back"
+    ],
+    "clearMode": "any",
+    "leafRoom": true
   },
   "ch5_armory": {
     "text": "The armory still opens. Behind the loose grate: Abyssal Quartz packed for smuggling — condensate beading on the seals.",
@@ -116,24 +131,40 @@
         "nextNodeId": "ch5_hub",
         "effects": {
           "giveClue": "hidden_stash"
-        }
+        },
+        "visitKey": "photo"
       },
       {
         "text": "Leave it. Return to hub.",
-        "nextNodeId": "ch5_hub"
+        "nextNodeId": "ch5_hub",
+        "visitKey": "leave"
       }
     ],
-    "location": "Armory"
+    "location": "Armory",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "photo",
+      "leave"
+    ],
+    "clearMode": "any",
+    "leafRoom": true
   },
   "ch5_armory_sealed": {
     "text": "Biometric red. David meant what he said. When the organism comes, these weapons will not be yours.",
     "choices": [
       {
         "text": "Return to hub.",
-        "nextNodeId": "ch5_hub"
+        "nextNodeId": "ch5_hub",
+        "visitKey": "look"
       }
     ],
-    "location": "Armory"
+    "location": "Armory",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "look"
+    ],
+    "clearMode": "any",
+    "leafRoom": true
   },
   "ch5_server_closet": {
     "text": "Heat-dead racks. One drive still ticks. You pull a three-second fragment from before the wipe: a small silhouette in a vent — then static.",
@@ -143,14 +174,23 @@
         "nextNodeId": "ch5_hub",
         "effects": {
           "giveClue": "camera_loop_fragment"
-        }
+        },
+        "visitKey": "save_loop"
       },
       {
         "text": "Leave the closet.",
-        "nextNodeId": "ch5_hub"
+        "nextNodeId": "ch5_hub",
+        "visitKey": "leave"
       }
     ],
-    "location": "Server Closet"
+    "location": "Server Closet",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "save_loop",
+      "leave"
+    ],
+    "clearMode": "any",
+    "leafRoom": true
   },
   "ch5_sector_b": {
     "text": "Sector B's lower seal weeps condensation. Sensors chirp flood warnings that Miller once silenced. Soon this place will be a grave with a corridor number.",
@@ -162,10 +202,17 @@
           "flags": {
             "warned_sector_b_flood": true
           }
-        }
+        },
+        "visitKey": "mark"
       }
     ],
-    "location": "Sector B — Final Dry Pass"
+    "location": "Sector B — Final Dry Pass",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "mark"
+    ],
+    "clearMode": "any",
+    "leafRoom": true
   },
   "ch5_soft": {
     "text": "'I need people to stop asking questions I can't answer,' David says. His eyes flick to a dead camera bank. 'And I need time.'",

@@ -22,8 +22,7 @@
     "choices": [
       {
         "text": "Comms Tower — Chloe",
-        "nextNodeId": "ch6_comms_tower",
-        "revisitAllowed": true
+        "nextNodeId": "ch6_comms_tower"
       },
       {
         "text": "Chloe's quarters",
@@ -72,10 +71,17 @@
             "saw_sector_b_lost": true
           },
           "infection": 3
-        }
+        },
+        "visitKey": "turn_away"
       }
     ],
-    "location": "Sector B — Flooded"
+    "location": "Sector B — Flooded",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "turn_away"
+    ],
+    "clearMode": "any",
+    "leafRoom": true
   },
   "ch6_hydro": {
     "text": "Hydroponics filters glow faintly. Same wrong light. The flood has not reached here — yet the spores have.",
@@ -86,14 +92,23 @@
         "effects": {
           "giveClue": "hydroponics_spores",
           "infection": 2
-        }
+        },
+        "visitKey": "bag"
       },
       {
         "text": "Return to hub.",
-        "nextNodeId": "ch6_hub"
+        "nextNodeId": "ch6_hub",
+        "visitKey": "leave"
       }
     ],
-    "location": "Hydroponics Bay"
+    "location": "Hydroponics Bay",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "bag",
+      "leave"
+    ],
+    "clearMode": "any",
+    "leafRoom": true
   },
   "ch6_chloe_quarters": {
     "text": "Chloe's bunk is a pharmacy. Empty sedative bottles. No natural sleep since the breach — only chemical silence.",
@@ -103,14 +118,23 @@
         "nextNodeId": "ch6_hub",
         "effects": {
           "giveClue": "empty_prescriptions"
-        }
+        },
+        "visitKey": "bag_rx"
       },
       {
         "text": "Leave her privacy intact.",
-        "nextNodeId": "ch6_hub"
+        "nextNodeId": "ch6_hub",
+        "visitKey": "leave"
       }
     ],
-    "location": "Chloe's Quarters"
+    "location": "Chloe's Quarters",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "bag_rx",
+      "leave"
+    ],
+    "clearMode": "any",
+    "leafRoom": true
   },
   "ch6_comms_tower": {
     "text": "Chloe huddles in the corner. The console broadcasts Miller — calm, wet, impossible. 'It's so cold... why did you leave me in the dark...'",
@@ -132,10 +156,17 @@
       },
       {
         "text": "Return to hub (console still screaming).",
-        "nextNodeId": "ch6_hub"
+        "nextNodeId": "ch6_hub",
+        "roomExit": true
       }
     ],
-    "location": "Comms Tower"
+    "location": "Comms Tower",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "ch6_chloe_breakdown",
+      "ch6_relay_log"
+    ],
+    "clearMode": "all"
   },
   "ch6_relay_log": {
     "text": "Relay history: an emergency channel manually muted the night the drill team died. Chloe's credentials.",

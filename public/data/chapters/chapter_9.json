@@ -15,8 +15,7 @@
     "choices": [
       {
         "text": "Main console — Arthur",
-        "nextNodeId": "ch9_arthur",
-        "revisitAllowed": true
+        "nextNodeId": "ch9_arthur"
       },
       {
         "text": "Drill telemetry rack",
@@ -58,10 +57,17 @@
       },
       {
         "text": "Return to hub.",
-        "nextNodeId": "ch9_hub"
+        "nextNodeId": "ch9_hub",
+        "roomExit": true
       }
     ],
-    "location": "Engineering — Main Console"
+    "location": "Engineering — Main Console",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "ch9_ask",
+      "ch9_confront_stage1"
+    ],
+    "clearMode": "all"
   },
   "ch9_telemetry": {
     "text": "The rack still holds the raw truth Corporate would redact: torque limiters manually overridden. Timestamped. Initialed by a maintenance key that maps to Arthur's credentials. Not a failure. A decision with a drill bit at the end of it.",
@@ -71,14 +77,23 @@
         "nextNodeId": "ch9_hub",
         "effects": {
           "giveClue": "drill_telemetry"
-        }
+        },
+        "visitKey": "save"
       },
       {
         "text": "Return without copying.",
-        "nextNodeId": "ch9_hub"
+        "nextNodeId": "ch9_hub",
+        "visitKey": "leave"
       }
     ],
-    "location": "Engineering — Telemetry Rack"
+    "location": "Engineering — Telemetry Rack",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "save",
+      "leave"
+    ],
+    "clearMode": "any",
+    "leafRoom": true
   },
   "ch9_incinerator": {
     "text": "Ash soft as regret. On the chute lip, a page that almost became smoke: Arthur's hand, furious and small. 'Corporate won't listen. The core is unstable. I have to break the drill. A week of downtime is better than all of us dead.' The fire did not finish the sentence. You can.",
@@ -88,14 +103,23 @@
         "nextNodeId": "ch9_hub",
         "effects": {
           "giveClue": "half_burned_manifesto"
-        }
+        },
+        "visitKey": "rescue"
       },
       {
         "text": "Let the ash keep it.",
-        "nextNodeId": "ch9_hub"
+        "nextNodeId": "ch9_hub",
+        "visitKey": "leave"
       }
     ],
-    "location": "Incinerator Room"
+    "location": "Incinerator Room",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "rescue",
+      "leave"
+    ],
+    "clearMode": "any",
+    "leafRoom": true
   },
   "ch9_drill_view": {
     "text": "Through scratched glass the drill shaft is a throat into geology that did not invite you. Something below returns your emergency light that is not metal and not willing to be named. For a moment the reflection looks like a face you have already buried.",
@@ -112,10 +136,17 @@
     "choices": [
       {
         "text": "Step back to hub.",
-        "nextNodeId": "ch9_hub"
+        "nextNodeId": "ch9_hub",
+        "visitKey": "step_back"
       }
     ],
-    "location": "Drill Bay Viewport"
+    "location": "Drill Bay Viewport",
+    "investigationRoom": true,
+    "clearWhenVisited": [
+      "step_back"
+    ],
+    "clearMode": "any",
+    "leafRoom": true
   },
   "ch9_ask": {
     "text": "'Rocks were groaning,' Arthur says, still not facing you. 'You ever work a collapse? Not a sim. The real kind, where the dust tastes like teeth?' His shoulders hitch. 'Corporate wanted depth. Depth is a grave with better marketing. I told Gideon. I told anyone with ears that still worked.'",
