@@ -209,7 +209,9 @@ export const Assets = {
     },
 
     /**
-     * Apply optional node presentation fields: bgm, sfx, cg, cgCaption
+     * Apply optional node presentation fields: bgm, sfx, cg, cgCaption, location.
+     * CG does not stick with a wrong room name — if this node has no cg, hide the layer.
+     * Location is displayed by the HUD (not only as a CG caption).
      */
     applyNodePresentation(node) {
         if (!node) return;
@@ -223,9 +225,12 @@ export const Assets = {
             this.playSfx(node.sfx);
         }
 
-        if (Object.prototype.hasOwnProperty.call(node, 'cg')) {
-            if (node.cg) this.showCg(node.cg, node.cgCaption || null);
-            else this.hideCg();
+        // Always resolve CG state per node so investigation rooms never keep a prior hangar/mess art
+        if (node.cg) {
+            const caption = node.cgCaption || node.location || null;
+            this.showCg(node.cg, caption);
+        } else {
+            this.hideCg();
         }
     },
 

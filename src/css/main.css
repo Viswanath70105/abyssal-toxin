@@ -318,6 +318,27 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 0;
 }
 
+/* Already-searched investigation hub locations */
+#choices-container .choice-btn.choice-visited,
+#choices-container .choice-btn:disabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    border-color: rgba(255, 255, 255, 0.08);
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.03);
+    text-decoration: none;
+}
+
+#choices-container .choice-btn.choice-visited:hover,
+#choices-container .choice-btn:disabled:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+}
+
 #choices-container .glass-btn {
     width: 100%;
     text-align: left;
@@ -352,6 +373,42 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.85rem;
     text-transform: uppercase;
     margin-bottom: 4px;
+}
+
+.location-label-hud {
+    font-family: 'Inter', sans-serif;
+    color: var(--accent-teal);
+    letter-spacing: 0.06em;
+    font-size: 0.8rem;
+    text-align: right;
+    max-width: 220px;
+    line-height: 1.35;
+    margin-bottom: 2px;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.25);
+}
+
+.location-label-hud.is-empty {
+    display: none;
+}
+
+.story-location {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(0, 229, 255, 0.15);
+}
+
+.history-location {
+    color: var(--accent-teal);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    opacity: 0.9;
 }
 
 .hud-buttons {

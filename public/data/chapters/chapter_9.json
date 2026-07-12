@@ -7,14 +7,16 @@
         "text": "Enter the engineering hub.",
         "nextNodeId": "ch9_hub"
       }
-    ]
+    ],
+    "location": "Engineering Bay"
   },
   "ch9_hub": {
     "text": "Where do you dig while the station still has rooms that answer to tools?",
     "choices": [
       {
         "text": "Main console — Arthur",
-        "nextNodeId": "ch9_arthur"
+        "nextNodeId": "ch9_arthur",
+        "revisitAllowed": true
       },
       {
         "text": "Drill telemetry rack",
@@ -32,10 +34,15 @@
         "text": "Advance when Arthur is settled",
         "nextNodeId": "ch9_end",
         "requires": {
-          "flags": { "ch9_arthur_done": true }
-        }
+          "flags": {
+            "ch9_arthur_done": true
+          }
+        },
+        "hubExit": true
       }
-    ]
+    ],
+    "location": "Engineering Bay",
+    "investigationHub": true
   },
   "ch9_arthur": {
     "text": "Up close, Arthur's hands are a seismograph. He does not look at you until the schematic under his palms blurs into meaninglessness. Grease in his hair. A tremor that is not cold. 'If you're here to quote Corporate safety slogans,' he says, 'the suggestion box drowned in Sector B.'",
@@ -53,7 +60,8 @@
         "text": "Return to hub.",
         "nextNodeId": "ch9_hub"
       }
-    ]
+    ],
+    "location": "Engineering — Main Console"
   },
   "ch9_telemetry": {
     "text": "The rack still holds the raw truth Corporate would redact: torque limiters manually overridden. Timestamped. Initialed by a maintenance key that maps to Arthur's credentials. Not a failure. A decision with a drill bit at the end of it.",
@@ -69,7 +77,8 @@
         "text": "Return without copying.",
         "nextNodeId": "ch9_hub"
       }
-    ]
+    ],
+    "location": "Engineering — Telemetry Rack"
   },
   "ch9_incinerator": {
     "text": "Ash soft as regret. On the chute lip, a page that almost became smoke: Arthur's hand, furious and small. 'Corporate won't listen. The core is unstable. I have to break the drill. A week of downtime is better than all of us dead.' The fire did not finish the sentence. You can.",
@@ -85,7 +94,8 @@
         "text": "Let the ash keep it.",
         "nextNodeId": "ch9_hub"
       }
-    ]
+    ],
+    "location": "Incinerator Room"
   },
   "ch9_drill_view": {
     "text": "Through scratched glass the drill shaft is a throat into geology that did not invite you. Something below returns your emergency light that is not metal and not willing to be named. For a moment the reflection looks like a face you have already buried.",
@@ -104,7 +114,8 @@
         "text": "Step back to hub.",
         "nextNodeId": "ch9_hub"
       }
-    ]
+    ],
+    "location": "Drill Bay Viewport"
   },
   "ch9_ask": {
     "text": "'Rocks were groaning,' Arthur says, still not facing you. 'You ever work a collapse? Not a sim. The real kind, where the dust tastes like teeth?' His shoulders hitch. 'Corporate wanted depth. Depth is a grave with better marketing. I told Gideon. I told anyone with ears that still worked.'",
@@ -118,7 +129,8 @@
         "text": "Return to hub for proof before you push.",
         "nextNodeId": "ch9_hub"
       }
-    ]
+    ],
+    "location": "Engineering — Main Console"
   },
   "ch9_confront_stage1": {
     "text": "He turns. The anger is ready, pre-loaded. 'If you're going to call me a murderer, do it with evidence. I've been called worse by better men for less.'",
@@ -128,22 +140,29 @@
         "text": "Present drill telemetry — the override is his.",
         "nextNodeId": "ch9_confront_stage2",
         "requires": {
-          "clues": ["drill_telemetry"]
+          "clues": [
+            "drill_telemetry"
+          ]
         }
       },
       {
         "text": "Accuse him of wanting everyone dead — no soft landing.",
         "nextNodeId": "ch9_wrong",
         "effects": {
-          "flags": { "arthur_broken": true },
-          "trust": { "arthur": -40 }
+          "flags": {
+            "arthur_broken": true
+          },
+          "trust": {
+            "arthur": -40
+          }
         }
       },
       {
         "text": "Not yet. Return to hub.",
         "nextNodeId": "ch9_hub"
       }
-    ]
+    ],
+    "location": "Engineering — Main Console"
   },
   "ch9_confront_stage2": {
     "text": "The telemetry lands between you like a third person. Arthur's mouth opens, closes. 'That was supposed to buy downtime. Break the bit, force a week, force them to listen.' His laugh is dry wire. 'Instead the wall was thinner than the lies. The cavern opened. Whatever was sleeping woke up hungry.'",
@@ -153,25 +172,35 @@
         "text": "Present therapy records or the manifesto — show you understand why.",
         "nextNodeId": "ch9_confront_stage3",
         "requires": {
-          "cluesAny": ["therapy_transcripts", "half_burned_manifesto"]
+          "cluesAny": [
+            "therapy_transcripts",
+            "half_burned_manifesto"
+          ]
         }
       },
       {
         "text": "Condemn him on the telemetry alone.",
         "nextNodeId": "ch9_condemn",
         "effects": {
-          "flags": { "arthur_condemned": true },
-          "trust": { "arthur": -20 }
+          "flags": {
+            "arthur_condemned": true
+          },
+          "trust": {
+            "arthur": -20
+          }
         }
       },
       {
         "text": "Stop here. You have enough to judge later.",
         "nextNodeId": "ch9_hub",
         "effects": {
-          "flags": { "arthur_partial_confess": true }
+          "flags": {
+            "arthur_partial_confess": true
+          }
         }
       }
-    ]
+    ],
+    "location": "Engineering — Main Console"
   },
   "ch9_confront_stage3": {
     "text": "When you set the shame beside the crime — Titan-4, the dead apprentice, the rocks that still live in his sleep — Arthur folds as if unstrung. 'I wasn't trying to kill us. I was trying to stop us from dying the Corporate way: slow, denied, efficient.' Tears cut clean lines through grime. 'Say what you came to say.'",
@@ -181,19 +210,29 @@
         "text": "Forgive him. Ask him to fix what can still be fixed.",
         "nextNodeId": "ch9_forgive",
         "effects": {
-          "flags": { "arthur_forgiven": true, "arthur_ally": true },
-          "trust": { "arthur": 30 }
+          "flags": {
+            "arthur_forgiven": true,
+            "arthur_ally": true
+          },
+          "trust": {
+            "arthur": 30
+          }
         }
       },
       {
         "text": "Condemn him — understanding is not absolution.",
         "nextNodeId": "ch9_condemn",
         "effects": {
-          "flags": { "arthur_condemned": true },
-          "trust": { "arthur": -15 }
+          "flags": {
+            "arthur_condemned": true
+          },
+          "trust": {
+            "arthur": -15
+          }
         }
       }
-    ]
+    ],
+    "location": "Engineering — Main Console"
   },
   "ch9_forgive": {
     "text": "He weeps without sound, then stands as if the apology has mass. 'Then I fix what I can. Even if it kills me. Especially if it kills me.' He almost smiles. 'Tell the Director, if you see him, that some of us still think the crew is worth more than an insurance line.'",
@@ -203,10 +242,13 @@
         "text": "Leave him to the systems — mark resolved.",
         "nextNodeId": "ch9_hub",
         "effects": {
-          "flags": { "ch9_arthur_done": true }
+          "flags": {
+            "ch9_arthur_done": true
+          }
         }
       }
-    ]
+    ],
+    "location": "Engineering — Main Console"
   },
   "ch9_condemn": {
     "text": "Arthur nods once, sentenced. 'Fair. Lock me up if you want. Just know the scrubbers will fail without someone who hates this place enough to stay in it.' He turns back to the console. The conversation is over; the work, humiliatingly, is not.",
@@ -216,10 +258,13 @@
         "text": "Leave him under watch — mark resolved.",
         "nextNodeId": "ch9_hub",
         "effects": {
-          "flags": { "ch9_arthur_done": true }
+          "flags": {
+            "ch9_arthur_done": true
+          }
         }
       }
-    ]
+    ],
+    "location": "Engineering — Main Console"
   },
   "ch9_wrong": {
     "text": "Something in him snaps along an old fault line. 'Wanted you dead? I wanted you home!' He is already moving — a service hatch, half-flooded dark, laughter and sobbing braided into one sound. The organism loves an open wound. You do not follow. Some doors only open one way.",
@@ -229,10 +274,14 @@
         "nextNodeId": "ch9_hub",
         "effects": {
           "infection": 8,
-          "flags": { "arthur_lost": true, "ch9_arthur_done": true }
+          "flags": {
+            "arthur_lost": true,
+            "ch9_arthur_done": true
+          }
         }
       }
-    ]
+    ],
+    "location": "Engineering Bay"
   },
   "ch9_end": {
     "text": "Power dips. In the brownout you hear the station rewrite itself — bulkheads like ligaments, vents like lungs learning a new owner. Optional investigation is ending. What remains is the question of who still thinks this crew is salvageable — and who has already filed the opposite answer.",
@@ -241,6 +290,7 @@
         "text": "Push into the darkening station.",
         "nextNodeId": "ch10_start"
       }
-    ]
+    ],
+    "location": "Engineering Bay"
   }
 }

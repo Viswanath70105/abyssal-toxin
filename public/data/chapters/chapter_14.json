@@ -8,20 +8,24 @@
         "text": "Pull the scuttling authorization logs.",
         "nextNodeId": "ch14_logs"
       }
-    ]
+    ],
+    "location": "Collapsing Corridors"
   },
   "ch14_logs": {
-    "text": "Not automated. Not a cascade trip from flood sensors. Manual initiation. Authorization biometrics match GIDEON STROUD — timestamped after Corporate's one-line acceptance, before most of the crew knew the word Omega. He is not reacting to the end. He is conducting it.",
+    "text": "Not automated. Not a cascade trip from flood sensors. Manual initiation. Authorization biometrics match GIDEON STROUD \u2014 timestamped after Corporate's one-line acceptance, before most of the crew knew the word Omega. He is not reacting to the end. He is conducting it.",
     "choices": [
       {
         "text": "Save the auth log. Track his tag.",
         "nextNodeId": "ch14_track_gideon",
         "effects": {
           "giveClue": "scuttling_auth_log",
-          "flags": { "knows_gideon_scuttle": true }
+          "flags": {
+            "knows_gideon_scuttle": true
+          }
         }
       }
-    ]
+    ],
+    "location": "Command Access Terminal"
   },
   "ch14_track_gideon": {
     "text": "Internal sensors place his biometric tag in the Escape Bay. One Bathysphere remains green on the board. Crew capacity: one. The math he has always preferred, reduced to a seat.",
@@ -30,7 +34,8 @@
         "text": "Run for the Escape Bay.",
         "nextNodeId": "ch14_run"
       }
-    ]
+    ],
+    "location": "Internal Sensors"
   },
   "ch14_run": {
     "text": "Corridors collapse into suggestions of corridors. Water needles through seams. Behind the roar of metal, wet footsteps of the assimilated keep pace like a second heart learning your route. You pass a wall screen still looping Gideon's calm face from an old safety brief: REMAIN ORDERLY. The irony nearly kills you before the depth can.",
@@ -41,7 +46,7 @@
     "textVariants": [
       {
         "minInfection": 55,
-        "text": "You run and the station runs with you — in your veins, in the chorus that has learned your stride. Miller's voice offers a shortcut that would drown you. You take the long way on purpose."
+        "text": "You run and the station runs with you \u2014 in your veins, in the chorus that has learned your stride. Miller's voice offers a shortcut that would drown you. You take the long way on purpose."
       }
     ],
     "choices": [
@@ -49,7 +54,8 @@
         "text": "Push through to the Escape Bay.",
         "nextNodeId": "ch14_end"
       }
-    ]
+    ],
+    "location": "Collapsing Corridors"
   },
   "ch14_end": {
     "text": "A structural beam seals the corridor at your back with the finality of a period. Forward: Escape Bay blast doors, amber launch lights bleeding underneath. Behind: the rising dark. There is only one way left that still pretends to be a choice.",
@@ -58,6 +64,7 @@
         "text": "Enter the Escape Bay.",
         "nextNodeId": "ch15_start"
       }
-    ]
+    ],
+    "location": "Escape Bay Approach"
   }
 }

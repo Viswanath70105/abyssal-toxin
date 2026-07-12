@@ -4,33 +4,41 @@
     "bgm": "final_bay",
     "cg": "escape_bay",
     "cgCaption": "Escape Bay",
-    "text": "Amber launch lights strobe the Escape Bay in a rhythm like a slow alarm clock for the end of the world. Gideon Stroud stands at the console with a pneumatic rivet gun held not like a weapon but like a tool that has been waiting for this job. Behind you the blast doors buckle. The organism is almost through — a wet thunder of recognition. Gideon's eyes find yours. He does not look surprised to see you. He looks inconvenienced by a variable.",
+    "text": "Amber launch lights strobe the Escape Bay in a rhythm like a slow alarm clock for the end of the world. Gideon Stroud stands at the console with a pneumatic rivet gun held not like a weapon but like a tool that has been waiting for this job. Behind you the blast doors buckle. The organism is almost through \u2014 a wet thunder of recognition. Gideon's eyes find yours. He does not look surprised to see you. He looks inconvenienced by a variable.",
     "choices": [
       {
         "text": "Confront him.",
         "nextNodeId": "ch15_confront_gideon"
       }
-    ]
+    ],
+    "location": "Escape Bay"
   },
   "ch15_confront_gideon": {
     "text": "'You're late to a conversation that finished without you,' Gideon says. The rivet gun does not waver. 'The scuttling sequence cannot be stopped from here. If the Toxin reaches the surface, it rewrites the biosphere in days. I am burying it. I am saving Earth. Including the parts of it that signed our death warrant.'",
     "speaker": "Gideon",
     "choices": [
       {
-        "text": "Present the scuttling auth log — prove you know he chose this.",
+        "text": "Present the scuttling auth log \u2014 prove you know he chose this.",
         "nextNodeId": "ch15_gideon_proof",
         "requires": {
-          "clues": ["scuttling_auth_log"]
+          "clues": [
+            "scuttling_auth_log"
+          ]
         },
         "effects": {
-          "flags": { "confronted_with_proof": true }
+          "flags": {
+            "confronted_with_proof": true
+          }
         }
       },
       {
-        "text": "Present his family note / unsent draft — you know his shame too.",
+        "text": "Present his family note / unsent draft \u2014 you know his shame too.",
         "nextNodeId": "ch15_gideon_shame",
         "requires": {
-          "cluesAny": ["family_photo_note", "unsent_transmission"]
+          "cluesAny": [
+            "family_photo_note",
+            "unsent_transmission"
+          ]
         }
       },
       {
@@ -44,38 +52,43 @@
           "minInfection": 75
         },
         "effects": {
-          "flags": { "embrace_infection": true }
+          "flags": {
+            "embrace_infection": true
+          }
         }
       }
-    ]
+    ],
+    "location": "Escape Bay"
   },
   "ch15_gideon_proof": {
-    "text": "You hold up the auth log. He nods once — almost respectful. 'Yes. My hand. My biometrics. Not a glitch, not a hero AI, not Miller's ghost. Me.' No denial. Denial was always for people who needed to be liked. 'I told you preparedness is not guilt. Sometimes it is both.'",
+    "text": "You hold up the auth log. He nods once \u2014 almost respectful. 'Yes. My hand. My biometrics. Not a glitch, not a hero AI, not Miller's ghost. Me.' No denial. Denial was always for people who needed to be liked. 'I told you preparedness is not guilt. Sometimes it is both.'",
     "speaker": "Gideon",
     "choices": [
       {
         "text": "Demand the rest of the math.",
         "nextNodeId": "ch15_gideon_logic"
       }
-    ]
+    ],
+    "location": "Escape Bay"
   },
   "ch15_gideon_shame": {
-    "text": "For the first time something human moves behind his eyes — not weakness. Cost. 'They are on the surface. Eight billion strangers and three people with my name in their mouths. I will not gamble them on a bathysphere that might carry a spore under a fingernail.' He steadies. 'Do not confuse confession with surrender.'",
+    "text": "For the first time something human moves behind his eyes \u2014 not weakness. Cost. 'They are on the surface. Eight billion strangers and three people with my name in their mouths. I will not gamble them on a bathysphere that might carry a spore under a fingernail.' He steadies. 'Do not confuse confession with surrender.'",
     "speaker": "Gideon",
     "choices": [
       {
         "text": "Face the final choice.",
         "nextNodeId": "ch15_gideon_logic"
       }
-    ]
+    ],
+    "location": "Escape Bay"
   },
   "ch15_gideon_logic": {
-    "text": "'Simple math. A hundred lives here for billions above. One seat in the pod. I am taking it — not as reward. As quarantine of last resort: if I go, I go knowing what I carry, and I will not.' The doors scream inward. Rivets tick in the gun like a countdown. What you do next is not a menu. It is the person the depth has made of you.",
+    "text": "'Simple math. A hundred lives here for billions above. One seat in the pod. I am taking it \u2014 not as reward. As quarantine of last resort: if I go, I go knowing what I carry, and I will not.' The doors scream inward. Rivets tick in the gun like a countdown. What you do next is not a menu. It is the person the depth has made of you.",
     "speaker": "Gideon",
     "textVariants": [
       {
         "minInfection": 55,
-        "text": "'Simple math,' Gideon says, but his voice doubles — one human, one wet echo under your ribs. 'One seat.' The organism offers a third option that wears your hands. The doors scream. Choose while you still can."
+        "text": "'Simple math,' Gideon says, but his voice doubles \u2014 one human, one wet echo under your ribs. 'One seat.' The organism offers a third option that wears your hands. The doors scream. Choose while you still can."
       }
     ],
     "choices": [
@@ -83,28 +96,37 @@
         "text": "Accept his logic. Stay. Let the abyss close.",
         "nextNodeId": "ch15_ending_abyssal_grave",
         "effects": {
-          "flags": { "chose_martyr": true }
+          "flags": {
+            "chose_martyr": true
+          }
         }
       },
       {
-        "text": "Fight him for the pod — refuse to die for their ledger.",
+        "text": "Fight him for the pod \u2014 refuse to die for their ledger.",
         "nextNodeId": "ch15_resolve_fight",
         "effects": {
-          "flags": { "chose_fight": true }
+          "flags": {
+            "chose_fight": true
+          }
         },
         "requires": {
           "maxInfection": 74
         }
       },
       {
-        "text": "If you assembled the chain — offer a third path: evidence rises with you.",
+        "text": "If you assembled the chain \u2014 offer a third path: evidence rises with you.",
         "nextNodeId": "ch15_resolve_fight",
         "requires": {
-          "flags": { "fair_detective": true },
+          "flags": {
+            "fair_detective": true
+          },
           "maxInfection": 74
         },
         "effects": {
-          "flags": { "chose_fight": true, "chose_witness": true }
+          "flags": {
+            "chose_fight": true,
+            "chose_witness": true
+          }
         }
       },
       {
@@ -114,18 +136,22 @@
           "minInfection": 55
         },
         "effects": {
-          "flags": { "embrace_infection": true }
+          "flags": {
+            "embrace_infection": true
+          }
         }
       }
-    ]
+    ],
+    "location": "Escape Bay"
   },
   "ch15_resolve_fight": {
-    "text": "You move. Rivets spark off the deck plating. The pod hatch yawns like a mouth that has been waiting for any honest answer. Everything you gathered — allies, logs, the weight in your blood, the names you refused to flatten into one villain — decides what kind of survivor climbs out of the dark.",
+    "text": "You move. Rivets spark off the deck plating. The pod hatch yawns like a mouth that has been waiting for any honest answer. Everything you gathered \u2014 allies, logs, the weight in your blood, the names you refused to flatten into one villain \u2014 decides what kind of survivor climbs out of the dark.",
     "resolveEnding": true,
-    "choices": []
+    "choices": [],
+    "location": "Escape Bay"
   },
   "ch15_ending_abyssal_grave": {
-    "text": "You lower your hands. If you rise, you may carry the end of the world in a cut you cannot feel yet. Gideon searches your face for mockery and finds none. He seals the hatch. You sit on cold metal as the blast doors give way and the dark water takes Nereus like a held breath finally released. In the last red light you think of Miller's beach photo, Maya's boots, Aris's shaking hands — a station of people who failed in human ways. Gideon failed in a way that almost looks like love. The abyss does not grade on a curve.",
+    "text": "You lower your hands. If you rise, you may carry the end of the world in a cut you cannot feel yet. Gideon searches your face for mockery and finds none. He seals the hatch. You sit on cold metal as the blast doors give way and the dark water takes Nereus like a held breath finally released. In the last red light you think of Miller's beach photo, Maya's boots, Aris's shaking hands \u2014 a station of people who failed in human ways. Gideon failed in a way that almost looks like love. The abyss does not grade on a curve.",
     "isEnding": true,
     "endingTitle": "Abyssal Grave",
     "choices": [
@@ -133,10 +159,11 @@
         "text": "Close the log.",
         "nextNodeId": "game_over"
       }
-    ]
+    ],
+    "location": "Escape Bay"
   },
   "ch15_ending_surface_tension": {
-    "text": "You refuse the dark. The fight is ugly and short and paid for with someone else's calm. You take the pod through violence and luck while Gideon falls into the mathematics he worshiped. As you rise, Nereus folds in on itself below — a secret the ocean keeps, a guilt with your pulse. You survived. The cost is a roster of names you will say wrong for the rest of your life.",
+    "text": "You refuse the dark. The fight is ugly and short and paid for with someone else's calm. You take the pod through violence and luck while Gideon falls into the mathematics he worshiped. As you rise, Nereus folds in on itself below \u2014 a secret the ocean keeps, a guilt with your pulse. You survived. The cost is a roster of names you will say wrong for the rest of your life.",
     "isEnding": true,
     "endingTitle": "Surface Tension",
     "choices": [
@@ -144,10 +171,11 @@
         "text": "Close the log.",
         "nextNodeId": "game_over"
       }
-    ]
+    ],
+    "location": "Escape Bay"
   },
   "ch15_ending_whistleblower": {
-    "text": "You take the pod — not alone in spirit. Evidence rides with you: scuttling biometrics, Corporate's one-line murder, the chain of human failures that made a monster inevitable. When you breach sunlight that feels like a rumor, you broadcast before they can buy your silence. The ocean keeps its dead. The world will not keep this secret. Somewhere, a child on a pier will grow up never knowing a stranger in the dark chose numbers that included her name.",
+    "text": "You take the pod \u2014 not alone in spirit. Evidence rides with you: scuttling biometrics, Corporate's one-line murder, the chain of human failures that made a monster inevitable. When you breach sunlight that feels like a rumor, you broadcast before they can buy your silence. The ocean keeps its dead. The world will not keep this secret. Somewhere, a child on a pier will grow up never knowing a stranger in the dark chose numbers that included her name.",
     "isEnding": true,
     "endingTitle": "The Whistleblower",
     "choices": [
@@ -155,10 +183,11 @@
         "text": "Close the log.",
         "nextNodeId": "game_over"
       }
-    ]
+    ],
+    "location": "Escape Bay"
   },
   "ch15_ending_patient_zero": {
-    "text": "Black veins bloom into scripture. Voices become choir — Miller, the drill team, a kindness that is not kindness. Your jaw unhinges on a gift of spores that blinds Gideon mid-prayer to his math. You take the pod not to live, but to share. The surface has no idea it is about to learn a new language of flesh. In the last human corner of your mind, you almost thank him for keeping the seat warm.",
+    "text": "Black veins bloom into scripture. Voices become choir \u2014 Miller, the drill team, a kindness that is not kindness. Your jaw unhinges on a gift of spores that blinds Gideon mid-prayer to his math. You take the pod not to live, but to share. The surface has no idea it is about to learn a new language of flesh. In the last human corner of your mind, you almost thank him for keeping the seat warm.",
     "isEnding": true,
     "endingTitle": "Patient Zero",
     "choices": [
@@ -166,12 +195,14 @@
         "text": "Close the log.",
         "nextNodeId": "game_over"
       }
-    ]
+    ],
+    "location": "Escape Bay"
   },
   "game_over": {
-    "text": "Thank you for playing Abyssal Toxin. Progress remains on this device if you wish to walk another path — dig deeper, accuse better, or fail more honestly. The station is gone. The questions are not.",
+    "text": "Thank you for playing Abyssal Toxin. Progress remains on this device if you wish to walk another path \u2014 dig deeper, accuse better, or fail more honestly. The station is gone. The questions are not.",
     "isEnding": true,
     "endingTitle": "End of Log",
-    "choices": []
+    "choices": [],
+    "location": "End of Log"
   }
 }

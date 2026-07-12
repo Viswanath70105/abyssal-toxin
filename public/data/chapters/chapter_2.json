@@ -4,8 +4,8 @@
     "bgm": "alarm_ambient",
     "sfx": "alarm",
     "cg": "quarters_red_alert",
-    "cgCaption": "Crew Quarters — Red Alert",
-    "text": "The alarm does not so much wake you as seize you by the ribs. Red emergency strips paint your bunk in arterial light. The deck vibrates — not the honest groan of depth pressure, but something sharper, like a machine biting its own tongue. Your boots are already half-laced before your mind catches up.",
+    "cgCaption": "Crew Quarters \u2014 Red Alert",
+    "text": "The alarm does not so much wake you as seize you by the ribs. Red emergency strips paint your bunk in arterial light. The deck vibrates \u2014 not the honest groan of depth pressure, but something sharper, like a machine biting its own tongue. Your boots are already half-laced before your mind catches up.",
     "choices": [
       {
         "text": "Listen to the intercom.",
@@ -15,72 +15,82 @@
         "text": "Check the bulkhead status panel first.",
         "nextNodeId": "ch2_status_panel"
       }
-    ]
+    ],
+    "location": "Crew Quarters"
   },
   "ch2_status_panel": {
-    "text": "The panel stutters through sealed sectors. Mess Hall: LOCKDOWN PENDING. Sector B: INTEGRITY WATCH — a line that should have been green for months. Someone has been living with that amber light. The intercom crackles before you can dig deeper.",
+    "text": "The panel stutters through sealed sectors. Mess Hall: LOCKDOWN PENDING. Sector B: INTEGRITY WATCH \u2014 a line that should have been green for months. Someone has been living with that amber light. The intercom crackles before you can dig deeper.",
     "effects": {
-      "flags": { "noticed_integrity_watch": true }
+      "flags": {
+        "noticed_integrity_watch": true
+      }
     },
     "choices": [
       {
         "text": "Give the intercom your attention.",
         "nextNodeId": "ch2_announcement"
       }
-    ]
+    ],
+    "location": "Crew Quarters"
   },
   "ch2_announcement": {
-    "text": "'Attention all personnel. Station lockdown initiated. All bulkheads sealed. Please remain calm.' A breath that is almost a hesitation. 'We have a… situation in the Mess Hall.' Gideon Stroud's voice is the same steel he uses for quota briefings. Calm. Contained. The kind of calm that has already done the math.",
+    "text": "'Attention all personnel. Station lockdown initiated. All bulkheads sealed. Please remain calm.' A breath that is almost a hesitation. 'We have a\u2026 situation in the Mess Hall.' Gideon Stroud's voice is the same steel he uses for quota briefings. Calm. Contained. The kind of calm that has already done the math.",
     "speaker": "Gideon Stroud",
     "choices": [
       {
         "text": "Rush the Mess Hall before the doors finish closing.",
         "nextNodeId": "ch2_corridor_run"
       }
-    ]
+    ],
+    "location": "Crew Quarters"
   },
   "ch2_corridor_run": {
-    "text": "The corridor is a red tunnel of running bodies and shouted half-orders. David’s security drones skim the ceiling like angry insects. You catch a glimpse of Chloe at a junction, hands over her ears as if the alarm is speaking only to her. Then the Mess Hall blast doors begin their slow, irreversible arc.",
+    "text": "The corridor is a red tunnel of running bodies and shouted half-orders. David\u2019s security drones skim the ceiling like angry insects. You catch a glimpse of Chloe at a junction, hands over her ears as if the alarm is speaking only to her. Then the Mess Hall blast doors begin their slow, irreversible arc.",
     "choices": [
       {
         "text": "Slip through before they seal.",
         "nextNodeId": "ch2_mess_hall_scene"
       }
-    ]
+    ],
+    "location": "Sector A Corridor"
   },
   "ch2_mess_hall_scene": {
     "cg": "mess_hall_chaos",
     "cgCaption": "Mess Hall",
-    "text": "You make it. The doors kiss shut behind you with a sound like a tomb practicing. Chaos has already chosen its shapes: overturned chairs, a tray spinning to a stop, the metallic sweet stink of stew on steel. Miller is on the deck, both hands at his throat, boots scraping useless circles. His face is the wrong color — purple shading toward black at the lips. Otto stands over the tipped pot as if it might still explain itself.",
+    "text": "You make it. The doors kiss shut behind you with a sound like a tomb practicing. Chaos has already chosen its shapes: overturned chairs, a tray spinning to a stop, the metallic sweet stink of stew on steel. Miller is on the deck, both hands at his throat, boots scraping useless circles. His face is the wrong color \u2014 purple shading toward black at the lips. Otto stands over the tipped pot as if it might still explain itself.",
     "choices": [
       {
         "text": "Drop to Miller's side.",
         "nextNodeId": "ch2_miller_help"
       },
       {
-        "text": "Check the stew first — something is wrong with it.",
+        "text": "Check the stew first \u2014 something is wrong with it.",
         "nextNodeId": "ch2_examine_stew"
       },
       {
         "text": "Watch Otto's hands before you move.",
         "nextNodeId": "ch2_watch_otto"
       }
-    ]
+    ],
+    "location": "Mess Hall"
   },
   "ch2_watch_otto": {
-    "text": "Otto's hands are clean. Not scrubbed-clean — work-clean, flour in the creases, a burn scar on the left knuckle you have seen him joke about. He is not wiping anything away. He is simply terrified, eyes wide enough to show white all around. Guilt can look like that. Innocence can too. The difference will not be decided in this room.",
+    "text": "Otto's hands are clean. Not scrubbed-clean \u2014 work-clean, flour in the creases, a burn scar on the left knuckle you have seen him joke about. He is not wiping anything away. He is simply terrified, eyes wide enough to show white all around. Guilt can look like that. Innocence can too. The difference will not be decided in this room.",
     "speaker": "Otto Finch",
     "choices": [
       {
         "text": "Go to Miller.",
         "nextNodeId": "ch2_miller_help"
       }
-    ]
+    ],
+    "location": "Mess Hall"
   },
   "ch2_examine_stew": {
-    "text": "The stew smells faintly metallic, almost sweet — like pennies left in rain. Not the flat kelp-and-protein nothing you have been eating for weeks. A skin of oil iridesces under the red light. Before you can scoop a sample, the medbay doors cycle and Dr. Aris bursts in, medkit already open, voice already too high.",
+    "text": "The stew smells faintly metallic, almost sweet \u2014 like pennies left in rain. Not the flat kelp-and-protein nothing you have been eating for weeks. A skin of oil iridesces under the red light. Before you can scoop a sample, the medbay doors cycle and Dr. Aris bursts in, medkit already open, voice already too high.",
     "effects": {
-      "flags": { "smelled_stew": true },
+      "flags": {
+        "smelled_stew": true
+      },
       "infection": 2
     },
     "choices": [
@@ -88,10 +98,11 @@
         "text": "Make room for Aris at Miller's side.",
         "nextNodeId": "ch2_miller_help"
       }
-    ]
+    ],
+    "location": "Mess Hall"
   },
   "ch2_miller_help": {
-    "text": "Miller's pulse is a stutter under your fingers. His eyes find yours — still him, still the man who shook your hand on the hangar deck like you were both going to survive this place. His mouth works. A wet sound. You lean close. What comes out is not a warning about Otto, or stew, or sabotage. It is a name, broken in half: his daughter's. Then a whisper that might be apology, or prayer, or both.",
+    "text": "Miller's pulse is a stutter under your fingers. His eyes find yours \u2014 still him, still the man who shook your hand on the hangar deck like you were both going to survive this place. His mouth works. A wet sound. You lean close. What comes out is not a warning about Otto, or stew, or sabotage. It is a name, broken in half: his daughter's. Then a whisper that might be apology, or prayer, or both.",
     "speaker": "Miller",
     "choices": [
       {
@@ -102,25 +113,27 @@
         "text": "Yell for Aris to hurry.",
         "nextNodeId": "ch2_miller_dies"
       }
-    ]
+    ],
+    "location": "Mess Hall"
   },
   "ch2_miller_dies": {
     "bgm": "aftermath",
     "sfx": "silence_drop",
     "cg": "mess_hall_miller",
     "cgCaption": "Mess Hall",
-    "text": "Aris hits her knees hard enough to bruise. The syringe is already in her hand — epinephrine, counteragent, something with a corporate label and a prayer behind it. She finds the vein. She pushes. Miller's back arches once, a fish on a deck, and then the fight goes out of him in a single long exhale that fogs nothing because the air is already too cold. His eyes stay open. The room does not know how to be this quiet. Even the alarm seems to step back.",
+    "text": "Aris hits her knees hard enough to bruise. The syringe is already in her hand \u2014 epinephrine, counteragent, something with a corporate label and a prayer behind it. She finds the vein. She pushes. Miller's back arches once, a fish on a deck, and then the fight goes out of him in a single long exhale that fogs nothing because the air is already too cold. His eyes stay open. The room does not know how to be this quiet. Even the alarm seems to step back.",
     "speaker": "Dr. Aris",
     "choices": [
       {
-        "text": "Ask Aris what just happened — carefully.",
+        "text": "Ask Aris what just happened \u2014 carefully.",
         "nextNodeId": "ch2_poison_suspect"
       },
       {
         "text": "Close Miller's eyes.",
         "nextNodeId": "ch2_close_eyes"
       }
-    ]
+    ],
+    "location": "Mess Hall"
   },
   "ch2_close_eyes": {
     "text": "The lids are still warm. Someone should have done this for a better man in a better place. Aris does not stop you. Her hands are shaking so hard the empty syringe ticks against the deck like a clock learning a new hour.",
@@ -129,58 +142,72 @@
         "text": "Demand a medical read.",
         "nextNodeId": "ch2_poison_suspect"
       }
-    ]
+    ],
+    "location": "Mess Hall"
   },
   "ch2_poison_suspect": {
-    "text": "'Acute… something. Neurotoxin profile, or anaphylaxis stacked on a bad heart, or—' Aris swallows. Professional language is a raft and she is drowning beside it. 'He was eating. The stew. The timing is not a coincidence.' Her eyes flick to the pot, then to Otto, then away, as if looking too long might make the conclusion true. Around the room, the remaining crew follows that glance like a tide.",
+    "text": "'Acute\u2026 something. Neurotoxin profile, or anaphylaxis stacked on a bad heart, or\u2014' Aris swallows. Professional language is a raft and she is drowning beside it. 'He was eating. The stew. The timing is not a coincidence.' Her eyes flick to the pot, then to Otto, then away, as if looking too long might make the conclusion true. Around the room, the remaining crew follows that glance like a tide.",
     "speaker": "Dr. Aris",
     "choices": [
       {
-        "text": "Confront Otto — the easy answer is standing right there.",
+        "text": "Confront Otto \u2014 the easy answer is standing right there.",
         "nextNodeId": "ch2_otto_defends"
       },
       {
         "text": "Tell everyone not to touch the body or the pot.",
         "nextNodeId": "ch2_secure_scene"
       }
-    ]
+    ],
+    "location": "Mess Hall"
   },
   "ch2_secure_scene": {
     "text": "You put your body between the stew and the nearest reaching hand. 'Nobody touches anything. Not until we know what this is.' It is the first time you hear your own voice sound like command. Otto flinches as if you have already sentenced him. Aris nods once, grateful for a procedure, any procedure.",
     "effects": {
-      "flags": { "secured_mess_scene": true },
-      "trust": { "aris": 5 }
+      "flags": {
+        "secured_mess_scene": true
+      },
+      "trust": {
+        "aris": 5
+      }
     },
     "choices": [
       {
-        "text": "Still — Otto needs to answer for the pot.",
+        "text": "Still \u2014 Otto needs to answer for the pot.",
         "nextNodeId": "ch2_otto_defends"
       }
-    ]
+    ],
+    "location": "Mess Hall"
   },
   "ch2_otto_defends": {
-    "text": "'Nothing! Standard rations, same as yesterday, same as the day before!' Otto's voice cracks on the last word. 'I've been telling you we are out of fresh stock. I've been—' He stops. There is a secret in that unfinished sentence, but it is not poison. Not the kind they think. He backs up until the bulkhead stops him. 'I didn't do this. Miller was… Miller was kind to me.'",
+    "text": "'Nothing! Standard rations, same as yesterday, same as the day before!' Otto's voice cracks on the last word. 'I've been telling you we are out of fresh stock. I've been\u2014' He stops. There is a secret in that unfinished sentence, but it is not poison. Not the kind they think. He backs up until the bulkhead stops him. 'I didn't do this. Miller was\u2026 Miller was kind to me.'",
     "speaker": "Otto Finch",
     "choices": [
       {
         "text": "Believe him for now. Wait for command.",
         "nextNodeId": "ch2_gideon_arrives",
         "effects": {
-          "trust": { "otto": 5 }
+          "trust": {
+            "otto": 5
+          }
         }
       },
       {
-        "text": "Keep pressure on him — secrets kill stations.",
+        "text": "Keep pressure on him \u2014 secrets kill stations.",
         "nextNodeId": "ch2_gideon_arrives",
         "effects": {
-          "trust": { "otto": -5 },
-          "flags": { "pressured_otto_early": true }
+          "trust": {
+            "otto": -5
+          },
+          "flags": {
+            "pressured_otto_early": true
+          }
         }
       }
-    ]
+    ],
+    "location": "Mess Hall"
   },
   "ch2_gideon_arrives": {
-    "text": "The side airlock cycles. Gideon Stroud enters as if the room has been waiting for his permission to become official. David flanks him, hand near his sidearm, eyes already cataloguing exits and suspects. Gideon's gaze lands on Miller's body, then the pot, then you — measuring what kind of problem you will be. 'Seal the room. Nobody touches the body. Full quarantine protocol. David — lockdown. Complete.' There is grief nowhere on his face. There is, if you look for it, something like recognition: a contingency moving from theory into schedule.",
+    "text": "The side airlock cycles. Gideon Stroud enters as if the room has been waiting for his permission to become official. David flanks him, hand near his sidearm, eyes already cataloguing exits and suspects. Gideon's gaze lands on Miller's body, then the pot, then you \u2014 measuring what kind of problem you will be. 'Seal the room. Nobody touches the body. Full quarantine protocol. David \u2014 lockdown. Complete.' There is grief nowhere on his face. There is, if you look for it, something like recognition: a contingency moving from theory into schedule.",
     "speaker": "Gideon Stroud",
     "choices": [
       {
@@ -191,20 +218,24 @@
         "text": "'Was this already in a protocol binder, Director?'",
         "nextNodeId": "ch2_end_probe",
         "effects": {
-          "flags": { "probed_gideon_early": true }
+          "flags": {
+            "probed_gideon_early": true
+          }
         }
       }
-    ]
+    ],
+    "location": "Mess Hall"
   },
   "ch2_end_probe": {
-    "text": "Gideon's eyes harden by a single degree — the temperature change of a man who has just noted a name on a list. 'Everything that keeps this station from becoming a crater is in a binder, crewman. Including how we bury our dead without infecting the living. Do not confuse preparedness with guilt.' It is a good answer. It might even be an honest one. It is not a complete one.",
+    "text": "Gideon's eyes harden by a single degree \u2014 the temperature change of a man who has just noted a name on a list. 'Everything that keeps this station from becoming a crater is in a binder, crewman. Including how we bury our dead without infecting the living. Do not confuse preparedness with guilt.' It is a good answer. It might even be an honest one. It is not a complete one.",
     "speaker": "Gideon Stroud",
     "choices": [
       {
         "text": "Let the investigation begin.",
         "nextNodeId": "ch2_end"
       }
-    ]
+    ],
+    "location": "Mess Hall"
   },
   "ch2_end": {
     "text": "'Starting now, everyone is a suspect,' Gideon says, and the words fall like a hatch. 'Return to quarters or designated safe zones. The investigation begins immediately.' Miller's photo of a beach somewhere on Earth is still in his locker, waiting for a hand that will not open it. Outside the sealed Mess Hall, the station continues its long conversation with the dark.",
@@ -214,6 +245,7 @@
         "text": "Begin your investigation.",
         "nextNodeId": "ch3_hub"
       }
-    ]
+    ],
+    "location": "Mess Hall"
   }
 }

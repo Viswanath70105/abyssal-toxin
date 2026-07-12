@@ -1,10 +1,12 @@
 {
   "ch11_start": {
     "chapter": 11,
-    "text": "Without main power, the scrubbers will fail in a span of minutes you can feel in your chest. Auxiliary override lives in Lower Maintenance — now a black, flooded throat. Anything you left dry down there is a memory the ocean is editing.",
+    "text": "Without main power, the scrubbers will fail in a span of minutes you can feel in your chest. Auxiliary override lives in Lower Maintenance \u2014 now a black, flooded throat. Anything you left dry down there is a memory the ocean is editing.",
     "effectsOnce": true,
     "effects": {
-      "flags": { "decay_lower_flood": true }
+      "flags": {
+        "decay_lower_flood": true
+      }
     },
     "choices": [
       {
@@ -15,10 +17,13 @@
         "text": "Ask David for a drier bypass (if he still trusts you).",
         "nextNodeId": "ch11_david_bypass",
         "requires": {
-          "flags": { "david_ally": true }
+          "flags": {
+            "david_ally": true
+          }
         }
       }
-    ]
+    ],
+    "location": "Lower Maintenance Approach"
   },
   "ch11_david_bypass": {
     "text": "David's voice on local is thin with pain he will not name. 'Code's good for one cycle. Don't make me regret not dying stupid alone.' The shaft he opens still weeps, but it is not the full drowning. You taste copper and recycled courage.",
@@ -32,10 +37,11 @@
         "text": "Reach the generator room.",
         "nextNodeId": "ch11_generator_approach"
       }
-    ]
+    ],
+    "location": "Maintenance Bypass Shaft"
   },
   "ch11_water": {
-    "text": "The water is a held breath made liquid — freezing, cloudy with spore-light that turns your lamp into a suggestion. Your HUD stutters. Somewhere beyond the cone of light, mass moves with the patience of things that do not need air.",
+    "text": "The water is a held breath made liquid \u2014 freezing, cloudy with spore-light that turns your lamp into a suggestion. Your HUD stutters. Somewhere beyond the cone of light, mass moves with the patience of things that do not need air.",
     "effectsOnce": true,
     "effects": {
       "infection": 15
@@ -43,7 +49,7 @@
     "textVariants": [
       {
         "minInfection": 50,
-        "text": "The water is freezing. Your HUD stutters. For a moment you are not swimming — you are being carried, gently, like a thought the station is thinking about keeping."
+        "text": "The water is freezing. Your HUD stutters. For a moment you are not swimming \u2014 you are being carried, gently, like a thought the station is thinking about keeping."
       }
     ],
     "choices": [
@@ -51,10 +57,11 @@
         "text": "Kick toward the generator room.",
         "nextNodeId": "ch11_generator_approach"
       }
-    ]
+    ],
+    "location": "Lower Maintenance \u2014 Flooded"
   },
   "ch11_generator_approach": {
-    "text": "The override panel is a rectangle of hope under silt. Between you and it: a shape that used to clock in, used to complain about coffee, used to show a photo of a girl on a beach. Barnacles of wrong light crust the shoulders. When it turns, Miller's face is almost kind — the kindness of a mask that remembers the original.",
+    "text": "The override panel is a rectangle of hope under silt. Between you and it: a shape that used to clock in, used to complain about coffee, used to show a photo of a girl on a beach. Barnacles of wrong light crust the shoulders. When it turns, Miller's face is almost kind \u2014 the kindness of a mask that remembers the original.",
     "speaker": "Miller (Assimilated)",
     "choices": [
       {
@@ -69,27 +76,33 @@
         "text": "If Arthur is with you on comms, call for the vent.",
         "nextNodeId": "ch11_arthur_vent",
         "requires": {
-          "flags": { "arthur_ally": true }
+          "flags": {
+            "arthur_ally": true
+          }
         }
       }
-    ]
+    ],
+    "location": "Generator Room"
   },
   "ch11_reason": {
-    "text": "'Miller. It's me.' Your voice is tinny in the rebreather, too small for this cathedral of dark water. The husk tilts its head the way he did when you first arrived — listening. Then the mouth opens too wide. 'We are… cold…' The lunge is not human speed. It is the speed of something that has stopped negotiating with physics.",
+    "text": "'Miller. It's me.' Your voice is tinny in the rebreather, too small for this cathedral of dark water. The husk tilts its head the way he did when you first arrived \u2014 listening. Then the mouth opens too wide. 'We are\u2026 cold\u2026' The lunge is not human speed. It is the speed of something that has stopped negotiating with physics.",
     "speaker": "Miller (Assimilated)",
     "choices": [
       {
         "text": "Fight back.",
         "nextNodeId": "ch11_fight"
       }
-    ]
+    ],
+    "location": "Generator Room"
   },
   "ch11_arthur_vent": {
-    "text": "Arthur's voice cracks across local, full of static and purpose. 'Clear the panel — now!' Superheated steam scours the chamber in a scream of metal and meat. The husk comes apart still wearing Miller's eyes. Arthur does not answer the second time you call his name. Some fixes only work once.",
+    "text": "Arthur's voice cracks across local, full of static and purpose. 'Clear the panel \u2014 now!' Superheated steam scours the chamber in a scream of metal and meat. The husk comes apart still wearing Miller's eyes. Arthur does not answer the second time you call his name. Some fixes only work once.",
     "speaker": "Arthur",
     "effectsOnce": true,
     "effects": {
-      "flags": { "arthur_sacrificed": true },
+      "flags": {
+        "arthur_sacrificed": true
+      },
       "infection": 4
     },
     "choices": [
@@ -97,10 +110,11 @@
         "text": "Throw the override and surface.",
         "nextNodeId": "ch11_escape"
       }
-    ]
+    ],
+    "location": "Generator Room"
   },
   "ch11_fight": {
-    "text": "The baton discharges into black water. Light and pain become the same color. The husk recoils just long enough for your glove to find the lever — frozen, reluctant, then yielding with a clunk that might as well be a church bell.",
+    "text": "The baton discharges into black water. Light and pain become the same color. The husk recoils just long enough for your glove to find the lever \u2014 frozen, reluctant, then yielding with a clunk that might as well be a church bell.",
     "effectsOnce": true,
     "effects": {
       "infection": 8
@@ -110,16 +124,18 @@
         "text": "Swim for the surface.",
         "nextNodeId": "ch11_escape"
       }
-    ]
+    ],
+    "location": "Generator Room"
   },
   "ch11_escape": {
-    "text": "Auxiliary lights stutter alive above the waterline like a reluctant dawn. You break the surface gasping, mask torn free, lungs inventing gratitude. Power is back. So is the knowledge that Miller is never finished with you — and that death down here is not an ending. It is recruitment.",
+    "text": "Auxiliary lights stutter alive above the waterline like a reluctant dawn. You break the surface gasping, mask torn free, lungs inventing gratitude. Power is back. So is the knowledge that Miller is never finished with you \u2014 and that death down here is not an ending. It is recruitment.",
     "choices": [
       {
         "text": "Climb out and keep moving.",
         "nextNodeId": "ch11_end"
       }
-    ]
+    ],
+    "location": "Lower Maintenance \u2014 Surface"
   },
   "ch11_end": {
     "text": "You sit for ten seconds you cannot afford, watching water sheet off your suit. Somewhere above, Command is still clean. Clean rooms are where the worst decisions wear suits and call themselves necessary.",
@@ -128,6 +144,7 @@
         "text": "Continue.",
         "nextNodeId": "ch12_start"
       }
-    ]
+    ],
+    "location": "Upper Access"
   }
 }

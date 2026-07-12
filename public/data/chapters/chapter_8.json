@@ -4,7 +4,9 @@
     "text": "Main power stutters, then dies in waves. Emergency strips only. The squeal in the vents is a chorus. Life support is dying in the dark.",
     "effectsOnce": true,
     "effects": {
-      "flags": { "decay_main_power": true },
+      "flags": {
+        "decay_main_power": true
+      },
       "infection": 4
     },
     "choices": [
@@ -12,14 +14,16 @@
         "text": "Enter the dark lab hub.",
         "nextNodeId": "ch8_hub"
       }
-    ]
+    ],
+    "location": "Xenobiology Approach"
   },
   "ch8_hub": {
     "text": "Red emergency light. Every footstep sounds like two. Where do you go?",
     "choices": [
       {
         "text": "Xenobiology main lab — Victor",
-        "nextNodeId": "ch8_bio_lab"
+        "nextNodeId": "ch8_bio_lab",
+        "revisitAllowed": true
       },
       {
         "text": "Specimen vault",
@@ -33,10 +37,15 @@
         "text": "Corridor toward Engineering (when ready)",
         "nextNodeId": "ch8_end",
         "requires": {
-          "flags": { "ch8_victor_done": true }
-        }
+          "flags": {
+            "ch8_victor_done": true
+          }
+        },
+        "hubExit": true
       }
-    ]
+    ],
+    "location": "Xenobiology Deck",
+    "investigationHub": true
   },
   "ch8_vault": {
     "text": "Locked specimen drawers. One is cracked. Inside: rat bones fused into a lattice that still faintly glows. A research tag: REGENERATION TRIAL 7 — V.",
@@ -45,11 +54,14 @@
         "text": "Photograph the trial tag and leave.",
         "nextNodeId": "ch8_hub",
         "effects": {
-          "flags": { "saw_regen_trial": true },
+          "flags": {
+            "saw_regen_trial": true
+          },
           "infection": 3
         }
       }
-    ]
+    ],
+    "location": "Specimen Vault"
   },
   "ch8_vent_junction": {
     "text": "Wall schematics under a dying lamp. Routes from lab to lower decks inked red — a release map, not a maintenance plan.",
@@ -65,7 +77,8 @@
         "text": "Return to hub.",
         "nextNodeId": "ch8_hub"
       }
-    ]
+    ],
+    "location": "Ventilation Junction"
   },
   "ch8_bio_lab": {
     "text": "Mutated rats swarm the filters. Victor sits with a notebook open, grading a successful apocalypse.",
@@ -82,7 +95,8 @@
         "text": "Leave for now.",
         "nextNodeId": "ch8_hub"
       }
-    ]
+    ],
+    "location": "Xenobiology Lab"
   },
   "ch8_desk": {
     "text": "Neurological scans with Victor's name. Margin: Losing time. Need a solution. Vent routes highlighted.",
@@ -98,7 +112,8 @@
         "text": "Confront him with empty hands.",
         "nextNodeId": "ch8_victor_confront"
       }
-    ]
+    ],
+    "location": "Xenobiology Lab"
   },
   "ch8_victor_confront": {
     "text": "Milk-white eyes. Black veins like calligraphy. 'Magnificent. They adapt so quickly. Perfect.'",
@@ -108,14 +123,17 @@
         "text": "Present the altered vent schematics.",
         "nextNodeId": "ch8_victor_truth",
         "requires": {
-          "clues": ["altered_vent_schematics"]
+          "clues": [
+            "altered_vent_schematics"
+          ]
         }
       },
       {
         "text": "'You infected them on purpose.'",
         "nextNodeId": "ch8_victor_partial"
       }
-    ]
+    ],
+    "location": "Xenobiology Lab"
   },
   "ch8_victor_truth": {
     "text": "'Dementia was taking the names first. The spores regenerate tissue. I released subjects to find a dose. The organism chose otherwise.'",
@@ -125,11 +143,15 @@
         "text": "Leave him to his ruin.",
         "nextNodeId": "ch8_hub",
         "effects": {
-          "flags": { "victor_confessed": true, "ch8_victor_done": true },
+          "flags": {
+            "victor_confessed": true,
+            "ch8_victor_done": true
+          },
           "infection": 8
         }
       }
-    ]
+    ],
+    "location": "Xenobiology Lab"
   },
   "ch8_victor_partial": {
     "text": "'On purpose is such a moral word. I was dying slower than the station.' The rats turn toward you as one.",
@@ -140,10 +162,13 @@
         "nextNodeId": "ch8_hub",
         "effects": {
           "infection": 12,
-          "flags": { "ch8_victor_done": true }
+          "flags": {
+            "ch8_victor_done": true
+          }
         }
       }
-    ]
+    ],
+    "location": "Xenobiology Lab"
   },
   "ch8_end": {
     "text": "Engineering is the last place that might still answer to human hands — if Arthur is still human enough to care.",
@@ -152,6 +177,7 @@
         "text": "Run to the Engineering Bay.",
         "nextNodeId": "ch9_start"
       }
-    ]
+    ],
+    "location": "Xenobiology Deck"
   }
 }

@@ -324,13 +324,19 @@ export function resolveEndingNodeId() {
  *   { type: 'choice', text }
  * Legacy { nodeText, choiceText } still rendered by UI.
  */
-export function recordNodeTranscript({ speaker = null, text = '', nodeId = null } = {}) {
+export function recordNodeTranscript({
+    speaker = null,
+    text = '',
+    nodeId = null,
+    location = null
+} = {}) {
     if (!text) return;
     GameState.history.push({
         type: 'node',
         speaker: speaker || null,
         text,
-        nodeId: nodeId || null
+        nodeId: nodeId || null,
+        location: location || null
     });
     // Cap transcript length for localStorage safety
     if (GameState.history.length > 400) {

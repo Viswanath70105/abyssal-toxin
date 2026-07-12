@@ -21,9 +21,12 @@
       },
       {
         "text": "Review findings and rest (End Chapter)",
-        "nextNodeId": "ch3_end"
+        "nextNodeId": "ch3_end",
+        "hubExit": true
       }
-    ]
+    ],
+    "location": "Sector A — Central Corridor",
+    "investigationHub": true
   },
   "ch3_security": {
     "text": "You enter the Security Hub. David is glaring at a bank of monitors, sweating profusely. 'What do you want? I'm busy locking down the sectors.'",
@@ -45,7 +48,8 @@
         "text": "Return to corridor.",
         "nextNodeId": "ch3_hub"
       }
-    ]
+    ],
+    "location": "Security Hub"
   },
   "ch3_security_ask": {
     "text": "'The cameras in the lower decks are down. They've been down for two days. Probably corrosion. Nothing I can do about it now.' He refuses to make eye contact.",
@@ -55,7 +59,8 @@
         "text": "Return to corridor.",
         "nextNodeId": "ch3_hub"
       }
-    ]
+    ],
+    "location": "Security Hub"
   },
   "ch3_security_terminal": {
     "text": "While David is distracted by a comms ping, you glance at the main terminal log. You spot a Server Wipe Audit. David's credentials scrubbed all lower-deck camera feeds 48 hours ago.",
@@ -71,7 +76,8 @@
         "text": "Leave it. Too risky.",
         "nextNodeId": "ch3_hub"
       }
-    ]
+    ],
+    "location": "Security Hub"
   },
   "ch3_security_clue_get": {
     "text": "You quietly download the audit. David deleted the footage. Motive unknown — cover-up of a murder, or something smaller and uglier?",
@@ -80,7 +86,8 @@
         "text": "Return to corridor.",
         "nextNodeId": "ch3_hub"
       }
-    ]
+    ],
+    "location": "Security Hub"
   },
   "ch3_armory_vents": {
     "text": "Behind a loose grate in the armory wall, you find a sealed packet of unprocessed Abyssal Quartz — packaged for smuggling, still damp with condensate.",
@@ -96,7 +103,8 @@
         "text": "Leave it. Not your problem yet.",
         "nextNodeId": "ch3_hub"
       }
-    ]
+    ],
+    "location": "Armory Vents"
   },
   "ch3_mess_hall": {
     "text": "The Mess Hall is sealed with crime scene tape. The tipped-over pot of stew still stains the deck. Otto's inventory terminal blinks on the counter.",
@@ -117,7 +125,8 @@
         "text": "Return to corridor.",
         "nextNodeId": "ch3_hub"
       }
-    ]
+    ],
+    "location": "Mess Hall"
   },
   "ch3_mess_inventory": {
     "text": "The official ration manifest shows massive shortages of high-calorie stores — far more than spoilage or one greedy cook could explain.",
@@ -133,7 +142,8 @@
         "text": "Back away from the terminal.",
         "nextNodeId": "ch3_mess_hall"
       }
-    ]
+    ],
+    "location": "Mess Hall"
   },
   "ch3_mess_pantry": {
     "text": "Behind a sack of synthetic flour, a crayon drawing is taped to the bulkhead: a dark shape with too many limbs, and a smiling stick figure labeled 'nice cook' handing out bowls.",
@@ -149,7 +159,8 @@
         "text": "Leave it. Someone's idea of a joke.",
         "nextNodeId": "ch3_mess_hall"
       }
-    ]
+    ],
+    "location": "Mess Hall"
   },
   "ch3_dry_storage": {
     "text": "In the back of dry storage, blankets and old coats form a small nest. It is far too short for Otto. A child's jacket hangs from a pipe, caked with abyssal mud.",
@@ -165,7 +176,8 @@
         "text": "Close the door. Pretend you saw nothing.",
         "nextNodeId": "ch3_mess_hall"
       }
-    ]
+    ],
+    "location": "Dry Storage"
   },
   "ch3_medbay": {
     "text": "Medbay is under partial biohazard seal. Through the glass you see Dr. Aris pacing, a datapad clutched to her chest. A rejected requisition printout is jammed under the door.",
@@ -182,7 +194,8 @@
         "text": "Return to corridor.",
         "nextNodeId": "ch3_hub"
       }
-    ]
+    ],
+    "location": "Medbay"
   },
   "ch3_medbay_requisition": {
     "text": "Corporate stamp: DENIED. 'Too expensive. Treat with local supplies and keep the drill running.' Aris requested antivirals weeks ago — and was refused.",
@@ -194,7 +207,8 @@
           "giveClue": "rejected_requisition"
         }
       }
-    ]
+    ],
+    "location": "Medbay"
   },
   "ch3_medbay_vials": {
     "text": "Cold-storage tags visible through the frost: 'Severe Vitamin D Deficiency.' The fluid inside pulses with a faint green light. No vitamin deficiency does that.",
@@ -211,7 +225,8 @@
         "text": "Step back. You have seen enough.",
         "nextNodeId": "ch3_hub"
       }
-    ]
+    ],
+    "location": "Medbay"
   },
   "ch3_miller_locker": {
     "text": "Miller's locker still smells of grease and ozone. Inside: a faded photo of a girl on a beach, crumpled hospital invoices, and a denied leave request stamped by Corporate.",
@@ -234,7 +249,8 @@
         "text": "Return to corridor.",
         "nextNodeId": "ch3_hub"
       }
-    ]
+    ],
+    "location": "Crew Bay — Miller's Locker"
   },
   "ch3_miller_locker_more": {
     "text": "Under the boots you find a fried relay switch — professional work. Someone silenced a structural alarm and left no secondary trip. Miller's tools. Miller's skill.",
@@ -250,7 +266,8 @@
         "text": "Close the locker. You need air.",
         "nextNodeId": "ch3_hub"
       }
-    ]
+    ],
+    "location": "Crew Bay — Miller's Locker"
   },
   "ch3_end": {
     "text": "You retreat to your quarters to process what you found. Miller is dead. The cameras are wiped. Rations vanish into vents. Everyone has a secret — and the station is still falling apart. On the PA, Gideon's night bulletin is brief: remain in safe zones, trust the protocols, do not improvise. He sounds like a man reading a script written before the body cooled.",
@@ -265,6 +282,7 @@
         "text": "Sleep and prepare for the next cycle.",
         "nextNodeId": "ch4_start"
       }
-    ]
+    ],
+    "location": "Crew Quarters"
   }
 }

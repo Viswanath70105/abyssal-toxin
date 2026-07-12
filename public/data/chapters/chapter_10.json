@@ -1,27 +1,31 @@
 {
   "ch10_start": {
     "chapter": 10,
-    "text": "Half the lights are dead. Crew deck bulkheads buckle. Sector B has been a drowned grave since the flood — and now the upper crew berths are tearing open too.",
+    "text": "Half the lights are dead. Crew deck bulkheads buckle. Sector B has been a drowned grave since the flood \u2014 and now the upper crew berths are tearing open too.",
     "effectsOnce": true,
     "effects": {
       "infection": 5,
-      "flags": { "decay_crew_deck": true }
+      "flags": {
+        "decay_crew_deck": true
+      }
     },
     "choices": [
       {
         "text": "Run for the crew quarters.",
         "nextNodeId": "ch10_crew_quarters"
       }
-    ]
+    ],
+    "location": "Darkened Station"
   },
   "ch10_crew_quarters": {
-    "text": "Tendrils tear bulkheads like foil. Over the PA, the dead recite station schematics in perfect chorus — Miller, drill techs, even Victor's dry academic cadence.",
+    "text": "Tendrils tear bulkheads like foil. Over the PA, the dead recite station schematics in perfect chorus \u2014 Miller, drill techs, even Victor's dry academic cadence.",
     "choices": [
       {
         "text": "Listen long enough to understand.",
         "nextNodeId": "ch10_revelation"
       }
-    ]
+    ],
+    "location": "Crew Quarters Deck"
   },
   "ch10_revelation": {
     "text": "It is not mocking you. It is learning door codes. The organism absorbs memory. Every person it takes becomes a better predator.",
@@ -30,7 +34,8 @@
         "text": "Try to save the survivors.",
         "nextNodeId": "ch10_survivors"
       }
-    ]
+    ],
+    "location": "Crew Quarters Deck"
   },
   "ch10_survivors": {
     "text": "Otto is pinned under a beam. Chloe is cornered by a mass of tendrils. You only have time for one before this sector folds.",
@@ -39,33 +44,51 @@
         "text": "Save Otto.",
         "nextNodeId": "ch10_save_otto",
         "requires": {
-          "flags": { "otto_hostile": false }
+          "flags": {
+            "otto_hostile": false
+          }
         },
         "effects": {
-          "flags": { "saved_otto": true },
-          "trust": { "otto": 10 }
+          "flags": {
+            "saved_otto": true
+          },
+          "trust": {
+            "otto": 10
+          }
         }
       },
       {
         "text": "Save Chloe.",
         "nextNodeId": "ch10_save_chloe",
         "effects": {
-          "flags": { "saved_chloe": true },
-          "trust": { "chloe": 10 }
+          "flags": {
+            "saved_chloe": true
+          },
+          "trust": {
+            "chloe": 10
+          }
         }
       },
       {
-        "text": "Otto is already in the brig — try to save Chloe.",
+        "text": "Otto is already in the brig \u2014 try to save Chloe.",
         "nextNodeId": "ch10_save_chloe",
         "requires": {
-          "flags": { "otto_hostile": true }
+          "flags": {
+            "otto_hostile": true
+          }
         },
         "effects": {
-          "flags": { "saved_chloe": true, "otto_lost": true },
-          "trust": { "chloe": 10 }
+          "flags": {
+            "saved_chloe": true,
+            "otto_lost": true
+          },
+          "trust": {
+            "chloe": 10
+          }
         }
       }
-    ]
+    ],
+    "location": "Crew Quarters Deck"
   },
   "ch10_save_otto": {
     "text": "You haul the beam free. Otto gasps thanks as you sprint for the maintenance airlock. Behind you, Chloe's scream cuts off into a wet silence.",
@@ -74,10 +97,13 @@
         "text": "Seal the airlock.",
         "nextNodeId": "ch10_end",
         "effects": {
-          "flags": { "chloe_lost": true }
+          "flags": {
+            "chloe_lost": true
+          }
         }
       }
-    ]
+    ],
+    "location": "Crew Quarters Deck"
   },
   "ch10_save_chloe": {
     "text": "You pull Chloe free. You both run. Otto's shout follows you until the sludge takes the sound apart.",
@@ -86,13 +112,16 @@
         "text": "Seal the airlock.",
         "nextNodeId": "ch10_end",
         "effects": {
-          "flags": { "otto_lost": true }
+          "flags": {
+            "otto_lost": true
+          }
         }
       }
-    ]
+    ],
+    "location": "Crew Quarters Deck"
   },
   "ch10_end": {
-    "text": "The airlock seals. Main reactor trips offline to avoid meltdown. Darkness is total — except for the glow under your skin.",
+    "text": "The airlock seals. Main reactor trips offline to avoid meltdown. Darkness is total \u2014 except for the glow under your skin.",
     "textVariants": [
       {
         "minInfection": 40,
@@ -104,6 +133,7 @@
         "text": "Restore auxiliary power.",
         "nextNodeId": "ch11_start"
       }
-    ]
+    ],
+    "location": "Maintenance Airlock"
   }
 }

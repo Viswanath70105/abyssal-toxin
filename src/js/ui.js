@@ -237,12 +237,13 @@ export const UI = {
     },
 
     /**
-     * @param {{ text: string, speaker?: string|null, choices: Array, isTerminal?: boolean, endingLabel?: string|null }} payload
+     * @param {{ text: string, speaker?: string|null, location?: string|null, choices: Array, isTerminal?: boolean, endingLabel?: string|null }} payload
      */
     async displayNode(payload) {
         const {
             text,
             speaker = null,
+            location = null,
             choices = [],
             isTerminal = false,
             endingLabel = null
@@ -250,6 +251,8 @@ export const UI = {
 
         const storyTextContainer = document.getElementById('story-log');
         const choicesContainer = document.getElementById('choices-container');
+
+        this.updateLocationLabel(location);
 
         // Hide choices while reading
         if (choicesContainer) {
@@ -268,6 +271,14 @@ export const UI = {
                 badge.className = 'ending-badge';
                 badge.textContent = endingLabel;
                 storyTextContainer.appendChild(badge);
+            }
+
+            // In-panel location chip (accurate during investigation when CG is absent)
+            if (location) {
+                const locEl = document.createElement('div');
+                locEl.className = 'story-location';
+                locEl.textContent = location;
+                storyTextContainer.appendChild(locEl);
             }
 
             if (speaker) {
@@ -300,17 +311,30 @@ export const UI = {
         choicesContainer.replaceChildren();
 
         choices.forEach((choice, index) => {
+            // Support both legacy string choices and { text, disabled, visited }
+            const text = typeof choice === 'string' ? choice : choice.text;
+            const disabled = typeof choice === 'object' && choice.disabled === true;
+            const visited = typeof choice === 'object' && choice.visited === true;
+
             const btn = document.createElement('button');
             btn.type = 'button';
-            btn.textContent = choice.text;
+            btn.textContent = text;
             btn.className = 'choice-btn glass-btn choice-enter';
+            if (visited) btn.classList.add('choice-visited');
+            if (disabled) {
+                btn.disabled = true;
+                btn.setAttribute('aria-disabled', 'true');
+            }
             btn.style.animationDelay = `${Math.min(index * 0.05, 0.3)}s`;
-            btn.addEventListener('click', () => {
-                GameEngine.makeChoice(index);
-            });
+            if (!disabled) {
+                btn.addEventListener('click', () => {
+                    GameEngine.makeChoice(index);
+                });
+            }
             choicesContainer.appendChild(btn);
         });
 
+        // Terminal only when the engine says so, or there are literally no choices to show
         if (isTerminal || choices.length === 0) {
             const againBtn = document.createElement('button');
             againBtn.type = 'button';
@@ -362,6 +386,21 @@ export const UI = {
     updateChapterTitle(title) {
         const titleContainer = document.getElementById('chapter-title');
         if (titleContainer) titleContainer.textContent = title;
+    },
+
+    /**
+     * Location label in the HUD — where the player is right now (investigation rooms, etc.).
+     */
+    updateLocationLabel(location) {
+        const el = document.getElementById('location-label');
+        if (!el) return;
+        if (location && String(location).trim()) {
+            el.textContent = String(location).trim();
+            el.classList.remove('is-empty');
+        } else {
+            el.textContent = '';
+            el.classList.add('is-empty');
+        }
     },
 
     switchTab(targetId) {
@@ -484,6 +523,12 @@ export const UI = {
 
             // New format
             if (entry.type === 'node') {
+                if (entry.location) {
+                    const loc = document.createElement('p');
+                    loc.className = 'history-location';
+                    loc.textContent = entry.location;
+                    item.appendChild(loc);
+                }
                 if (entry.speaker) {
                     const sp = document.createElement('p');
                     sp.className = 'history-speaker';

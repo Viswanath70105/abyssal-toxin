@@ -4,21 +4,25 @@
     "text": "The veins under your forearm have stopped pretending to be imagination. They map themselves in faint black tributaries when you clench a fist. Medbay's seal strobes TOXIC SPORE CONTAMINATION in letters meant for people who still believe signage is safety. Deeper mess storage flips to contaminated on the board — another door closing on proof you may never have taken.",
     "effectsOnce": true,
     "effects": {
-      "flags": { "decay_mess_deep": true }
+      "flags": {
+        "decay_mess_deep": true
+      }
     },
     "choices": [
       {
         "text": "Enter the medical deck hub.",
         "nextNodeId": "ch7_hub"
       }
-    ]
+    ],
+    "location": "Medical Deck"
   },
   "ch7_hub": {
     "text": "Medical deck. Disinfectant tries and fails to hide the copper sweetness of blood and something greener underneath. Where do you go?",
     "choices": [
       {
         "text": "Override into main Medbay — Aris",
-        "nextNodeId": "ch7_medbay_enter"
+        "nextNodeId": "ch7_medbay_enter",
+        "revisitAllowed": true
       },
       {
         "text": "Records office (psych files, requisitions, logs)",
@@ -32,17 +36,24 @@
         "text": "Dry storage / mess deep (contaminated seal)",
         "nextNodeId": "ch7_mess_sealed",
         "requires": {
-          "flags": { "decay_mess_deep": true }
+          "flags": {
+            "decay_mess_deep": true
+          }
         }
       },
       {
         "text": "Advance toward xenobiology",
         "nextNodeId": "ch7_end",
         "requires": {
-          "flags": { "ch7_aris_done": true }
-        }
+          "flags": {
+            "ch7_aris_done": true
+          }
+        },
+        "hubExit": true
       }
-    ]
+    ],
+    "location": "Medical Deck",
+    "investigationHub": true
   },
   "ch7_mess_sealed": {
     "text": "Biohazard tape crosses the hatch like a refusal. If a child once nested behind those shelves — if crayon and blankets still waited — the station has decided you are too late to ask them questions.",
@@ -51,10 +62,13 @@
         "text": "Return to hub.",
         "nextNodeId": "ch7_hub",
         "effects": {
-          "flags": { "lost_mess_evidence_window": true }
+          "flags": {
+            "lost_mess_evidence_window": true
+          }
         }
       }
-    ]
+    ],
+    "location": "Dry Storage — Sealed"
   },
   "ch7_records": {
     "text": "The records office smells of warm plastic and panic-sweat. Drawers hang open like mouths mid-confession. You can spend time here properly — each document is a rung on someone else's ladder down.",
@@ -84,7 +98,8 @@
         "text": "Return to hub.",
         "nextNodeId": "ch7_hub"
       }
-    ]
+    ],
+    "location": "Records Office"
   },
   "ch7_records_read_arthur": {
     "text": "Mandatory evals. The therapist's notes are careful; Arthur's quotes are not. 'I can hear the rocks groaning again. They're pushing us too fast. Someone's going to die again.' PTSD stamped and filed and ignored by every system that needed the drill to keep turning.",
@@ -93,7 +108,8 @@
         "text": "Back to the records pile.",
         "nextNodeId": "ch7_records"
       }
-    ]
+    ],
+    "location": "Records Office"
   },
   "ch7_records_read_req": {
     "text": "Corporate stamp, red as a wound: DENIED. 'Too expensive. Treat with local supplies and keep the drill running.' The date is weeks before Miller died. Someone on the surface decided medicine was a line item and this station was an acceptable loss-in-progress.",
@@ -102,7 +118,8 @@
         "text": "Back to the records pile.",
         "nextNodeId": "ch7_records"
       }
-    ]
+    ],
+    "location": "Records Office"
   },
   "ch7_records_read_audio": {
     "text": "Aris's voice, raw, late-cycle: 'It's adapting faster than I can synthesize a counter-agent. If I report this now, they'll seal the sector with us inside. I can fix this. I just need more time.' The silence after the click is louder than the confession.",
@@ -112,7 +129,8 @@
         "text": "Back to the records pile.",
         "nextNodeId": "ch7_records"
       }
-    ]
+    ],
+    "location": "Records Office"
   },
   "ch7_cold_storage": {
     "text": "Frost feathers the glass. Behind it, vials labeled Severe Vitamin D Deficiency pulse with a green that has never seen sunlight. Under magnification — if you dare lean close — the fluid moves with purpose.",
@@ -129,7 +147,8 @@
         "text": "Step back before the glass fogs with your breath.",
         "nextNodeId": "ch7_hub"
       }
-    ]
+    ],
+    "location": "Medbay — Cold Storage"
   },
   "ch7_medbay_enter": {
     "cg": "medbay_spores",
@@ -148,7 +167,8 @@
         "text": "Leave and gather more evidence first.",
         "nextNodeId": "ch7_hub"
       }
-    ]
+    ],
+    "location": "Medbay"
   },
   "ch7_aris_stage1": {
     "text": "You roll your sleeve. The black map under your skin does the talking. Aris finally turns. For a fraction of a second you see pure fear — not of you, of the pattern matching something she has already named in private. Then the professional mask clamps down. 'Deep-sea fatigue. Mineral imbalance. I can give you supplements.' A vial trembles between her fingers.",
@@ -162,18 +182,27 @@
         "text": "Present hard evidence of her cover-up.",
         "nextNodeId": "ch7_aris_stage2_evidence",
         "requires": {
-          "cluesAny": ["mislabeled_vials", "rejected_requisition", "aris_audio_log"]
+          "cluesAny": [
+            "mislabeled_vials",
+            "rejected_requisition",
+            "aris_audio_log"
+          ]
         }
       },
       {
         "text": "Accuse her of creating the organism.",
         "nextNodeId": "ch7_aris_wrong",
         "effects": {
-          "flags": { "aris_hostile": true },
-          "trust": { "aris": -30 }
+          "flags": {
+            "aris_hostile": true
+          },
+          "trust": {
+            "aris": -30
+          }
         }
       }
-    ]
+    ],
+    "location": "Medbay"
   },
   "ch7_aris_stage2": {
     "text": "'You want a monster story,' she says, too fast. 'Fine. It's adaptive. Biological. I have been containing an outbreak signature with the tools they left me.' Her chin lifts. 'I am the only person on this rig with the training to even slow it. Panic helps no one. Corporate helps less.'",
@@ -183,7 +212,11 @@
         "text": "Present evidence — vials, denial stamp, or her own log.",
         "nextNodeId": "ch7_aris_stage3",
         "requires": {
-          "cluesAny": ["mislabeled_vials", "rejected_requisition", "aris_audio_log"]
+          "cluesAny": [
+            "mislabeled_vials",
+            "rejected_requisition",
+            "aris_audio_log"
+          ]
         }
       },
       {
@@ -194,10 +227,13 @@
         "text": "Ask what Corporate denied her.",
         "nextNodeId": "ch7_aris_stage2b",
         "requires": {
-          "clues": ["rejected_requisition"]
+          "clues": [
+            "rejected_requisition"
+          ]
         }
       }
-    ]
+    ],
+    "location": "Medbay"
   },
   "ch7_aris_stage2_evidence": {
     "text": "You do not let her finish the fatigue story. Evidence first — the way a diagnosis should work. Her eyes track each piece as if they are scalpels aimed at her own throat.",
@@ -207,7 +243,8 @@
         "text": "Walk her through it until the mask breaks.",
         "nextNodeId": "ch7_aris_stage3"
       }
-    ]
+    ],
+    "location": "Medbay"
   },
   "ch7_aris_stage2b": {
     "text": "You hold up the denial. She laughs once, ugly. 'Antivirals. Quarantine gear. A real lab. They told me to keep the drill running. So I forged the early wellness reports. So the hazard pay would not vanish. So I would have time.' Her voice drops. 'Time was the one resource that lied to me.'",
@@ -217,7 +254,8 @@
         "text": "Press to the full confession.",
         "nextNodeId": "ch7_aris_stage3"
       }
-    ]
+    ],
+    "location": "Medbay"
   },
   "ch7_aris_stage3": {
     "text": "The mask does not fall so much as shatter from inside. 'Yes. I hid it. Vitamin D on the labels because the system accepts stupid lies faster than expensive truths. I thought —' She gestures at the writhing beds, at your arm, at her ruined bench. 'I thought I was smart enough to beat a thing that learns. I was wrong. Here.' She shoves a data wafer into your palm: incomplete counteragent work, toxicity curves, a note that simply says TOO LATE in her handwriting.",
@@ -227,8 +265,13 @@
         "text": "Accept her help. Let her work on your infection.",
         "nextNodeId": "ch7_aris_ally",
         "effects": {
-          "flags": { "aris_ally": true, "ch7_aris_done": true },
-          "trust": { "aris": 20 },
+          "flags": {
+            "aris_ally": true,
+            "ch7_aris_done": true
+          },
+          "trust": {
+            "aris": 20
+          },
           "infection": -10
         }
       },
@@ -236,12 +279,18 @@
         "text": "Take the data but do not forgive her.",
         "nextNodeId": "ch7_aris_data_only",
         "effects": {
-          "flags": { "aris_cooperating": true, "ch7_aris_done": true },
-          "trust": { "aris": 5 },
+          "flags": {
+            "aris_cooperating": true,
+            "ch7_aris_done": true
+          },
+          "trust": {
+            "aris": 5
+          },
           "infection": -4
         }
       }
-    ]
+    ],
+    "location": "Medbay"
   },
   "ch7_aris_ally": {
     "text": "She works in silence broken only by the wet sounds from the gurneys. The injectate burns cold, then warm, then merely present. 'It will not cure you,' she says. 'It may buy you hours of being yourself. Use them.' For the first time since you entered, she looks like a doctor again — which somehow makes the ruined room worse.",
@@ -251,20 +300,24 @@
         "text": "Return to the medical hub.",
         "nextNodeId": "ch7_hub"
       }
-    ]
+    ],
+    "location": "Medbay"
   },
   "ch7_aris_data_only": {
     "text": "She does not argue for absolution. 'Then take the work and go. If you find the Director before the end, ask him what binder this was always in.' A flicker of something like dread — not of the organism. Of protocol.",
     "speaker": "Dr. Aris",
     "effects": {
-      "flags": { "aris_hinted_protocol": true }
+      "flags": {
+        "aris_hinted_protocol": true
+      }
     },
     "choices": [
       {
         "text": "Return to the medical hub.",
         "nextNodeId": "ch7_hub"
       }
-    ]
+    ],
+    "location": "Medbay"
   },
   "ch7_aris_wrong": {
     "text": "'Create it?' The laugh is glass in a disposal chute. 'You think I wanted this?' Before you can stop her she injects a cloudy auto-sample into her own neck — proof, punishment, suicide by hypothesis. Her eyes milk white for three terrible seconds. She stays upright. Barely. 'Still me,' she hisses. 'For now.'",
@@ -275,10 +328,14 @@
         "nextNodeId": "ch7_hub",
         "effects": {
           "infection": 10,
-          "flags": { "aris_unstable": true, "ch7_aris_done": true }
+          "flags": {
+            "aris_unstable": true,
+            "ch7_aris_done": true
+          }
         }
       }
-    ]
+    ],
+    "location": "Medbay"
   },
   "ch7_aris_partial": {
     "text": "'Come back when you have more than volume,' she says, turning to her screen. 'I will not be tried by rumor while people dissolve on my tables.' The dismissal is armor. Under it, you hear the same fear as in her audio log: time, running, already gone.",
@@ -288,18 +345,25 @@
         "text": "Leave — you can return with proof.",
         "nextNodeId": "ch7_hub",
         "effects": {
-          "trust": { "aris": -5 }
+          "trust": {
+            "aris": -5
+          }
         }
       },
       {
         "text": "Force the issue and burn the bridge.",
         "nextNodeId": "ch7_aris_wrong",
         "effects": {
-          "flags": { "aris_hostile": true },
-          "trust": { "aris": -20 }
+          "flags": {
+            "aris_hostile": true
+          },
+          "trust": {
+            "aris": -20
+          }
         }
       }
-    ]
+    ],
+    "location": "Medbay"
   },
   "ch7_end": {
     "text": "Outside Medbay the vents scream in a register that is learning language. Xenobiology waits — and beyond it, engineering, and beyond that, a Director who has never once looked surprised by disaster.",
@@ -308,6 +372,7 @@
         "text": "Go to the Xenobiology Lab.",
         "nextNodeId": "ch8_start"
       }
-    ]
+    ],
+    "location": "Medical Deck"
   }
 }

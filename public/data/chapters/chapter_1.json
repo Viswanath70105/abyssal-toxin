@@ -4,8 +4,8 @@
     "bgm": "descent",
     "sfx": "airlock",
     "cg": "hangar_arrival",
-    "cgCaption": "Main Hangar — Nereus Station",
-    "text": "The descent to Nereus Station was rough. The bathysphere groaned under pressure that could compress a prayer into silence. As the airlock cycles with a heavy hiss, you step onto damp steel grating. Condensation beads like sweat on every surface. A burly man with grease on his overalls approaches, offering a calloused hand — and for a second, before he smiles, you see how tired a hand can look when it has been holding a station together alone.",
+    "cgCaption": "Main Hangar \u2014 Nereus Station",
+    "text": "The descent to Nereus Station was rough. The bathysphere groaned under pressure that could compress a prayer into silence. As the airlock cycles with a heavy hiss, you step onto damp steel grating. Condensation beads like sweat on every surface. A burly man with grease on his overalls approaches, offering a calloused hand \u2014 and for a second, before he smiles, you see how tired a hand can look when it has been holding a station together alone.",
     "speaker": "Miller",
     "choices": [
       {
@@ -16,7 +16,8 @@
         "text": "Ignore his hand. 'Just point me to my quarters.'",
         "nextNodeId": "ch1_miller_cold"
       }
-    ]
+    ],
+    "location": "Main Hangar"
   },
   "ch1_miller_intro": {
     "text": "'Welcome to the bottom of the world, kid. I'm Miller, Chief Mechanic. Don't mind the groaning of the bulkheads, she talks a lot but holds together fine.' He chuckles, but you notice a slight tremor in his hand.",
@@ -30,7 +31,8 @@
         "text": "'Who else should I meet?'",
         "nextNodeId": "ch1_meet_aris"
       }
-    ]
+    ],
+    "location": "Main Hangar"
   },
   "ch1_miller_cold": {
     "text": "Miller drops his hand with a sigh. 'Right to business, huh? Corporate really knows how to pick 'em. I'm Miller, Chief Mechanic. Try not to break anything I have to fix.'",
@@ -44,17 +46,19 @@
         "text": "'My apologies. The ride down was stressful.'",
         "nextNodeId": "ch1_miller_warning"
       }
-    ]
+    ],
+    "location": "Main Hangar"
   },
   "ch1_miller_warning": {
-    "text": "'Ah, Corporate exaggerates. We patch the leaks.' His smile does not reach the tremor in his fingers. 'Besides, we all want that hazard pay bonus, right? Kid of mine on the surface — medical stuff. You know how it is.' He points down the corridor a little too quickly. 'Keep your head down. Do your shifts. Don't poke the bulkheads if they sing.'",
+    "text": "'Ah, Corporate exaggerates. We patch the leaks.' His smile does not reach the tremor in his fingers. 'Besides, we all want that hazard pay bonus, right? Kid of mine on the surface \u2014 medical stuff. You know how it is.' He points down the corridor a little too quickly. 'Keep your head down. Do your shifts. Don't poke the bulkheads if they sing.'",
     "speaker": "Miller",
     "choices": [
       {
         "text": "Head down the corridor to Medbay.",
         "nextNodeId": "ch1_meet_aris"
       }
-    ]
+    ],
+    "location": "Main Hangar"
   },
   "ch1_meet_aris": {
     "text": "Medbay's lights hum like insects in a jar. Dr. Aris is locked on a datapad with the intensity of someone hiding a second screen. In a containment unit, a lab rat thrashes hard enough to ring the glass. She does not look at it. That, more than the thrashing, is the wrong thing.",
@@ -64,10 +68,11 @@
         "text": "'Dr. Aris? I'm the new arrival.'",
         "nextNodeId": "ch1_aris_greet"
       }
-    ]
+    ],
+    "location": "Medbay"
   },
   "ch1_aris_greet": {
-    "text": "She jumps, angling the datapad against her chest. 'Oh! Yes. Welcome. Sorry — routine sample analysis. Severe Vitamin D deficiency among lower-deck crew. Nothing to worry about.' Behind her, the rat hits the glass again. The sample labels on the cold unit are too neat for a woman this nervous.",
+    "text": "She jumps, angling the datapad against her chest. 'Oh! Yes. Welcome. Sorry \u2014 routine sample analysis. Severe Vitamin D deficiency among lower-deck crew. Nothing to worry about.' Behind her, the rat hits the glass again. The sample labels on the cold unit are too neat for a woman this nervous.",
     "speaker": "Dr. Aris",
     "choices": [
       {
@@ -78,25 +83,28 @@
         "text": "'I'll let you get back to it then.'",
         "nextNodeId": "ch1_end"
       }
-    ]
+    ],
+    "location": "Medbay"
   },
   "ch1_aris_defensive": {
-    "text": "'Yes. Exactly. Lack of sunlight. Obviously.' Her laugh is a single dry click. 'Now, if you don't mind — critical filing.' She steers you out with the efficiency of a woman who has practiced ending conversations before they grow teeth. In the corridor, a wall screen loops Director Stroud: REMAIN ORDERLY. TRUST PROTOCOL. His eyes, even in the recording, look like they have already finished a longer sentence.",
+    "text": "'Yes. Exactly. Lack of sunlight. Obviously.' Her laugh is a single dry click. 'Now, if you don't mind \u2014 critical filing.' She steers you out with the efficiency of a woman who has practiced ending conversations before they grow teeth. In the corridor, a wall screen loops Director Stroud: REMAIN ORDERLY. TRUST PROTOCOL. His eyes, even in the recording, look like they have already finished a longer sentence.",
     "speaker": "Dr. Aris",
     "choices": [
       {
         "text": "Leave the Medbay and settle in.",
         "nextNodeId": "ch1_end"
       }
-    ]
+    ],
+    "location": "Medbay"
   },
   "ch1_end": {
-    "text": "Your quarters smell of recycled air and someone else's sleep. The station groans — a deep metallic wail through your boots. You tell yourself it is only metal. Outside the viewport: nothing. Absolute black. You are new here, and already the place feels like it has been waiting for a particular kind of ending.",
+    "text": "Your quarters smell of recycled air and someone else's sleep. The station groans \u2014 a deep metallic wail through your boots. You tell yourself it is only metal. Outside the viewport: nothing. Absolute black. You are new here, and already the place feels like it has been waiting for a particular kind of ending.",
     "choices": [
       {
         "text": "Rest for the night.",
         "nextNodeId": "ch2_start"
       }
-    ]
+    ],
+    "location": "Crew Quarters"
   }
 }

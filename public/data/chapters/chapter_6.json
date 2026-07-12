@@ -5,21 +5,25 @@
     "effectsOnce": true,
     "effects": {
       "infection": 8,
-      "flags": { "decay_sector_b": true }
+      "flags": {
+        "decay_sector_b": true
+      }
     },
     "choices": [
       {
         "text": "Enter the upper-deck hub.",
         "nextNodeId": "ch6_hub"
       }
-    ]
+    ],
+    "location": "Upper Decks"
   },
   "ch6_hub": {
     "text": "Upper decks only. Sector B is a tomb of seawater and alarms. Where do you go?",
     "choices": [
       {
         "text": "Comms Tower — Chloe",
-        "nextNodeId": "ch6_comms_tower"
+        "nextNodeId": "ch6_comms_tower",
+        "revisitAllowed": true
       },
       {
         "text": "Chloe's quarters",
@@ -29,24 +33,33 @@
         "text": "Sector B access (flooded)",
         "nextNodeId": "ch6_sector_b_flooded",
         "requires": {
-          "flags": { "decay_sector_b": true }
+          "flags": {
+            "decay_sector_b": true
+          }
         }
       },
       {
         "text": "Hydroponics (still reachable)",
         "nextNodeId": "ch6_hydro",
         "requires": {
-          "flags": { "decay_mess_deep": false }
+          "flags": {
+            "decay_mess_deep": false
+          }
         }
       },
       {
         "text": "Advance once Comms is handled",
         "nextNodeId": "ch6_radio_off",
         "requires": {
-          "flags": { "ch6_comms_done": true }
-        }
+          "flags": {
+            "ch6_comms_done": true
+          }
+        },
+        "hubExit": true
       }
-    ]
+    ],
+    "location": "Upper Decks",
+    "investigationHub": true
   },
   "ch6_sector_b_flooded": {
     "text": "Through the viewport: black water, floating crates, a hardhat turning slowly like a planet. If Miller left proof in the lower shafts, the ocean has it now.",
@@ -55,11 +68,14 @@
         "text": "Turn away. Return to hub.",
         "nextNodeId": "ch6_hub",
         "effects": {
-          "flags": { "saw_sector_b_lost": true },
+          "flags": {
+            "saw_sector_b_lost": true
+          },
           "infection": 3
         }
       }
-    ]
+    ],
+    "location": "Sector B — Flooded"
   },
   "ch6_hydro": {
     "text": "Hydroponics filters glow faintly. Same wrong light. The flood has not reached here — yet the spores have.",
@@ -76,7 +92,8 @@
         "text": "Return to hub.",
         "nextNodeId": "ch6_hub"
       }
-    ]
+    ],
+    "location": "Hydroponics Bay"
   },
   "ch6_chloe_quarters": {
     "text": "Chloe's bunk is a pharmacy. Empty sedative bottles. No natural sleep since the breach — only chemical silence.",
@@ -92,7 +109,8 @@
         "text": "Leave her privacy intact.",
         "nextNodeId": "ch6_hub"
       }
-    ]
+    ],
+    "location": "Chloe's Quarters"
   },
   "ch6_comms_tower": {
     "text": "Chloe huddles in the corner. The console broadcasts Miller — calm, wet, impossible. 'It's so cold... why did you leave me in the dark...'",
@@ -116,7 +134,8 @@
         "text": "Return to hub (console still screaming).",
         "nextNodeId": "ch6_hub"
       }
-    ]
+    ],
+    "location": "Comms Tower"
   },
   "ch6_relay_log": {
     "text": "Relay history: an emergency channel manually muted the night the drill team died. Chloe's credentials.",
@@ -128,7 +147,8 @@
           "giveClue": "comms_relay_log"
         }
       }
-    ]
+    ],
+    "location": "Comms Tower"
   },
   "ch6_chloe_breakdown": {
     "text": "Chloe covers her ears. 'I deleted the first distress call! I thought it was a prank. Now they won't stop talking to me.'",
@@ -138,28 +158,39 @@
         "text": "Present the ghost audio file if you have it.",
         "nextNodeId": "ch6_with_audio",
         "requires": {
-          "clues": ["ghost_audio"]
+          "clues": [
+            "ghost_audio"
+          ]
         },
         "effects": {
-          "trust": { "chloe": 10 },
-          "flags": { "chloe_confessed": true }
+          "trust": {
+            "chloe": 10
+          },
+          "flags": {
+            "chloe_confessed": true
+          }
         }
       },
       {
         "text": "Present empty prescription bottles — she is breaking.",
         "nextNodeId": "ch6_with_rx",
         "requires": {
-          "clues": ["empty_prescriptions"]
+          "clues": [
+            "empty_prescriptions"
+          ]
         },
         "effects": {
-          "trust": { "chloe": 5 }
+          "trust": {
+            "chloe": 5
+          }
         }
       },
       {
         "text": "Shut off the radio console.",
         "nextNodeId": "ch6_shutdown"
       }
-    ]
+    ],
+    "location": "Comms Tower"
   },
   "ch6_with_audio": {
     "text": "Hearing the recording breaks her. She hands you a second encrypted file without being asked. 'I listen every night so I don't forget what I did.'",
@@ -169,11 +200,16 @@
         "text": "Power down the console together.",
         "nextNodeId": "ch6_shutdown",
         "effects": {
-          "flags": { "chloe_ally": true },
-          "trust": { "chloe": 15 }
+          "flags": {
+            "chloe_ally": true
+          },
+          "trust": {
+            "chloe": 15
+          }
         }
       }
-    ]
+    ],
+    "location": "Comms Tower"
   },
   "ch6_with_rx": {
     "text": "She stares at the bottles. 'I hear them when I sleep. So I don't sleep.' Her hands stop shaking long enough to help you kill the console power.",
@@ -183,17 +219,22 @@
         "text": "Shut it down.",
         "nextNodeId": "ch6_shutdown",
         "effects": {
-          "flags": { "chloe_ally": true }
+          "flags": {
+            "chloe_ally": true
+          }
         }
       }
-    ]
+    ],
+    "location": "Comms Tower"
   },
   "ch6_shutdown": {
     "text": "Silence. Your arm shows it: veins faint black. The infection is no longer theoretical.",
     "effectsOnce": true,
     "effects": {
       "infection": 12,
-      "flags": { "ch6_comms_done": true }
+      "flags": {
+        "ch6_comms_done": true
+      }
     },
     "choices": [
       {
@@ -204,7 +245,8 @@
         "text": "Seek medical help in Medbay now.",
         "nextNodeId": "ch7_start"
       }
-    ]
+    ],
+    "location": "Comms Tower"
   },
   "ch6_radio_off": {
     "text": "Comms is handled. Sector B is lost. The veins under your skin keep their own schedule.",
@@ -213,6 +255,7 @@
         "text": "Go to Medbay.",
         "nextNodeId": "ch7_start"
       }
-    ]
+    ],
+    "location": "Comms Tower"
   }
 }
