@@ -1,0 +1,70 @@
+{
+  "ch15_start": {
+    "text": "You step into the Escape Bay. The Bathysphere's launch lights are flashing amber. Gideon Stroud stands at the console, holding a heavy pneumatic rivet gun. Behind you, the blast doors buckle violently. The organism is battering them down.",
+    "choices": [
+      {
+        "text": "Confront Gideon.",
+        "nextNodeId": "ch15_confront_gideon"
+      }
+    ]
+  },
+  "ch15_confront_gideon": {
+    "text": "'You're too late,' Gideon says coldly. 'The scuttling sequence can't be stopped.' He raises the rivet gun. 'The Toxin adapts too quickly. If it reaches the surface, it will rewrite the biosphere in days. I am burying it. I am saving Earth.'",
+    "speaker": "Gideon",
+    "choices": [
+      {
+        "text": "'By murdering your entire crew?'",
+        "nextNodeId": "ch15_gideon_logic"
+      }
+    ]
+  },
+  "ch15_gideon_logic": {
+    "text": "'It's simple math. A hundred lives down here for billions up there,' he states flatly. The blast doors behind you dent inward with a horrifying screech. 'There's only one seat in the pod anyway. And I am taking it.'",
+    "speaker": "Gideon",
+    "choices": [
+      {
+        "text": "Accept his logic and surrender (Ending: Abyssal Grave)",
+        "nextNodeId": "ch15_ending_abyssal_grave"
+      },
+      {
+        "text": "Fight him for the pod (Ending: Surface Tension)",
+        "nextNodeId": "ch15_ending_surface_tension"
+      },
+      {
+        "text": "Give in to the infection (Ending: Patient Zero)",
+        "nextNodeId": "ch15_ending_patient_zero"
+      }
+    ]
+  },
+  "ch15_ending_abyssal_grave": {
+    "text": "You lower your hands. The cold logic of his words sinks in. If you escape, you might carry the infection with you. You nod slowly. Gideon enters the pod, sealing the hatch. You sit on the cold floor as the blast doors give way, welcoming the dark water.",
+    "choices": [
+      {
+        "text": "Game Over",
+        "nextNodeId": "game_over"
+      }
+    ]
+  },
+  "ch15_ending_surface_tension": {
+    "text": "You refuse to die in the dark. You lunge at Gideon, dodging a rivet that grazes your shoulder. You tackle him into the freezing water pooling on the deck. As the blast doors shatter and the horde pours in, you kick Gideon into them and dive into the pod, launching toward the surface. You survived... but at what cost?",
+    "choices": [
+      {
+        "text": "Game Over",
+        "nextNodeId": "game_over"
+      }
+    ]
+  },
+  "ch15_ending_patient_zero": {
+    "text": "You feel the black veins on your arm burning. The voices in your head grow loud and harmonious. You smile at Gideon. Your jaw unhinges, and a cloud of bioluminescent spores erupts from your mouth, blinding him. As you tear him apart, you know you will take the pod. You are going to the surface, and you will share this gift with the world.",
+    "choices": [
+      {
+        "text": "Game Over",
+        "nextNodeId": "game_over"
+      }
+    ]
+  },
+  "game_over": {
+    "text": "Thank you for playing Abyssal Toxin. The story is now complete.",
+    "choices": []
+  }
+}

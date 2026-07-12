@@ -1,0 +1,40 @@
+{
+  "ch6_start": {
+    "text": "The muffled scream came from the Comms Tower. The corridor is freezing, and you feel a strange itch on your arm. The air tastes faintly of copper.",
+    "choices": [
+      {
+        "text": "Enter the Comms Tower.",
+        "nextNodeId": "ch6_comms_tower"
+      }
+    ]
+  },
+  "ch6_comms_tower": {
+    "text": "Inside, Chloe the comms officer is shivering in the corner. The radio console is broadcasting a voice. It's Miller's voice. 'It's so cold... why did you leave me in the dark...'",
+    "speaker": "Miller (Radio)",
+    "choices": [
+      {
+        "text": "'Miller is dead. That's not him.'",
+        "nextNodeId": "ch6_chloe_breakdown"
+      }
+    ]
+  },
+  "ch6_chloe_breakdown": {
+    "text": "Chloe covers her ears. 'I deleted the first distress call! I thought it was a prank, and I didn't want to wake Corporate! Now they're dead, and they won't stop talking to me!'",
+    "speaker": "Chloe",
+    "choices": [
+      {
+        "text": "Shut off the radio console.",
+        "nextNodeId": "ch6_radio_off"
+      }
+    ]
+  },
+  "ch6_radio_off": {
+    "text": "You smash the power switch. The room falls silent, except for Chloe's sobbing. You look down at your arm. The veins are turning a faint, sickly black. The infection has begun.",
+    "choices": [
+      {
+        "text": "Leave the Comms Tower and look for medical help.",
+        "nextNodeId": "ch7_start"
+      }
+    ]
+  }
+}

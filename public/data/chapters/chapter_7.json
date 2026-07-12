@@ -1,0 +1,49 @@
+{
+  "ch7_start": {
+    "text": "The dark veins on your arm are pulsing. You need a doctor, now. You rush to the Medbay, but the heavy blast doors are sealed. A biohazard warning flashes in bright red: 'TOXIC SPORE CONTAMINATION'.",
+    "choices": [
+      {
+        "text": "Override the door lock and enter.",
+        "nextNodeId": "ch7_medbay_enter"
+      }
+    ]
+  },
+  "ch7_medbay_enter": {
+    "text": "You force the doors open. The air inside is thick with green, glowing spores. Crew members are strapped to beds, writhing and coughing up a black fluid. Dr. Aris is frantically mixing chemicals at her station, ignoring the suffering around her.",
+    "choices": [
+      {
+        "text": "Confront Dr. Aris about the infection.",
+        "nextNodeId": "ch7_confront_aris"
+      }
+    ]
+  },
+  "ch7_confront_aris": {
+    "text": "You show her your arm. 'What is this? Why didn't you call Corporate for a quarantine team?' She drops a vial, shattering it on the floor. She looks terrified, but also strangely defiant.",
+    "speaker": "Dr. Aris",
+    "choices": [
+      {
+        "text": "Demand answers.",
+        "nextNodeId": "ch7_aris_hubris"
+      }
+    ]
+  },
+  "ch7_aris_hubris": {
+    "text": "'Corporate would have just purged the station!' she screams. 'I can cure this! I just need more time. These spores... they're rewriting DNA. It's fascinating. I thought I could control it.' You notice the vials on her desk are mislabeled; she's been experimenting blindly.",
+    "speaker": "Dr. Aris",
+    "choices": [
+      {
+        "text": "'Your hubris is going to kill us all.'",
+        "nextNodeId": "ch7_end"
+      }
+    ]
+  },
+  "ch7_end": {
+    "text": "There is no cure here, only a desperate doctor playing god. Suddenly, the station shudders violently, and the ventilation fans grind to a halt. A high-pitched squealing echoes through the vents above you.",
+    "choices": [
+      {
+        "text": "Investigate the vents.",
+        "nextNodeId": "ch8_start"
+      }
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "ch5_start": {
+    "text": "Leaving Maya safely hidden with Otto, you realize you need to see exactly what breached the station. You head to the Security Hub, only to find it in total blackout.",
+    "choices": [
+      {
+        "text": "Reboot the backup generator.",
+        "nextNodeId": "ch5_hub_reboot"
+      }
+    ]
+  },
+  "ch5_hub_reboot": {
+    "text": "The lights flicker on. David is slumped in his chair, head in his hands. 'It's gone. I wiped it all.'",
+    "speaker": "David",
+    "choices": [
+      {
+        "text": "Demand to know why he wiped the footage.",
+        "nextNodeId": "ch5_david_confession"
+      }
+    ]
+  },
+  "ch5_david_confession": {
+    "text": "'I was smuggling Abyssal Quartz,' David sobs. 'I have a terminal diagnosis. I needed the money for my family. I scrubbed the feeds so Corporate wouldn't catch me... I didn't know something else came out of the cavern.'",
+    "speaker": "David",
+    "choices": [
+      {
+        "text": "'You've blinded us to whatever is hunting us.'",
+        "nextNodeId": "ch5_end"
+      }
+    ]
+  },
+  "ch5_end": {
+    "text": "By trying to hide his petty crime, David has doomed the station. We have no idea what the creature looks like, or how many there are. A muffled scream echoes through the hull.",
+    "choices": [
+      {
+        "text": "Investigate the scream.",
+        "nextNodeId": "ch6_start"
+      }
+    ]
+  }
+}

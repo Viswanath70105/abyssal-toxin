@@ -1,0 +1,59 @@
+{
+  "ch9_start": {
+    "text": "You sprint away from the mutated swarm, heading straight for the Engineering Bay. The station is groaning loudly under the immense pressure. If another sector collapses, it's over.",
+    "choices": [
+      {
+        "text": "Enter the Engineering Bay.",
+        "nextNodeId": "ch9_engineering"
+      }
+    ]
+  },
+  "ch9_engineering": {
+    "text": "The Engineering Bay is heavily damaged. Pipes are bursting, and sparks rain down from the ceiling. Arthur, a veteran engineer, is frantically trying to weld a massive structural crack. He looks exhausted and terrified.",
+    "choices": [
+      {
+        "text": "Help him stabilize the crack.",
+        "nextNodeId": "ch9_help_arthur"
+      }
+    ]
+  },
+  "ch9_help_arthur": {
+    "text": "You grab a secondary welder. 'Why is the hull failing so fast?' you yell over the roar of rushing water. Arthur stops welding and drops his tool. He falls to his knees, sobbing.",
+    "speaker": "Arthur",
+    "choices": [
+      {
+        "text": "Ask him what he did.",
+        "nextNodeId": "ch9_arthur_confession"
+      }
+    ]
+  },
+  "ch9_arthur_confession": {
+    "text": "'It was me,' Arthur cries. 'I broke the drill! I have PTSD from the colony collapse on Mars. When I saw what the drill pulled up from the cavern... the moving mud... I panicked. I sabotaged the primary drill to stop us from digging deeper.'",
+    "speaker": "Arthur",
+    "choices": [
+      {
+        "text": "'You caused the breach!'",
+        "nextNodeId": "ch9_arthur_guilt"
+      }
+    ]
+  },
+  "ch9_arthur_guilt": {
+    "text": "'I was trying to protect us!' he screams. 'But breaking the drill shattered the cavern roof! I let it in! It's all my fault!' The pressure gauges behind him shatter, and water begins spraying into the room.",
+    "speaker": "Arthur",
+    "choices": [
+      {
+        "text": "Brace for impact.",
+        "nextNodeId": "ch9_end"
+      }
+    ]
+  },
+  "ch9_end": {
+    "text": "Arthur's attempt to save the crew was the very thing that doomed them. The structural crack widens violently. The ocean is coming in, and the lower sectors are lost. You need to make a choice about who to save, and quickly.",
+    "choices": [
+      {
+        "text": "Flee to the upper levels.",
+        "nextNodeId": "ch10_start"
+      }
+    ]
+  }
+}

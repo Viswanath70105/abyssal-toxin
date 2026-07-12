@@ -119,13 +119,9 @@
     "text": "You retreat to your quarters to process the information. Miller is dead. The stew was poisoned. The security logs are wiped. Everyone has something to hide, and the station is slowly falling apart around you.",
     "choices": [
       {
-        "text": "End of Chapter 3 Preview",
-        "nextNodeId": "ch_preview_end"
+        "text": "Sleep and prepare for the next cycle.",
+        "nextNodeId": "ch4_start"
       }
     ]
-  },
-  "ch_preview_end": {
-    "text": "Thanks for playing the preview!",
-    "choices": []
   }
 }

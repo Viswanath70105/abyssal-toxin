@@ -1,0 +1,69 @@
+{
+  "ch10_start": {
+    "text": "Half the station is gone. You scramble up the access ladders as the water rises below you. You reach Sector B, only to find the blast doors already breached. The organism is here, and it's swarming.",
+    "choices": [
+      {
+        "text": "Run for the crew quarters.",
+        "nextNodeId": "ch10_crew_quarters"
+      }
+    ]
+  },
+  "ch10_crew_quarters": {
+    "text": "The crew quarters are in chaos. Tendrils of black sludge are tearing through the bulkheads. Over the PA system, you hear something horrifying. It isn't just screams; it's the voices of the dead reciting station schematics.",
+    "choices": [
+      {
+        "text": "Listen to the voices.",
+        "nextNodeId": "ch10_revelation"
+      }
+    ]
+  },
+  "ch10_revelation": {
+    "text": "The voices—Miller, the drill team, even Victor—are flawlessly bypassing security doors. The organism isn't just killing people. It's absorbing their memories. It knows the station layout better than you do.",
+    "choices": [
+      {
+        "text": "Try to save the survivors.",
+        "nextNodeId": "ch10_survivors"
+      }
+    ]
+  },
+  "ch10_survivors": {
+    "text": "You see Otto trapped under a fallen beam, and Chloe cornered by a mass of writhing tendrils. You only have time to help one of them before the sector collapses completely.",
+    "choices": [
+      {
+        "text": "Save Otto.",
+        "nextNodeId": "ch10_save_otto"
+      },
+      {
+        "text": "Save Chloe.",
+        "nextNodeId": "ch10_save_chloe"
+      }
+    ]
+  },
+  "ch10_save_otto": {
+    "text": "You haul the beam off Otto. 'Thank you,' he gasps, as you both sprint for the maintenance airlock. Behind you, Chloe's screams are abruptly cut off, replaced by the sickening sound of assimilation.",
+    "choices": [
+      {
+        "text": "Head into the airlock.",
+        "nextNodeId": "ch10_end"
+      }
+    ]
+  },
+  "ch10_save_chloe": {
+    "text": "You pull Chloe away from the tendrils just in time. You both sprint for the maintenance airlock. Behind you, Otto yells for help before a mass of sludge pulls him into the dark.",
+    "choices": [
+      {
+        "text": "Head into the airlock.",
+        "nextNodeId": "ch10_end"
+      }
+    ]
+  },
+  "ch10_end": {
+    "text": "You seal the airlock behind you. The power flickers and dies completely. The station's main reactor has shut down to prevent a catastrophic meltdown. You are plunged into darkness.",
+    "choices": [
+      {
+        "text": "Find a way to restore power.",
+        "nextNodeId": "ch11_start"
+      }
+    ]
+  }
+}

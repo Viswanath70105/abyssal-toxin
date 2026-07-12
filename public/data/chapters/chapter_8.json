@@ -1,0 +1,49 @@
+{
+  "ch8_start": {
+    "text": "The squealing from the vents grows louder. The ventilation system is completely compromised. Life support is failing. The noise is coming from the direction of the Xenobiology Lab.",
+    "choices": [
+      {
+        "text": "Head to the Xenobiology Lab.",
+        "nextNodeId": "ch8_bio_lab"
+      }
+    ]
+  },
+  "ch8_bio_lab": {
+    "text": "You enter the lab. It's a nightmare. Hundreds of mutated, glowing rats are swarming the life support filters, tearing them apart with unnaturally sharp teeth. In the center of the room sits Victor, the senior xenobiologist, calmly taking notes.",
+    "choices": [
+      {
+        "text": "Yell at Victor to do something.",
+        "nextNodeId": "ch8_victor_confront"
+      }
+    ]
+  },
+  "ch8_victor_confront": {
+    "text": "Victor looks up. His eyes are milky white, and black veins cover his neck. 'Magnificent, aren't they?' he whispers. 'They adapt so quickly. The organism is breeding in them. It's perfect.'",
+    "speaker": "Victor",
+    "choices": [
+      {
+        "text": "'You infected them on purpose?!'",
+        "nextNodeId": "ch8_victor_confession"
+      }
+    ]
+  },
+  "ch8_victor_confession": {
+    "text": "'My mind was slipping. The dementia was taking everything,' Victor mutters, losing his train of thought for a moment. 'The spores... they regenerate brain tissue. I infected the rats to find the right dosage. But the organism... it has a mind of its own now.'",
+    "speaker": "Victor",
+    "choices": [
+      {
+        "text": "'You're out of your mind.'",
+        "nextNodeId": "ch8_end"
+      }
+    ]
+  },
+  "ch8_end": {
+    "text": "Victor has doomed the station's life support for a selfish, desperate cure. The rats suddenly stop tearing at the filters and turn their glowing eyes toward you. A massive metallic groan reverberates through the floorboards. The station is tearing itself apart.",
+    "choices": [
+      {
+        "text": "Run to the Engineering Bay.",
+        "nextNodeId": "ch9_start"
+      }
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "ch13_start": {
+    "text": "You leave Maya in a secure secondary airlock and finally breach the Command Center. The room is immaculate compared to the rest of the station, humming with auxiliary power. Director Gideon Stroud's private terminal is glowing.",
+    "choices": [
+      {
+        "text": "Hack into Gideon's terminal.",
+        "nextNodeId": "ch13_hack_terminal"
+      }
+    ]
+  },
+  "ch13_hack_terminal": {
+    "text": "You bypass the security protocols. The screen displays an encrypted transmission log to Corporate Command. You open the most recent message, expecting a rescue timeline. Instead, you find a sterile cost-benefit analysis.",
+    "choices": [
+      {
+        "text": "Read the transmission.",
+        "nextNodeId": "ch13_transmission"
+      }
+    ]
+  },
+  "ch13_transmission": {
+    "text": "'Subject: Nereus Station Contamination. The Abyssal Toxin is highly volatile. Recovery of samples is impossible without surface outbreak. Recommendation: Total asset denial. Insurance payout covers drill loss.'",
+    "choices": [
+      {
+        "text": "Read Corporate's reply.",
+        "nextNodeId": "ch13_corporate_reply"
+      }
+    ]
+  },
+  "ch13_corporate_reply": {
+    "text": "The reply is a single line: 'Recommendation accepted. No rescue team will be dispatched. Enact Protocol Omega.' They aren't coming. They were never coming.",
+    "choices": [
+      {
+        "text": "Search for Gideon.",
+        "nextNodeId": "ch13_end"
+      }
+    ]
+  },
+  "ch13_end": {
+    "text": "The realization hits you like a physical blow. You and the crew were written off days ago to protect Corporate's bottom line. The station suddenly lurches as a deafening siren begins to wail.",
+    "choices": [
+      {
+        "text": "Investigate the siren.",
+        "nextNodeId": "ch14_start"
+      }
+    ]
+  }
+}

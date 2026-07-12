@@ -1,0 +1,70 @@
+{
+  "ch11_start": {
+    "text": "Without power, the life support scrubbers will fail in minutes. The only way to restore auxiliary power is the manual override in Lower Maintenance. The catch: Lower Maintenance is flooded.",
+    "choices": [
+      {
+        "text": "Equip an emergency rebreather and dive in.",
+        "nextNodeId": "ch11_water"
+      }
+    ]
+  },
+  "ch11_water": {
+    "text": "The water is freezing and murky. Your HUD glitches constantly, static interfering with your vision. You swim through the submerged corridors, guided only by the faint red glow of emergency lights.",
+    "choices": [
+      {
+        "text": "Swim towards the generator room.",
+        "nextNodeId": "ch11_generator"
+      }
+    ]
+  },
+  "ch11_generator": {
+    "text": "You reach the generator room, but a massive shape blocks the override panel. It's human, but twisted—covered in bioluminescent barnacles and black sludge. It turns to look at you. It's Miller.",
+    "speaker": "Miller (Assimilated)",
+    "choices": [
+      {
+        "text": "Try to reason with him.",
+        "nextNodeId": "ch11_reason"
+      },
+      {
+        "text": "Draw your stun baton.",
+        "nextNodeId": "ch11_fight"
+      }
+    ]
+  },
+  "ch11_reason": {
+    "text": "'Miller, it's me,' your voice sounds tinny over the rebreather comms. The husk just tilts its head. 'We are... cold...' it gurgles, lunging at you with terrifying speed.",
+    "choices": [
+      {
+        "text": "Fight back.",
+        "nextNodeId": "ch11_fight"
+      }
+    ]
+  },
+  "ch11_fight": {
+    "text": "The fight is brutal and desperate. You swing the stun baton, electrocuting the water around you. The shock forces the husk back just long enough for you to slam the manual override lever.",
+    "choices": [
+      {
+        "text": "Swim back to the surface.",
+        "nextNodeId": "ch11_escape"
+      }
+    ]
+  },
+  "ch11_escape": {
+    "text": "The auxiliary lights flicker on. You swim back up the stairwell as fast as you can, breaking the surface and gasping for air. The power is back, but your infection level has spiked from the contaminated water.",
+    "choices": [
+      {
+        "text": "Catch your breath and move on.",
+        "nextNodeId": "ch11_end"
+      }
+    ]
+  },
+  "ch11_end": {
+    "text": "You survived the flooded sector, but the victory feels hollow. Miller's assimilated corpse is proof that death is not the end down here. It is just the beginning of something worse.",
+    "choices": [
+      {
+        "text": "Continue.",
+        "nextNodeId": "ch12_start"
+      }
+    ]
+  }
+}

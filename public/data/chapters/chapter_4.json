@@ -1,0 +1,50 @@
+{
+  "ch4_start": {
+    "text": "You wake up to the sound of klaxons. The station's PA system crackles to life. 'Attention. Mess Hall lockdown in effect. Mandatory rationing protocols activated.' The air feels heavier. Paranoia is setting in.",
+    "choices": [
+      {
+        "text": "Head to the Mess Hall to see what happened.",
+        "nextNodeId": "ch4_mess_hall"
+      }
+    ]
+  },
+  "ch4_mess_hall": {
+    "text": "The Mess Hall is sealed, but you can hear shouting inside. Otto Finch, the quartermaster, is arguing with Dr. Aris. 'Someone is stealing the reserves!' Otto yells. Then, your comms radio picks up a burst of static... and a ghostly voice.",
+    "speaker": "Radio",
+    "choices": [
+      {
+        "text": "Listen to the radio transmission.",
+        "nextNodeId": "ch4_radio"
+      }
+    ]
+  },
+  "ch4_radio": {
+    "text": "'...drill team alpha... it's in the walls... help us...' The voice sounds exactly like the drill team commander who went missing hours ago.",
+    "choices": [
+      {
+        "text": "Confront Otto about the missing food.",
+        "nextNodeId": "ch4_confront_otto"
+      }
+    ]
+  },
+  "ch4_confront_otto": {
+    "text": "You pull Otto aside. 'Where is the food, Otto?' He looks terrified and points to the ventilation shaft. 'I didn't steal it! I've been leaving scraps up there. There's a stowaway.'",
+    "speaker": "Otto",
+    "choices": [
+      {
+        "text": "Open the vent.",
+        "nextNodeId": "ch4_vent"
+      }
+    ]
+  },
+  "ch4_vent": {
+    "text": "You pry open the vent. Peering back at you is a terrified young girl. 'I'm Maya,' she whispers. She's been hiding here since launch.",
+    "speaker": "Maya",
+    "choices": [
+      {
+        "text": "Reassure her and move to the next sector.",
+        "nextNodeId": "ch5_start"
+      }
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "ch12_start": {
+    "text": "With auxiliary power restored, you return to the upper decks. But something is wrong. Maya is missing. The vents where she was hiding have been torn open from the inside.",
+    "choices": [
+      {
+        "text": "Search for Maya.",
+        "nextNodeId": "ch12_search"
+      }
+    ]
+  },
+  "ch12_search": {
+    "text": "You follow a trail of small, muddy footprints leading away from the vents. The corridors here are pitch black, illuminated only by patches of glowing, bioluminescent spores growing on the walls.",
+    "choices": [
+      {
+        "text": "Follow the trail deeper.",
+        "nextNodeId": "ch12_trail"
+      }
+    ]
+  },
+  "ch12_trail": {
+    "text": "The footprints lead to a desolate storage bay. You find Maya huddled in the corner, holding a dirty, torn piece of fabric. She is shaking violently.",
+    "choices": [
+      {
+        "text": "Approach her slowly.",
+        "nextNodeId": "ch12_maya_truth"
+      }
+    ]
+  },
+  "ch12_maya_truth": {
+    "text": "'I was looking for my brother,' she cries. 'He was on the drill team. I sneaked down to the lower decks days ago. The mud... it glowed. It was on my boots.'",
+    "speaker": "Maya",
+    "choices": [
+      {
+        "text": "Realize what she's saying.",
+        "nextNodeId": "ch12_revelation"
+      }
+    ]
+  },
+  "ch12_revelation": {
+    "text": "The pieces fall into place. The outbreak wasn't sabotage. It was a tragic accident. Maya, looking for her brother, unknowingly tracked the dormant spores from the quarantine zone straight into the station's ventilation system.",
+    "choices": [
+      {
+        "text": "'It's not your fault, Maya.'",
+        "nextNodeId": "ch12_end"
+      }
+    ]
+  },
+  "ch12_end": {
+    "text": "You try to comfort her, but the reality is crushing. The enemy didn't break in; it was carried in by a child looking for her family. Now, the station is dying, and Corporate still hasn't answered your distress calls.",
+    "choices": [
+      {
+        "text": "Head to the Command Center.",
+        "nextNodeId": "ch13_start"
+      }
+    ]
+  }
+}

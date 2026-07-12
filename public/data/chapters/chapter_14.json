@@ -1,0 +1,47 @@
+{
+  "ch14_start": {
+    "text": "The PA system blares: 'WARNING. PROTOCOL OMEGA INITIATED. SCUTTLING CHARGES DETONATING IN T-MINUS 10 MINUTES.' The station isn't just collapsing under the ocean pressure; it's being intentionally destroyed.",
+    "choices": [
+      {
+        "text": "Check the scuttling logs.",
+        "nextNodeId": "ch14_logs"
+      }
+    ]
+  },
+  "ch14_logs": {
+    "text": "You rapidly type on the terminal. The scuttling sequence wasn't automated by a system failure. The logs show a manual initiation code. Authorization: GIDEON STROUD. He's sinking the station himself.",
+    "choices": [
+      {
+        "text": "Track Gideon's location.",
+        "nextNodeId": "ch14_track_gideon"
+      }
+    ]
+  },
+  "ch14_track_gideon": {
+    "text": "The internal sensors locate his biometric tag. He is in the Escape Bay. There is only one Bathysphere left. He initiated the self-destruct and is planning to leave everyone else to die in the abyss.",
+    "choices": [
+      {
+        "text": "Run to the Escape Bay.",
+        "nextNodeId": "ch14_run"
+      }
+    ]
+  },
+  "ch14_run": {
+    "text": "You sprint through the collapsing corridors. Water is spraying from buckling bulkheads, and the groaning of the titanium hull is deafening. Behind you, you hear the wet, heavy footsteps of the assimilated horde pouring out of the lower decks.",
+    "choices": [
+      {
+        "text": "Push through to the Escape Bay.",
+        "nextNodeId": "ch14_end"
+      }
+    ]
+  },
+  "ch14_end": {
+    "text": "You reach the heavy blast doors of the Escape Bay just as a massive structural beam crashes down behind you, sealing the corridor. You are trapped between the rising ocean and the final escape pod.",
+    "choices": [
+      {
+        "text": "Enter the Escape Bay.",
+        "nextNodeId": "ch15_start"
+      }
+    ]
+  }
+}
