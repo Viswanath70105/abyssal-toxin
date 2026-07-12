@@ -1,99 +1,290 @@
 {
   "ch4_start": {
-    "text": "You wake up to the blaring of the station's PA system. 'Attention. Mess Hall lockdown in effect. Mandatory rationing protocols activated.' The air feels heavier. Paranoia is setting in across the station.",
+    "chapter": 4,
+    "text": "Klaxons. PA: 'Mess Hall lockdown. Mandatory rationing.' The station has stopped pretending this is routine. You can investigate several areas before the next lockdown cycle seals them.",
     "choices": [
       {
-        "text": "Head to the Mess Hall.",
+        "text": "Enter the central corridor hub.",
+        "nextNodeId": "ch4_hub"
+      }
+    ]
+  },
+  "ch4_hub": {
+    "text": "Sector A corridor. Bulkheads tick as pressure equalizes. Where do you go before the cycle ends?",
+    "choices": [
+      {
+        "text": "Mess Hall — Otto and the missing rations",
         "nextNodeId": "ch4_mess_hall"
+      },
+      {
+        "text": "Hydroponics bay",
+        "nextNodeId": "ch4_hydroponics",
+        "requires": {
+          "flags": { "decay_sector_b": false }
+        }
+      },
+      {
+        "text": "Observation blister",
+        "nextNodeId": "ch4_observation"
+      },
+      {
+        "text": "Sector B access tunnel (still dry — for now)",
+        "nextNodeId": "ch4_sector_b",
+        "requires": {
+          "flags": { "decay_sector_b": false }
+        }
+      },
+      {
+        "text": "End investigation for this cycle",
+        "nextNodeId": "ch4_end"
       }
     ]
   },
   "ch4_mess_hall": {
-    "text": "The Mess Hall is sealed, but you slip in using your auditor override codes. Otto Finch, the quartermaster, is desperately inventorying the pantry. 'Half the high-calorie reserves are gone!' he mutters. Then, a static-filled voice crackles from the kitchen radio.",
-    "speaker": "Radio",
-    "choices": [
-      {
-        "text": "Listen to the radio transmission.",
-        "nextNodeId": "ch4_radio"
-      }
-    ]
-  },
-  "ch4_radio": {
-    "text": "'...drill team alpha... it's in the walls... help us...' The voice sounds exactly like Commander Vance, who died in the initial breach 24 hours ago.",
-    "choices": [
-      {
-        "text": "'How is Vance broadcasting?'",
-        "nextNodeId": "ch4_otto_freakout"
-      }
-    ]
-  },
-  "ch4_otto_freakout": {
-    "text": "Otto slams the radio off. 'It's a glitch! Magnetic echoes! Just like the missing food... probably an inventory glitch!' He is sweating profusely.",
+    "text": "Outside the sealed Mess Hall, Otto argues with a security drone. 'Someone is stealing the reserves!' He sees you and freezes — too long, too guilty.",
     "speaker": "Otto",
     "choices": [
       {
-        "text": "Accuse him. 'You're stealing the food, Otto.'",
-        "nextNodeId": "ch4_confront_otto_harsh",
-        "modifyTrust": { "character": "Otto", "amount": -5 }
+        "text": "Confront him about the missing rations.",
+        "nextNodeId": "ch4_confront_menu"
       },
       {
-        "text": "'Otto, calm down. Where did the food go?'",
-        "nextNodeId": "ch4_confront_otto_calm",
-        "modifyTrust": { "character": "Otto", "amount": 2 }
+        "text": "Ask calmly if anyone else has access to storage.",
+        "nextNodeId": "ch4_soft_ask",
+        "effects": {
+          "trust": { "otto": 5 }
+        }
+      },
+      {
+        "text": "Search around him without accusing yet.",
+        "nextNodeId": "ch4_mess_search"
+      },
+      {
+        "text": "Return to corridor hub.",
+        "nextNodeId": "ch4_hub"
       }
     ]
   },
-  "ch4_confront_otto_harsh": {
-    "text": "Otto looks terrified. 'I didn't steal it! I've been leaving scraps in the vents! There's a stowaway! A kid!' He points shakily to the large ventilation shaft above the stove.",
-    "speaker": "Otto",
+  "ch4_mess_search": {
+    "text": "While Otto is distracted, you recheck the pantry seam. If you missed evidence earlier, this is your second chance — crumbs, crayon wax, a blanket thread.",
     "choices": [
       {
-        "text": "Open the vent.",
-        "nextNodeId": "ch4_vent"
+        "text": "Bag a crayon scrap from the shelf edge.",
+        "nextNodeId": "ch4_mess_hall",
+        "effects": {
+          "giveClue": "childs_drawing"
+        }
+      },
+      {
+        "text": "Copy the ration terminal again.",
+        "nextNodeId": "ch4_mess_hall",
+        "effects": {
+          "giveClue": "inventory_discrepancies"
+        }
+      },
+      {
+        "text": "Back to Otto.",
+        "nextNodeId": "ch4_mess_hall"
       }
     ]
   },
-  "ch4_confront_otto_calm": {
-    "text": "Otto sighs, trembling. 'I haven't been eating it. I've been... feeding someone. There's a stowaway in the vents. A little girl.' He points to the ventilation shaft.",
+  "ch4_soft_ask": {
+    "text": "'Just me and the inventory codes,' Otto mutters. 'Look — if I tell you, you have to promise. There's a kid. She's starving without me.'",
     "speaker": "Otto",
     "choices": [
       {
-        "text": "Open the vent.",
-        "nextNodeId": "ch4_vent"
+        "text": "Promise to keep the secret — for now.",
+        "nextNodeId": "ch4_vent",
+        "effects": {
+          "flags": { "otto_ally": true, "knows_maya": true },
+          "trust": { "otto": 15 }
+        }
+      },
+      {
+        "text": "Demand proof before you believe a word.",
+        "nextNodeId": "ch4_confront_menu"
+      },
+      {
+        "text": "Return to hub without deciding.",
+        "nextNodeId": "ch4_hub"
+      }
+    ]
+  },
+  "ch4_confront_menu": {
+    "text": "Otto wrings a towel until his knuckles go white. 'I didn't poison anyone. I swear.' Accusing him will change everything.",
+    "speaker": "Otto",
+    "choices": [
+      {
+        "text": "Accuse him of hoarding food out of greed.",
+        "nextNodeId": "ch4_accuse_greed",
+        "requires": {
+          "cluesAny": ["inventory_discrepancies"]
+        },
+        "effects": {
+          "flags": { "otto_hostile": true, "accused_otto_wrong": true },
+          "trust": { "otto": -30 }
+        }
+      },
+      {
+        "text": "Present the child's drawing and the inventory logs.",
+        "nextNodeId": "ch4_accuse_correct",
+        "requires": {
+          "clues": ["inventory_discrepancies"],
+          "cluesAny": ["childs_drawing", "makeshift_bed"]
+        }
+      },
+      {
+        "text": "Accuse him of poisoning Miller with the stew.",
+        "nextNodeId": "ch4_accuse_poison",
+        "effects": {
+          "flags": { "otto_hostile": true, "accused_otto_wrong": true },
+          "trust": { "otto": -40 }
+        }
+      },
+      {
+        "text": "Back off. Return to hub.",
+        "nextNodeId": "ch4_hub"
+      }
+    ]
+  },
+  "ch4_accuse_greed": {
+    "text": "You call him a thief. Otto's face collapses into rage. David has him in the brig within the hour. No one checks the vents.",
+    "speaker": "Otto",
+    "choices": [
+      {
+        "text": "Return to hub.",
+        "nextNodeId": "ch4_hub",
+        "effects": {
+          "flags": { "maya_at_risk": true }
+        }
+      }
+    ]
+  },
+  "ch4_accuse_poison": {
+    "text": "'Miller was my friend!' Otto shouts as security hauls him away. The crew watches you with measuring eyes.",
+    "speaker": "Otto",
+    "choices": [
+      {
+        "text": "Return to hub.",
+        "nextNodeId": "ch4_hub",
+        "effects": {
+          "flags": { "maya_at_risk": true },
+          "infection": 5
+        }
+      }
+    ]
+  },
+  "ch4_accuse_correct": {
+    "text": "You lay out the inventory gaps, the drawing, the tiny bed. Otto sags. 'Her name is Maya. Her brother was on the drill team. I've been feeding her in the vents.'",
+    "speaker": "Otto",
+    "choices": [
+      {
+        "text": "Keep his secret. Ask to meet her.",
+        "nextNodeId": "ch4_vent",
+        "effects": {
+          "flags": { "otto_ally": true, "knows_maya": true },
+          "trust": { "otto": 25 }
+        }
+      },
+      {
+        "text": "Report the stowaway to Security.",
+        "nextNodeId": "ch4_report_maya",
+        "effects": {
+          "flags": { "reported_maya": true, "otto_hostile": true },
+          "trust": { "otto": -20, "david": 5 }
+        }
+      }
+    ]
+  },
+  "ch4_report_maya": {
+    "text": "David logs an unauthorized civilian. Maya is dragged to holding. Otto looks at you as if you flooded the lower decks yourself.",
+    "speaker": "David",
+    "choices": [
+      {
+        "text": "Return to hub.",
+        "nextNodeId": "ch4_hub",
+        "effects": {
+          "flags": { "maya_detained": true }
+        }
       }
     ]
   },
   "ch4_vent": {
-    "text": "You pry open the heavy grate. Deep inside the ductwork, a pair of wide, terrified eyes stares back at you. It's a young girl, no older than ten, clutching a rationing bar.",
+    "text": "Otto opens a hatch. A girl curls in the dark. 'I'm Maya,' she whispers. 'Please don't tell the Director.'",
+    "speaker": "Maya",
     "choices": [
       {
-        "text": "'It's okay. Come out. I'm not going to hurt you.'",
-        "nextNodeId": "ch4_maya_trust",
-        "setFlag": { "key": "maya_trusts_you", "value": true }
+        "text": "Promise to protect her, then return to hub.",
+        "nextNodeId": "ch4_hub",
+        "effects": {
+          "flags": { "knows_maya": true, "maya_trust": true },
+          "trust": { "otto": 5 },
+          "giveClue": "muddy_footprints"
+        }
+      }
+    ]
+  },
+  "ch4_hydroponics": {
+    "text": "Grow-beds are half-dead. On the filter mesh: a faint bioluminescent smear that is not algae. The same wrong light you saw in rumor of the cavern mud.",
+    "choices": [
+      {
+        "text": "Bag a sample.",
+        "nextNodeId": "ch4_hub",
+        "effects": {
+          "giveClue": "hydroponics_spores",
+          "infection": 2
+        }
       },
       {
-        "text": "Reach in and grab her arm. 'Get out here now.'",
-        "nextNodeId": "ch4_maya_fear",
-        "setFlag": { "key": "maya_trusts_you", "value": false }
+        "text": "Leave it. Return to hub.",
+        "nextNodeId": "ch4_hub"
       }
     ]
   },
-  "ch4_maya_trust": {
-    "text": "She hesitates, then slowly crawls out. 'I'm Maya,' she whispers. 'The monsters took my brother.'",
-    "speaker": "Maya",
+  "ch4_observation": {
+    "text": "Beyond reinforced glass: absolute black, and the memory of pressure. Your comms unit catches a fragment of the drill team's last open channel — already half-eaten by static.",
+    "effectsOnce": true,
+    "effects": {
+      "infection": 3
+    },
     "choices": [
       {
-        "text": "Assure her she is safe here and leave.",
-        "nextNodeId": "ch5_start"
+        "text": "Record the ghost fragment.",
+        "nextNodeId": "ch4_hub",
+        "effects": {
+          "giveClue": "ghost_audio"
+        }
+      },
+      {
+        "text": "Kill the channel. Return to hub.",
+        "nextNodeId": "ch4_hub"
       }
     ]
   },
-  "ch4_maya_fear": {
-    "text": "She screams and scrambles further back into the dark vents, out of reach. 'Leave me alone!' she cries.",
-    "speaker": "Maya",
+  "ch4_sector_b": {
+    "text": "Sector B still smells of coolant and dust — not seawater. Not yet. A maintenance stencil reads: STRUCTURAL WATCH — MILLER. The lower bulkhead ticks like a bad tooth.",
     "choices": [
       {
-        "text": "Leave her there and exit the Mess Hall.",
+        "text": "Note the structural watch tags and leave.",
+        "nextNodeId": "ch4_hub",
+        "effects": {
+          "flags": { "visited_sector_b_early": true }
+        }
+      },
+      {
+        "text": "Pry a secondary panel for another bypassed relay fragment.",
+        "nextNodeId": "ch4_hub",
+        "effects": {
+          "giveClue": "bypassed_relay"
+        }
+      }
+    ]
+  },
+  "ch4_end": {
+    "text": "Rationing deepens. Trust thins. Whatever is in the walls has learned the sound of human desperation — and it is practicing. You will not get unlimited cycles to look around.",
+    "choices": [
+      {
+        "text": "Advance to the next cycle.",
         "nextNodeId": "ch5_start"
       }
     ]

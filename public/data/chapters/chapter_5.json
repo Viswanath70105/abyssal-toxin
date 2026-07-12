@@ -1,84 +1,264 @@
 {
   "ch5_start": {
-    "text": "Knowing David wiped the main security servers, you decide to access the localized backup node in the old Archives. It's the only way to see what actually came out of the cavern. The Archives are in total blackout.",
+    "chapter": 5,
+    "text": "A new cycle. Security Hub is half-dark. David is not the only problem on the board — but he may be the one who blinded everyone else.",
     "choices": [
       {
-        "text": "Enter the dark Archives.",
-        "nextNodeId": "ch5_archives_dark"
+        "text": "Enter the investigation hub.",
+        "nextNodeId": "ch5_hub"
       }
     ]
   },
-  "ch5_archives_dark": {
-    "text": "You power up your flashlight. The beam cuts through thick, floating dust. You hear a soft, wet slithering sound from the ceiling grates above.",
+  "ch5_hub": {
+    "text": "Where do you dig before the next scream writes your schedule for you?",
     "choices": [
       {
-        "text": "Shine the light up at the ceiling.",
-        "nextNodeId": "ch5_look_up"
+        "text": "Security Hub — David",
+        "nextNodeId": "ch5_security"
       },
       {
-        "text": "Keep moving toward the backup node terminal.",
-        "nextNodeId": "ch5_terminal_reach"
-      }
-    ]
-  },
-  "ch5_look_up": {
-    "text": "Your light catches a mass of dark, pulsating flesh squeezing through the ventilation grate. It recoils violently from the light, screeching—a sound that mimics metal tearing. A drop of black viscous fluid lands on your arm.",
-    "choices": [
-      {
-        "text": "Wipe it off and sprint to the terminal.",
-        "nextNodeId": "ch5_terminal_reach",
-        "addInfection": 15
-      }
-    ]
-  },
-  "ch5_terminal_reach": {
-    "text": "You reach the backup node and boot it up. The screen flickers, bringing up the un-wiped footage from Lower Maintenance right before the breach.",
-    "choices": [
-      {
-        "text": "Play the footage.",
-        "nextNodeId": "ch5_footage"
-      }
-    ]
-  },
-  "ch5_footage": {
-    "text": "On the grainy screen, you see Miller before you arrived. He's trying to seal the door, but the water is filled with thousands of microscopic, bioluminescent spores. They clump together, forming tendrils that force the door open. It's not a single creature. It's a colony.",
-    "choices": [
-      {
-        "text": "Eject the data drive.",
-        "nextNodeId": "ch5_eject"
-      }
-    ]
-  },
-  "ch5_eject": {
-    "text": "As you grab the drive, the terminal sparks and dies. The slithering sound is directly behind you now.",
-    "choices": [
-      {
-        "requiresMaxInfection": 10,
-        "text": "Turn quickly and shine the flashlight to blind it, then run.",
-        "nextNodeId": "ch5_escape_clean"
+        "text": "David's quarters",
+        "nextNodeId": "ch5_quarters"
       },
       {
-        "text": "Run blindly for the door.",
-        "nextNodeId": "ch5_escape_infected"
+        "text": "Armory vents / stash site",
+        "nextNodeId": "ch5_armory",
+        "requires": {
+          "flags": { "armory_locked": false }
+        }
+      },
+      {
+        "text": "Armory (sealed — David locked it)",
+        "nextNodeId": "ch5_armory_sealed",
+        "requires": {
+          "flags": { "armory_locked": true }
+        }
+      },
+      {
+        "text": "Server closet — salvage pre-wipe fragments",
+        "nextNodeId": "ch5_server_closet"
+      },
+      {
+        "text": "Sector B (last dry pass)",
+        "nextNodeId": "ch5_sector_b",
+        "requires": {
+          "flags": { "decay_sector_b": false }
+        }
+      },
+      {
+        "text": "End chapter — follow the next emergency",
+        "nextNodeId": "ch5_end"
       }
     ]
   },
-  "ch5_escape_clean": {
-    "text": "You blind the mass of tendrils just long enough to slip past it and slam the Archive doors shut. You are safe, for now. (Act 1 Complete)",
+  "ch5_security": {
+    "text": "David sits among blank monitors, rubbing his chest as if breathing costs interest.",
+    "speaker": "David",
     "choices": [
       {
-        "text": "Proceed to Act 2.",
+        "text": "Confront him about the wiped cameras.",
+        "nextNodeId": "ch5_confront_menu",
+        "requires": {
+          "clues": ["server_wipe_audit"]
+        }
+      },
+      {
+        "text": "Ask what he needs to keep the station safe.",
+        "nextNodeId": "ch5_soft",
+        "effects": {
+          "trust": { "david": 5 }
+        }
+      },
+      {
+        "text": "Return to hub.",
+        "nextNodeId": "ch5_hub"
+      }
+    ]
+  },
+  "ch5_quarters": {
+    "text": "A worn novel hides a folded Earth-side diagnosis. Stage 4. Six months. Get your affairs in order.",
+    "choices": [
+      {
+        "text": "Take the diagnosis.",
+        "nextNodeId": "ch5_hub",
+        "effects": {
+          "giveClue": "medical_diagnosis"
+        }
+      },
+      {
+        "text": "Put it back. Return to hub.",
+        "nextNodeId": "ch5_hub"
+      }
+    ]
+  },
+  "ch5_armory": {
+    "text": "The armory still opens. Behind the loose grate: Abyssal Quartz packed for smuggling — condensate beading on the seals.",
+    "choices": [
+      {
+        "text": "Photograph the stash.",
+        "nextNodeId": "ch5_hub",
+        "effects": {
+          "giveClue": "hidden_stash"
+        }
+      },
+      {
+        "text": "Leave it. Return to hub.",
+        "nextNodeId": "ch5_hub"
+      }
+    ]
+  },
+  "ch5_armory_sealed": {
+    "text": "Biometric red. David meant what he said. When the organism comes, these weapons will not be yours.",
+    "choices": [
+      {
+        "text": "Return to hub.",
+        "nextNodeId": "ch5_hub"
+      }
+    ]
+  },
+  "ch5_server_closet": {
+    "text": "Heat-dead racks. One drive still ticks. You pull a three-second fragment from before the wipe: a small silhouette in a vent — then static.",
+    "choices": [
+      {
+        "text": "Save the loop fragment.",
+        "nextNodeId": "ch5_hub",
+        "effects": {
+          "giveClue": "camera_loop_fragment"
+        }
+      },
+      {
+        "text": "Leave the closet.",
+        "nextNodeId": "ch5_hub"
+      }
+    ]
+  },
+  "ch5_sector_b": {
+    "text": "Sector B's lower seal weeps condensation. Sensors chirp flood warnings that Miller once silenced. Soon this place will be a grave with a corridor number.",
+    "choices": [
+      {
+        "text": "Mark the failure points and leave.",
+        "nextNodeId": "ch5_hub",
+        "effects": {
+          "flags": { "warned_sector_b_flood": true }
+        }
+      }
+    ]
+  },
+  "ch5_soft": {
+    "text": "'I need people to stop asking questions I can't answer,' David says. His eyes flick to a dead camera bank. 'And I need time.'",
+    "speaker": "David",
+    "choices": [
+      {
+        "text": "Press him with the Server Wipe Audit.",
+        "nextNodeId": "ch5_confront_menu",
+        "requires": {
+          "clues": ["server_wipe_audit"]
+        }
+      },
+      {
+        "text": "Return to hub.",
+        "nextNodeId": "ch5_hub"
+      }
+    ]
+  },
+  "ch5_confront_menu": {
+    "text": "David's jaw tightens. 'Say what you came to say.'",
+    "speaker": "David",
+    "choices": [
+      {
+        "text": "Accuse him of sabotaging the station and covering Miller's death.",
+        "nextNodeId": "ch5_accuse_wrong",
+        "requires": {
+          "clues": ["server_wipe_audit"]
+        },
+        "effects": {
+          "flags": { "david_hostile": true, "accused_david_wrong": true },
+          "trust": { "david": -40 }
+        }
+      },
+      {
+        "text": "Present the wipe audit with his smuggling stash and diagnosis.",
+        "nextNodeId": "ch5_accuse_correct",
+        "requires": {
+          "clues": ["server_wipe_audit"],
+          "cluesAny": ["hidden_stash", "medical_diagnosis"]
+        }
+      },
+      {
+        "text": "Present only the wipe audit — force a confession.",
+        "nextNodeId": "ch5_accuse_partial",
+        "requires": {
+          "clues": ["server_wipe_audit"]
+        }
+      },
+      {
+        "text": "Leave without accusing him.",
+        "nextNodeId": "ch5_hub"
+      }
+    ]
+  },
+  "ch5_accuse_wrong": {
+    "text": "'Infected? Working for that thing?' David seals the armory. 'Find your own guns when it comes.'",
+    "speaker": "David",
+    "choices": [
+      {
+        "text": "Return to hub.",
+        "nextNodeId": "ch5_hub",
+        "effects": {
+          "flags": { "armory_locked": true },
+          "infection": 5
+        }
+      }
+    ]
+  },
+  "ch5_accuse_partial": {
+    "text": "With only the wipe log, David goes cold. 'That proves I deleted files. Not murder. That's all you get.'",
+    "speaker": "David",
+    "choices": [
+      {
+        "text": "Return to hub.",
+        "nextNodeId": "ch5_hub",
+        "effects": {
+          "flags": { "david_partial": true },
+          "trust": { "david": -10 }
+        }
+      }
+    ]
+  },
+  "ch5_accuse_correct": {
+    "text": "You lay out the wipe, the quartz, the diagnosis. David folds. 'I scrubbed the feeds so Corporate wouldn't see the smuggling. I didn't know something else came through the breach.'",
+    "speaker": "David",
+    "choices": [
+      {
+        "text": "Offer secrecy for future overrides — then return to hub.",
+        "nextNodeId": "ch5_hub",
+        "effects": {
+          "flags": { "david_ally": true },
+          "trust": { "david": 25 }
+        }
+      },
+      {
+        "text": "Condemn him, then return to hub.",
+        "nextNodeId": "ch5_hub",
+        "effects": {
+          "flags": { "david_shamed": true },
+          "trust": { "david": -5 }
+        }
+      }
+    ]
+  },
+  "ch5_end": {
+    "text": "A muffled scream rolls through the hull — from the Comms Tower. The optional doors are closing. The mandatory ones are opening.",
+    "textVariants": [
+      {
+        "minInfection": 20,
+        "text": "A muffled scream rolls through the hull. For a second it sounds like your own voice, pitched wrong. Comms Tower. Now."
+      }
+    ],
+    "choices": [
+      {
+        "text": "Investigate the Comms Tower.",
         "nextNodeId": "ch6_start"
-      }
-    ]
-  },
-  "ch5_escape_infected": {
-    "text": "You sprint for the door, but a tendril whips out from the dark, slashing your shoulder. You manage to escape and seal the door, but you can feel the wound burning with a strange, numb heat. (Act 1 Complete)",
-    "choices": [
-      {
-        "text": "Proceed to Act 2.",
-        "nextNodeId": "ch6_start",
-        "addInfection": 20
       }
     ]
   }

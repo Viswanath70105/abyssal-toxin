@@ -1,69 +1,107 @@
 {
   "ch10_start": {
-    "text": "The klaxons change to a deafening, continuous wail. The organism is attacking in force. A massive surge of dark water and tendrils bursts through the primary ventilation shafts, flooding the safe zones.",
+    "chapter": 10,
+    "text": "Half the lights are dead. Crew deck bulkheads buckle. Sector B has been a drowned grave since the flood — and now the upper crew berths are tearing open too.",
+    "effectsOnce": true,
+    "effects": {
+      "infection": 5,
+      "flags": { "decay_crew_deck": true }
+    },
     "choices": [
       {
-        "text": "Brace yourself.",
-        "nextNodeId": "ch10_attack"
+        "text": "Run for the crew quarters.",
+        "nextNodeId": "ch10_crew_quarters"
       }
     ]
   },
-  "ch10_attack": {
-    "text": "The station layout on your PDA turns entirely red. 50% of the station is now uninhabitable. You hear screams over the comms. David is trapped in Security, and Maya is crying from the vents near the Mess Hall. You can only save one.",
+  "ch10_crew_quarters": {
+    "text": "Tendrils tear bulkheads like foil. Over the PA, the dead recite station schematics in perfect chorus — Miller, drill techs, even Victor's dry academic cadence.",
     "choices": [
       {
-        "requiresTrust": { "character": "David", "min": 0 },
-        "text": "Rush to Security to save David.",
-        "nextNodeId": "ch10_save_david"
+        "text": "Listen long enough to understand.",
+        "nextNodeId": "ch10_revelation"
+      }
+    ]
+  },
+  "ch10_revelation": {
+    "text": "It is not mocking you. It is learning door codes. The organism absorbs memory. Every person it takes becomes a better predator.",
+    "choices": [
+      {
+        "text": "Try to save the survivors.",
+        "nextNodeId": "ch10_survivors"
+      }
+    ]
+  },
+  "ch10_survivors": {
+    "text": "Otto is pinned under a beam. Chloe is cornered by a mass of tendrils. You only have time for one before this sector folds.",
+    "choices": [
+      {
+        "text": "Save Otto.",
+        "nextNodeId": "ch10_save_otto",
+        "requires": {
+          "flags": { "otto_hostile": false }
+        },
+        "effects": {
+          "flags": { "saved_otto": true },
+          "trust": { "otto": 10 }
+        }
       },
       {
-        "requiresFlag": { "key": "maya_trusts_you", "value": true },
-        "text": "Rush to the Mess Hall to save Maya.",
-        "nextNodeId": "ch10_save_maya"
+        "text": "Save Chloe.",
+        "nextNodeId": "ch10_save_chloe",
+        "effects": {
+          "flags": { "saved_chloe": true },
+          "trust": { "chloe": 10 }
+        }
       },
       {
-        "text": "Save yourself and flee to the upper decks.",
-        "nextNodeId": "ch10_save_self"
+        "text": "Otto is already in the brig — try to save Chloe.",
+        "nextNodeId": "ch10_save_chloe",
+        "requires": {
+          "flags": { "otto_hostile": true }
+        },
+        "effects": {
+          "flags": { "saved_chloe": true, "otto_lost": true },
+          "trust": { "chloe": 10 }
+        }
       }
     ]
   },
-  "ch10_save_david": {
-    "text": "You fight your way to Security. The water is waist-deep. David is pinned under a fallen server rack. You manage to heave it off him just as the tendrils break through the reinforced glass.",
+  "ch10_save_otto": {
+    "text": "You haul the beam free. Otto gasps thanks as you sprint for the maintenance airlock. Behind you, Chloe's scream cuts off into a wet silence.",
     "choices": [
       {
-        "text": "Drag David to the elevator.",
+        "text": "Seal the airlock.",
         "nextNodeId": "ch10_end",
-        "setFlag": { "key": "david_survived", "value": true },
-        "modifyTrust": { "character": "David", "amount": 20 }
+        "effects": {
+          "flags": { "chloe_lost": true }
+        }
       }
     ]
   },
-  "ch10_save_maya": {
-    "text": "You sprint to the Mess Hall. The room is flooded, but Maya is clinging to a ceiling pipe. You wade through the dark water, feeling the organism brush against your legs, and pull her onto your shoulders.",
+  "ch10_save_chloe": {
+    "text": "You pull Chloe free. You both run. Otto's shout follows you until the sludge takes the sound apart.",
     "choices": [
       {
-        "text": "Carry Maya to the elevator.",
+        "text": "Seal the airlock.",
         "nextNodeId": "ch10_end",
-        "setFlag": { "key": "maya_survived", "value": true },
-        "addInfection": 10
-      }
-    ]
-  },
-  "ch10_save_self": {
-    "text": "You ignore the screams and sprint for the primary elevator. The guilt gnaws at you, but survival is the only priority. The screams abruptly stop, replaced by the horrific sound of assimilation.",
-    "choices": [
-      {
-        "text": "Ride the elevator up.",
-        "nextNodeId": "ch10_end",
-        "setFlag": { "key": "lone_survivor", "value": true }
+        "effects": {
+          "flags": { "otto_lost": true }
+        }
       }
     ]
   },
   "ch10_end": {
-    "text": "You reach the upper decks, gasping for air. The organism isn't just killing; it's absorbing memories and knowledge. It knows the station's layout better than the crew does now. (Act 2 Complete)",
+    "text": "The airlock seals. Main reactor trips offline to avoid meltdown. Darkness is total — except for the glow under your skin.",
+    "textVariants": [
+      {
+        "minInfection": 40,
+        "text": "The airlock seals. Reactor offline. In the dark, the glow under your skin is bright enough to read by. Something smiles with your mouth and you almost smile back."
+      }
+    ],
     "choices": [
       {
-        "text": "Proceed to Act 3.",
+        "text": "Restore auxiliary power.",
         "nextNodeId": "ch11_start"
       }
     ]

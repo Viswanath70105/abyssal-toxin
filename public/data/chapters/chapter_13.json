@@ -1,36 +1,104 @@
 {
   "ch13_start": {
-    "text": "You finally reach the Command Center. The heavy blast doors are sealed from the inside. You use the auditor override codes to force them open. The room is empty, except for Gideon Stroud's private terminal, which is unlocked.",
+    "chapter": 13,
+    "cg": "command_center",
+    "cgCaption": "Command Center",
+    "text": "You leave Maya secured as this dying architecture allows and force Command. Compared to the rest of Nereus, the room is immaculate — climate perfect, floors unstained, as if suffering required a clearance level. Gideon's private terminal glows alone like a votive. A faded family photo sits face-down beside the keyboard. You can almost hear the choice that turned it over.",
     "choices": [
       {
-        "text": "Access Gideon's terminal.",
-        "nextNodeId": "ch13_terminal"
+        "text": "Turn the photo over first.",
+        "nextNodeId": "ch13_photo"
+      },
+      {
+        "text": "Access Gideon's terminal immediately.",
+        "nextNodeId": "ch13_hack_terminal"
       }
     ]
   },
-  "ch13_terminal": {
-    "text": "You quickly scan through his encrypted emails. You find a transmission sent 12 hours ago, right after the breach. It reads: 'CONTAINMENT FAILED. SAMPLES COMPROMISED. REQUESTING IMMEDIATE EXTRACTION.'",
+  "ch13_photo": {
+    "text": "Gideon, younger, unarmored by command. A woman. A child on a sunlit pier. On the back, in handwriting that has begun to shake: 'I'm sorry. I have to keep you safe from this. Don't look for me.' Not the note of a man surprised by disaster. The note of a man packing for a one-way math problem.",
+    "effects": {
+      "giveClue": "family_photo_note",
+      "flags": { "saw_gideon_photo": true }
+    },
     "choices": [
       {
-        "text": "Check the response from Corporate.",
-        "nextNodeId": "ch13_corporate_response"
+        "text": "Open the terminal.",
+        "nextNodeId": "ch13_hack_terminal"
       }
     ]
   },
-  "ch13_corporate_response": {
-    "text": "The response from Corporate is brief and terrifying: 'REQUEST DENIED. ASSET RECOVERY DEEMED TOO RISKY. INITIATE SCUTTLE PROTOCOL. DO NOT LET THE ORGANISM REACH THE SURFACE.'",
+  "ch13_hack_terminal": {
+    "text": "Security yields under pressure, leftover codes, and the station's general exhaustion. Encrypted traffic with Corporate Command fills the screen — not a rescue schedule. A spreadsheet with the soul removed. Thread titles like assets, denial, Omega.",
     "choices": [
       {
-        "text": "Realize what this means.",
+        "text": "Read the outbound contamination assessment.",
+        "nextNodeId": "ch13_transmission"
+      },
+      {
+        "text": "Open drafts folder — unsent mail.",
+        "nextNodeId": "ch13_unsent",
+        "effects": {
+          "giveClue": "unsent_transmission"
+        }
+      }
+    ]
+  },
+  "ch13_transmission": {
+    "text": "'Subject: Nereus Contamination. The Abyssal Toxin is highly adaptive. Sample recovery risks surface outbreak. Recommendation: Total asset denial. Insurance payout covers drill loss. Crew: nonrecoverable under acceptable parameters.' The language is so clean it squeaks.",
+    "choices": [
+      {
+        "text": "Open Corporate's reply.",
+        "nextNodeId": "ch13_corporate_reply"
+      },
+      {
+        "text": "Open Gideon's unsent draft to Earth Defense.",
+        "nextNodeId": "ch13_unsent",
+        "effects": {
+          "giveClue": "unsent_transmission"
+        }
+      }
+    ]
+  },
+  "ch13_unsent": {
+    "text": "Draft, never sent — or never meant to be intercepted by the people it would save: 'The organism is highly adaptive and hostile. Standard containment has failed. I am executing the final failsafe. Do not send rescue. If this reaches the surface, humanity ends.' Under it, a second line deleted and restored: 'Tell my family I chose them over the roster.'",
+    "choices": [
+      {
+        "text": "Return to Corporate's reply.",
+        "nextNodeId": "ch13_corporate_reply"
+      }
+    ]
+  },
+  "ch13_corporate_reply": {
+    "text": "One line, timestamped days ago: 'Recommendation accepted. No rescue team will be dispatched. Enact Protocol Omega.' They are not coming. They sold the depth and wrote you off as inventory. Gideon did not invent the order. The question that remains is whether he will die obeying it — and whether he will make that choice for everyone else.",
+    "choices": [
+      {
+        "text": "Search for scuttling prep logs before you move.",
+        "nextNodeId": "ch13_omega_hint",
+        "effects": {
+          "flags": { "saw_omega_prep": true }
+        }
+      },
+      {
+        "text": "Find Gideon before Protocol Omega finishes the argument.",
+        "nextNodeId": "ch13_end"
+      }
+    ]
+  },
+  "ch13_omega_hint": {
+    "text": "A side panel lists charge arming sequences, biometric locks, Escape Bay priority. Authorization field empty — waiting for a living hand. Not automated catastrophe. A person-shaped detonator. If you have been paying attention since the Mess Hall, you already know whose calm was never grief.",
+    "choices": [
+      {
+        "text": "Go. Now.",
         "nextNodeId": "ch13_end"
       }
     ]
   },
   "ch13_end": {
-    "text": "Corporate isn't sending a rescue team. They never were. We are all meant to die down here.",
+    "text": "The station lurches. A siren you have never heard before takes the air apart — not fire, not flood. Something final. Charges somewhere are becoming honest about their purpose.",
     "choices": [
       {
-        "text": "Wait... what is the Scuttle Protocol?",
+        "text": "Trace the siren.",
         "nextNodeId": "ch14_start"
       }
     ]

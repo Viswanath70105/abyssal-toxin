@@ -1,49 +1,216 @@
 {
   "ch6_start": {
-    "text": "You enter the Comms Tower. It's freezing. Chloe, the comms officer, is huddled in a corner, hands over her ears. The radio is broadcasting on all channels. It's Miller's voice, distorted and wet. 'It's warm down here... join us...'",
+    "chapter": 6,
+    "text": "The corridor freezes. Your arm itches. PA static: Sector B bulkhead integrity critical — then a wet roar on the sensors. Sector B is flooding. Anything you left down there is gone.",
+    "effectsOnce": true,
+    "effects": {
+      "infection": 8,
+      "flags": { "decay_sector_b": true }
+    },
     "choices": [
       {
-        "text": "Turn off the radio.",
-        "nextNodeId": "ch6_radio_off"
+        "text": "Enter the upper-deck hub.",
+        "nextNodeId": "ch6_hub"
+      }
+    ]
+  },
+  "ch6_hub": {
+    "text": "Upper decks only. Sector B is a tomb of seawater and alarms. Where do you go?",
+    "choices": [
+      {
+        "text": "Comms Tower — Chloe",
+        "nextNodeId": "ch6_comms_tower"
       },
       {
-        "requiresMinInfection": 15,
-        "text": "Listen closely to the broadcast.",
-        "nextNodeId": "ch6_radio_listen"
+        "text": "Chloe's quarters",
+        "nextNodeId": "ch6_chloe_quarters"
+      },
+      {
+        "text": "Sector B access (flooded)",
+        "nextNodeId": "ch6_sector_b_flooded",
+        "requires": {
+          "flags": { "decay_sector_b": true }
+        }
+      },
+      {
+        "text": "Hydroponics (still reachable)",
+        "nextNodeId": "ch6_hydro",
+        "requires": {
+          "flags": { "decay_mess_deep": false }
+        }
+      },
+      {
+        "text": "Advance once Comms is handled",
+        "nextNodeId": "ch6_radio_off",
+        "requires": {
+          "flags": { "ch6_comms_done": true }
+        }
+      }
+    ]
+  },
+  "ch6_sector_b_flooded": {
+    "text": "Through the viewport: black water, floating crates, a hardhat turning slowly like a planet. If Miller left proof in the lower shafts, the ocean has it now.",
+    "choices": [
+      {
+        "text": "Turn away. Return to hub.",
+        "nextNodeId": "ch6_hub",
+        "effects": {
+          "flags": { "saw_sector_b_lost": true },
+          "infection": 3
+        }
+      }
+    ]
+  },
+  "ch6_hydro": {
+    "text": "Hydroponics filters glow faintly. Same wrong light. The flood has not reached here — yet the spores have.",
+    "choices": [
+      {
+        "text": "Bag a sample if you lack one.",
+        "nextNodeId": "ch6_hub",
+        "effects": {
+          "giveClue": "hydroponics_spores",
+          "infection": 2
+        }
+      },
+      {
+        "text": "Return to hub.",
+        "nextNodeId": "ch6_hub"
+      }
+    ]
+  },
+  "ch6_chloe_quarters": {
+    "text": "Chloe's bunk is a pharmacy. Empty sedative bottles. No natural sleep since the breach — only chemical silence.",
+    "choices": [
+      {
+        "text": "Bag the prescription evidence.",
+        "nextNodeId": "ch6_hub",
+        "effects": {
+          "giveClue": "empty_prescriptions"
+        }
+      },
+      {
+        "text": "Leave her privacy intact.",
+        "nextNodeId": "ch6_hub"
+      }
+    ]
+  },
+  "ch6_comms_tower": {
+    "text": "Chloe huddles in the corner. The console broadcasts Miller — calm, wet, impossible. 'It's so cold... why did you leave me in the dark...'",
+    "speaker": "Miller (Radio)",
+    "textVariants": [
+      {
+        "minInfection": 25,
+        "text": "Chloe huddles in the corner. Miller's voice pours from the console — and from inside your skull. 'It's so cold... why did you leave me in the dark...'"
+      }
+    ],
+    "choices": [
+      {
+        "text": "'Miller is dead. That is not him.'",
+        "nextNodeId": "ch6_chloe_breakdown"
+      },
+      {
+        "text": "Check the relay logs while the voice talks.",
+        "nextNodeId": "ch6_relay_log"
+      },
+      {
+        "text": "Return to hub (console still screaming).",
+        "nextNodeId": "ch6_hub"
+      }
+    ]
+  },
+  "ch6_relay_log": {
+    "text": "Relay history: an emergency channel manually muted the night the drill team died. Chloe's credentials.",
+    "choices": [
+      {
+        "text": "Copy the relay log.",
+        "nextNodeId": "ch6_chloe_breakdown",
+        "effects": {
+          "giveClue": "comms_relay_log"
+        }
+      }
+    ]
+  },
+  "ch6_chloe_breakdown": {
+    "text": "Chloe covers her ears. 'I deleted the first distress call! I thought it was a prank. Now they won't stop talking to me.'",
+    "speaker": "Chloe",
+    "choices": [
+      {
+        "text": "Present the ghost audio file if you have it.",
+        "nextNodeId": "ch6_with_audio",
+        "requires": {
+          "clues": ["ghost_audio"]
+        },
+        "effects": {
+          "trust": { "chloe": 10 },
+          "flags": { "chloe_confessed": true }
+        }
+      },
+      {
+        "text": "Present empty prescription bottles — she is breaking.",
+        "nextNodeId": "ch6_with_rx",
+        "requires": {
+          "clues": ["empty_prescriptions"]
+        },
+        "effects": {
+          "trust": { "chloe": 5 }
+        }
+      },
+      {
+        "text": "Shut off the radio console.",
+        "nextNodeId": "ch6_shutdown"
+      }
+    ]
+  },
+  "ch6_with_audio": {
+    "text": "Hearing the recording breaks her. She hands you a second encrypted file without being asked. 'I listen every night so I don't forget what I did.'",
+    "speaker": "Chloe",
+    "choices": [
+      {
+        "text": "Power down the console together.",
+        "nextNodeId": "ch6_shutdown",
+        "effects": {
+          "flags": { "chloe_ally": true },
+          "trust": { "chloe": 15 }
+        }
+      }
+    ]
+  },
+  "ch6_with_rx": {
+    "text": "She stares at the bottles. 'I hear them when I sleep. So I don't sleep.' Her hands stop shaking long enough to help you kill the console power.",
+    "speaker": "Chloe",
+    "choices": [
+      {
+        "text": "Shut it down.",
+        "nextNodeId": "ch6_shutdown",
+        "effects": {
+          "flags": { "chloe_ally": true }
+        }
+      }
+    ]
+  },
+  "ch6_shutdown": {
+    "text": "Silence. Your arm shows it: veins faint black. The infection is no longer theoretical.",
+    "effectsOnce": true,
+    "effects": {
+      "infection": 12,
+      "flags": { "ch6_comms_done": true }
+    },
+    "choices": [
+      {
+        "text": "Return to hub (or advance).",
+        "nextNodeId": "ch6_hub"
+      },
+      {
+        "text": "Seek medical help in Medbay now.",
+        "nextNodeId": "ch7_start"
       }
     ]
   },
   "ch6_radio_off": {
-    "text": "You smash the power switch. The room falls silent, except for Chloe's sobbing. 'They've been broadcasting for hours,' she cries. 'I tried to send a distress call before the breach... but Gideon made me delete it. He said Corporate would handle it.'",
-    "speaker": "Chloe",
+    "text": "Comms is handled. Sector B is lost. The veins under your skin keep their own schedule.",
     "choices": [
       {
-        "text": "Comfort Chloe. 'We'll get out of here.'",
-        "nextNodeId": "ch6_end",
-        "modifyTrust": { "character": "Chloe", "amount": 5 }
-      },
-      {
-        "text": "'You doomed us all to save your job.'",
-        "nextNodeId": "ch6_end",
-        "modifyTrust": { "character": "Chloe", "amount": -10 }
-      }
-    ]
-  },
-  "ch6_radio_listen": {
-    "text": "You lean in. Beneath Miller's voice, you hear a rhythmic, pulsating hum. The sound doesn't just enter your ears; it vibrates inside your skull. You feel a strange sense of... belonging. Your arm begins to itch where the mud touched you.",
-    "choices": [
-      {
-        "text": "Snap out of it and turn off the radio.",
-        "nextNodeId": "ch6_radio_off",
-        "addInfection": 10
-      }
-    ]
-  },
-  "ch6_end": {
-    "text": "You leave Chloe in the Comms Tower. As you walk down the hall, you roll up your sleeve. The veins in your forearm are turning a faint, sickly black. The infection has begun.",
-    "choices": [
-      {
-        "text": "Head to Medbay.",
+        "text": "Go to Medbay.",
         "nextNodeId": "ch7_start"
       }
     ]

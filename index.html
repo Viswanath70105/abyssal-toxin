@@ -4,74 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abyssal Toxin</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <!-- CSS will be imported via Vite in main.js -->
 </head>
 <body>
-    <div id="game-container">
-        <div id="story-log" class="glass-panel">
+    <!-- Title / Continue gate -->
+    <div id="title-screen">
+        <div class="title-panel glass-panel">
+            <p class="title-kicker">Interactive Light Novel</p>
+            <h1 class="title-heading">Abyssal Toxin</h1>
+            <p class="title-tagline">Thirty-six thousand feet below the surface, everyone is hiding something.</p>
+            <p id="save-status" class="save-status hidden" aria-live="polite"></p>
+            <div class="title-actions">
+                <button id="continue-btn" type="button" class="glass-btn hidden">Continue</button>
+                <button id="new-game-btn" type="button" class="glass-btn">Begin Descent</button>
+            </div>
+            <div class="title-settings">
+                <label class="setting-row">
+                    <input type="checkbox" id="toggle-typewriter" checked>
+                    <span>Typewriter text</span>
+                </label>
+                <label class="setting-row">
+                    <input type="checkbox" id="toggle-mute" class="toggle-mute">
+                    <span>Mute audio</span>
+                </label>
+            </div>
+            <p class="title-footnote">Progress is saved automatically in this browser on your device. Audio/CG assets play when present and stay silent if missing.</p>
+        </div>
+    </div>
+
+    <div id="game-container" class="hidden">
+        <!-- CG / portrait layer (silent placeholder until art exists) -->
+        <div id="cg-layer" class="cg-layer hidden" aria-hidden="true">
+            <div id="cg-placeholder" class="cg-placeholder">Visual placeholder</div>
+            <img id="cg-image" class="cg-image hidden" alt="">
+            <p id="cg-caption" class="cg-caption hidden"></p>
+        </div>
+
+        <div id="story-log" class="glass-panel" title="Click to skip typewriter">
             <!-- Story text will be injected here -->
         </div>
+
+        <p id="continue-prompt" class="continue-prompt hidden" aria-hidden="true"></p>
+
+        <button id="reading-continue-btn" type="button" class="glass-btn reading-continue-btn hidden">
+            Continue
+        </button>
         
         <div id="choices-container">
             <!-- Choices will be injected here -->
         </div>
     </div>
 
-    <div id="hud">
+    <div id="hud" class="hidden">
         <div id="chapter-title" class="chapter-title-hud"></div>
-        <div class="hud-buttons" style="display: flex; gap: 12px; margin-top: 10px;">
-            <button id="history-btn" class="glass-btn">
-                <span class="icon">📜</span> History
+        <div class="hud-buttons">
+            <button id="history-btn" type="button" class="glass-btn">
+                <span class="icon" aria-hidden="true">📜</span> History
             </button>
-            <button id="notebook-btn" class="glass-btn pulse-glow">
-                <span class="icon">🔍</span> Notebook
+            <button id="notebook-btn" type="button" class="glass-btn pulse-glow">
+                <span class="icon" aria-hidden="true">🔍</span> Notebook
             </button>
+        </div>
+        <div class="hud-settings">
+            <label class="setting-row compact">
+                <input type="checkbox" id="hud-typewriter" class="hud-typewriter-sync">
+                <span>Typewriter</span>
+            </label>
+            <label class="setting-row compact">
+                <input type="checkbox" class="toggle-mute">
+                <span>Mute</span>
+            </label>
         </div>
     </div>
 
     <!-- Detective Notebook Modal -->
-    <div id="notebook-modal" class="modal-overlay hidden">
+    <div id="notebook-modal" class="modal-overlay hidden" aria-hidden="true" role="dialog" aria-label="Detective Notebook">
         <div class="notebook-content glass-panel">
             <div class="notebook-header">
                 <h2>Detective Notebook</h2>
-                <button id="close-notebook-btn" class="close-btn">&times;</button>
+                <button id="close-notebook-btn" type="button" class="close-btn" aria-label="Close notebook">&times;</button>
             </div>
             
-            <div class="notebook-tabs">
-                <button class="tab-btn active" data-target="suspects-tab">Suspects</button>
-                <button class="tab-btn" data-target="clues-tab">Clues</button>
+            <div class="notebook-tabs" role="tablist">
+                <button type="button" class="tab-btn active" data-target="suspects-tab" role="tab">Suspects</button>
+                <button type="button" class="tab-btn" data-target="clues-tab" role="tab">Clues</button>
             </div>
             
             <div class="tab-content">
-                <div id="suspects-tab" class="tab-pane active">
-                    <!-- Suspects content here -->
-                </div>
-                <div id="clues-tab" class="tab-pane">
-                    <!-- Clues content here -->
-                </div>
+                <div id="suspects-tab" class="tab-pane active" role="tabpanel"></div>
+                <div id="clues-tab" class="tab-pane" role="tabpanel"></div>
             </div>
         </div>
     </div>
 
     <!-- History Modal -->
-    <div id="history-modal" class="modal-overlay hidden">
-        <div class="notebook-content glass-panel" style="max-width: 700px;">
+    <div id="history-modal" class="modal-overlay hidden" aria-hidden="true" role="dialog" aria-label="Transcript Log">
+        <div class="notebook-content glass-panel history-modal-panel">
             <div class="notebook-header">
                 <h2>Transcript Log</h2>
-                <button id="close-history-btn" class="close-btn">&times;</button>
+                <button id="close-history-btn" type="button" class="close-btn" aria-label="Close history">&times;</button>
             </div>
-            <div class="tab-content" id="history-log" style="display: flex; flex-direction: column; gap: 16px; padding: 12px;">
-                <!-- History items injected here -->
-            </div>
+            <div class="tab-content history-log" id="history-log"></div>
         </div>
     </div>
 
-    <!-- Scripts -->
     <script type="module" src="/src/js/main.js"></script>
 </body>
 </html>

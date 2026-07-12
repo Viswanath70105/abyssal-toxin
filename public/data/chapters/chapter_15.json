@@ -1,88 +1,177 @@
 {
   "ch15_start": {
-    "text": "You burst into the Executive Bay. Gideon Stroud is standing in front of the open escape pod. He holds a heavy corporate-issue sidearm. Beyond the reinforced glass, you can see the organism battering the bay doors, threatening to break through before the station detonates.",
+    "chapter": 15,
+    "bgm": "final_bay",
+    "cg": "escape_bay",
+    "cgCaption": "Escape Bay",
+    "text": "Amber launch lights strobe the Escape Bay in a rhythm like a slow alarm clock for the end of the world. Gideon Stroud stands at the console with a pneumatic rivet gun held not like a weapon but like a tool that has been waiting for this job. Behind you the blast doors buckle. The organism is almost through — a wet thunder of recognition. Gideon's eyes find yours. He does not look surprised to see you. He looks inconvenienced by a variable.",
+    "choices": [
+      {
+        "text": "Confront him.",
+        "nextNodeId": "ch15_confront_gideon"
+      }
+    ]
+  },
+  "ch15_confront_gideon": {
+    "text": "'You're late to a conversation that finished without you,' Gideon says. The rivet gun does not waver. 'The scuttling sequence cannot be stopped from here. If the Toxin reaches the surface, it rewrites the biosphere in days. I am burying it. I am saving Earth. Including the parts of it that signed our death warrant.'",
     "speaker": "Gideon",
     "choices": [
       {
-        "text": "'Gideon, stop! We can both fit in the pod!'",
-        "nextNodeId": "ch15_gideon_refusal"
+        "text": "Present the scuttling auth log — prove you know he chose this.",
+        "nextNodeId": "ch15_gideon_proof",
+        "requires": {
+          "clues": ["scuttling_auth_log"]
+        },
+        "effects": {
+          "flags": { "confronted_with_proof": true }
+        }
+      },
+      {
+        "text": "Present his family note / unsent draft — you know his shame too.",
+        "nextNodeId": "ch15_gideon_shame",
+        "requires": {
+          "cluesAny": ["family_photo_note", "unsent_transmission"]
+        }
+      },
+      {
+        "text": "'By murdering your entire crew?'",
+        "nextNodeId": "ch15_gideon_logic"
+      },
+      {
+        "text": "Let the infection answer for you.",
+        "nextNodeId": "ch15_ending_patient_zero",
+        "requires": {
+          "minInfection": 75
+        },
+        "effects": {
+          "flags": { "embrace_infection": true }
+        }
       }
     ]
   },
-  "ch15_gideon_refusal": {
-    "text": "'No one leaves this station,' Gideon says calmly. 'You've breathed the air. You've touched the water. If you go to the surface, it goes with you. The Scuttle Protocol is the only way to bury this mistake forever.'",
+  "ch15_gideon_proof": {
+    "text": "You hold up the auth log. He nods once — almost respectful. 'Yes. My hand. My biometrics. Not a glitch, not a hero AI, not Miller's ghost. Me.' No denial. Denial was always for people who needed to be liked. 'I told you preparedness is not guilt. Sometimes it is both.'",
     "speaker": "Gideon",
     "choices": [
       {
-        "requiresMaxInfection": 10,
-        "text": "Try to reason with him. 'I'm clean! Look at me!'",
-        "nextNodeId": "ch15_reason_clean"
+        "text": "Demand the rest of the math.",
+        "nextNodeId": "ch15_gideon_logic"
+      }
+    ]
+  },
+  "ch15_gideon_shame": {
+    "text": "For the first time something human moves behind his eyes — not weakness. Cost. 'They are on the surface. Eight billion strangers and three people with my name in their mouths. I will not gamble them on a bathysphere that might carry a spore under a fingernail.' He steadies. 'Do not confuse confession with surrender.'",
+    "speaker": "Gideon",
+    "choices": [
+      {
+        "text": "Face the final choice.",
+        "nextNodeId": "ch15_gideon_logic"
+      }
+    ]
+  },
+  "ch15_gideon_logic": {
+    "text": "'Simple math. A hundred lives here for billions above. One seat in the pod. I am taking it — not as reward. As quarantine of last resort: if I go, I go knowing what I carry, and I will not.' The doors scream inward. Rivets tick in the gun like a countdown. What you do next is not a menu. It is the person the depth has made of you.",
+    "speaker": "Gideon",
+    "textVariants": [
+      {
+        "minInfection": 55,
+        "text": "'Simple math,' Gideon says, but his voice doubles — one human, one wet echo under your ribs. 'One seat.' The organism offers a third option that wears your hands. The doors scream. Choose while you still can."
+      }
+    ],
+    "choices": [
+      {
+        "text": "Accept his logic. Stay. Let the abyss close.",
+        "nextNodeId": "ch15_ending_abyssal_grave",
+        "effects": {
+          "flags": { "chose_martyr": true }
+        }
       },
       {
-        "requiresMinInfection": 30,
-        "text": "Embrace the infection. Let the organism speak through you.",
-        "nextNodeId": "ch15_patient_zero"
+        "text": "Fight him for the pod — refuse to die for their ledger.",
+        "nextNodeId": "ch15_resolve_fight",
+        "effects": {
+          "flags": { "chose_fight": true }
+        },
+        "requires": {
+          "maxInfection": 74
+        }
       },
       {
-        "text": "Rush him and fight for the pod.",
-        "nextNodeId": "ch15_fight_gideon"
+        "text": "If you assembled the chain — offer a third path: evidence rises with you.",
+        "nextNodeId": "ch15_resolve_fight",
+        "requires": {
+          "flags": { "fair_detective": true },
+          "maxInfection": 74
+        },
+        "effects": {
+          "flags": { "chose_fight": true, "chose_witness": true }
+        }
       },
       {
-        "text": "Accept his logic. 'You're right. We can't risk the surface.'",
-        "nextNodeId": "ch15_abyssal_grave"
+        "text": "Stop resisting. Open yourself to the deep.",
+        "nextNodeId": "ch15_ending_patient_zero",
+        "requires": {
+          "minInfection": 55
+        },
+        "effects": {
+          "flags": { "embrace_infection": true }
+        }
       }
     ]
   },
-  "ch15_reason_clean": {
-    "text": "Gideon looks at you, his gun wavering. 'You... you survived without the taint? It's impossible.' The bay doors begin to buckle. 'Take the pod,' he whispers, lowering the gun. 'I'll hold the doors.'",
-    "choices": [
-      {
-        "text": "Board the pod and launch.",
-        "nextNodeId": "ch15_surface_tension"
-      }
-    ]
-  },
-  "ch15_fight_gideon": {
-    "text": "You lunge at Gideon. He fires, but misses in his panic. You tackle him into the pod, wrestling for the controls. You manage to hit the launch sequence, but in the struggle, he shoots you in the shoulder. The pod ejects into the dark ocean.",
-    "choices": [
-      {
-        "text": "Watch the station explode.",
-        "nextNodeId": "ch15_surface_tension_wounded"
-      }
-    ]
-  },
-  "ch15_patient_zero": {
-    "text": "You don't speak with your own voice. The words come out wet and rhythmic, echoing the hum of the swarm. 'We are already legion, Gideon.' Your dark veins pulse with power. Gideon fires his weapon in terror, but you feel no pain as the organism knits the wounds together.",
-    "choices": [
-      {
-        "text": "Consume him.",
-        "nextNodeId": "ch15_patient_zero_ending"
-      }
-    ]
-  },
-  "ch15_abyssal_grave": {
-    "text": "You drop your weapon. Gideon nods slowly, a sad smile on his face. 'It is a heavy burden, but it is the right thing to do.' You both stand and watch the bay doors finally give way. The dark water and the writhing mass flood in.",
-    "choices": [
-      {
-        "text": "Accept the end.",
-        "nextNodeId": "ch15_abyssal_grave_ending"
-      }
-    ]
-  },
-  "ch15_surface_tension": {
-    "text": "ENDING: SURFACE TENSION. \n\nYou watch Nereus Station detonate in a brilliant flash of light, swallowed by the abyss. You reach the surface, hailed as a survivor. But as you look at your reflection in the pod's window, you wonder... did you truly leave it all behind?",
+  "ch15_resolve_fight": {
+    "text": "You move. Rivets spark off the deck plating. The pod hatch yawns like a mouth that has been waiting for any honest answer. Everything you gathered — allies, logs, the weight in your blood, the names you refused to flatten into one villain — decides what kind of survivor climbs out of the dark.",
+    "resolveEnding": true,
     "choices": []
   },
-  "ch15_surface_tension_wounded": {
-    "text": "ENDING: SURFACE TENSION (WOUNDED). \n\nThe pod shoots toward the surface. Nereus Station explodes below you. Gideon lies dead in the pod with you. You clutch your bleeding shoulder, realizing you survived, but you will carry the scars of the abyss forever.",
-    "choices": []
+  "ch15_ending_abyssal_grave": {
+    "text": "You lower your hands. If you rise, you may carry the end of the world in a cut you cannot feel yet. Gideon searches your face for mockery and finds none. He seals the hatch. You sit on cold metal as the blast doors give way and the dark water takes Nereus like a held breath finally released. In the last red light you think of Miller's beach photo, Maya's boots, Aris's shaking hands — a station of people who failed in human ways. Gideon failed in a way that almost looks like love. The abyss does not grade on a curve.",
+    "isEnding": true,
+    "endingTitle": "Abyssal Grave",
+    "choices": [
+      {
+        "text": "Close the log.",
+        "nextNodeId": "game_over"
+      }
+    ]
   },
-  "ch15_patient_zero_ending": {
-    "text": "ENDING: PATIENT ZERO. \n\nYou leave Gideon's broken body behind and enter the pod alone. As you launch toward the surface, you look down at your hands, completely black and pulsing with the hive mind. The surface world has no idea what is coming for them.",
-    "choices": []
+  "ch15_ending_surface_tension": {
+    "text": "You refuse the dark. The fight is ugly and short and paid for with someone else's calm. You take the pod through violence and luck while Gideon falls into the mathematics he worshiped. As you rise, Nereus folds in on itself below — a secret the ocean keeps, a guilt with your pulse. You survived. The cost is a roster of names you will say wrong for the rest of your life.",
+    "isEnding": true,
+    "endingTitle": "Surface Tension",
+    "choices": [
+      {
+        "text": "Close the log.",
+        "nextNodeId": "game_over"
+      }
+    ]
   },
-  "ch15_abyssal_grave_ending": {
-    "text": "ENDING: THE ABYSSAL GRAVE. \n\nYou are consumed by the dark water and the crushing pressure, but your sacrifice ensures the organism never reaches the surface. You rest peacefully in the deep, a silent guardian of humanity.",
+  "ch15_ending_whistleblower": {
+    "text": "You take the pod — not alone in spirit. Evidence rides with you: scuttling biometrics, Corporate's one-line murder, the chain of human failures that made a monster inevitable. When you breach sunlight that feels like a rumor, you broadcast before they can buy your silence. The ocean keeps its dead. The world will not keep this secret. Somewhere, a child on a pier will grow up never knowing a stranger in the dark chose numbers that included her name.",
+    "isEnding": true,
+    "endingTitle": "The Whistleblower",
+    "choices": [
+      {
+        "text": "Close the log.",
+        "nextNodeId": "game_over"
+      }
+    ]
+  },
+  "ch15_ending_patient_zero": {
+    "text": "Black veins bloom into scripture. Voices become choir — Miller, the drill team, a kindness that is not kindness. Your jaw unhinges on a gift of spores that blinds Gideon mid-prayer to his math. You take the pod not to live, but to share. The surface has no idea it is about to learn a new language of flesh. In the last human corner of your mind, you almost thank him for keeping the seat warm.",
+    "isEnding": true,
+    "endingTitle": "Patient Zero",
+    "choices": [
+      {
+        "text": "Close the log.",
+        "nextNodeId": "game_over"
+      }
+    ]
+  },
+  "game_over": {
+    "text": "Thank you for playing Abyssal Toxin. Progress remains on this device if you wish to walk another path — dig deeper, accuse better, or fail more honestly. The station is gone. The questions are not.",
+    "isEnding": true,
+    "endingTitle": "End of Log",
     "choices": []
   }
 }

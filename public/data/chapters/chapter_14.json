@@ -1,45 +1,61 @@
 {
   "ch14_start": {
-    "text": "Before you can even process the betrayal, the main station lights turn a deep, bloody red. A siren begins to wail. An automated voice echoes: 'SCUTTLE PROTOCOL INITIATED. EXPLOSIVE CHARGES ARMED. DETONATION IN T-MINUS 10 MINUTES.'",
+    "chapter": 14,
+    "sfx": "omega_siren",
+    "text": "PA, inhumanly steady: 'WARNING. PROTOCOL OMEGA INITIATED. SCUTTLING CHARGES DETONATING IN T-MINUS TEN MINUTES.' The ocean is not merely winning. Someone has signed the loss. Optional paths are over. What remains is evidence, speed, and the last clean room that still has a door.",
     "choices": [
       {
-        "text": "'Gideon...'",
-        "nextNodeId": "ch14_gideon_realize"
+        "text": "Pull the scuttling authorization logs.",
+        "nextNodeId": "ch14_logs"
       }
     ]
   },
-  "ch14_gideon_realize": {
-    "text": "You check the terminal logs. The protocol wasn't automated by the breach. Gideon Stroud manually initiated the self-destruct sequence ten minutes ago, right after abandoning the lower decks.",
+  "ch14_logs": {
+    "text": "Not automated. Not a cascade trip from flood sensors. Manual initiation. Authorization biometrics match GIDEON STROUD — timestamped after Corporate's one-line acceptance, before most of the crew knew the word Omega. He is not reacting to the end. He is conducting it.",
     "choices": [
       {
-        "text": "Check the location of the escape pods.",
-        "nextNodeId": "ch14_pods"
+        "text": "Save the auth log. Track his tag.",
+        "nextNodeId": "ch14_track_gideon",
+        "effects": {
+          "giveClue": "scuttling_auth_log",
+          "flags": { "knows_gideon_scuttle": true }
+        }
       }
     ]
   },
-  "ch14_pods": {
-    "text": "You pull up the schematics. All the escape pods in the lower sectors have been jettisoned empty or destroyed by the organism. There is only one pod left, located in Gideon's private Executive Bay.",
+  "ch14_track_gideon": {
+    "text": "Internal sensors place his biometric tag in the Escape Bay. One Bathysphere remains green on the board. Crew capacity: one. The math he has always preferred, reduced to a seat.",
     "choices": [
       {
-        "text": "Run for the Executive Bay.",
+        "text": "Run for the Escape Bay.",
         "nextNodeId": "ch14_run"
       }
     ]
   },
   "ch14_run": {
-    "text": "You sprint through the collapsing corridors. The station is tearing itself apart. The organism is everywhere, bursting from the pipes and vents, but the impending explosion seems to have thrown the hive mind into a frenzy.",
+    "text": "Corridors collapse into suggestions of corridors. Water needles through seams. Behind the roar of metal, wet footsteps of the assimilated keep pace like a second heart learning your route. You pass a wall screen still looping Gideon's calm face from an old safety brief: REMAIN ORDERLY. The irony nearly kills you before the depth can.",
+    "effectsOnce": true,
+    "effects": {
+      "infection": 5
+    },
+    "textVariants": [
+      {
+        "minInfection": 55,
+        "text": "You run and the station runs with you — in your veins, in the chorus that has learned your stride. Miller's voice offers a shortcut that would drown you. You take the long way on purpose."
+      }
+    ],
     "choices": [
       {
-        "text": "Force your way to the Executive Bay.",
+        "text": "Push through to the Escape Bay.",
         "nextNodeId": "ch14_end"
       }
     ]
   },
   "ch14_end": {
-    "text": "You reach the heavy, ornate doors of the Executive Bay. Inside is the only way back to the surface. And inside is Gideon.",
+    "text": "A structural beam seals the corridor at your back with the finality of a period. Forward: Escape Bay blast doors, amber launch lights bleeding underneath. Behind: the rising dark. There is only one way left that still pretends to be a choice.",
     "choices": [
       {
-        "text": "Enter the Executive Bay.",
+        "text": "Enter the Escape Bay.",
         "nextNodeId": "ch15_start"
       }
     ]

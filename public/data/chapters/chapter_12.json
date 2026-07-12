@@ -1,52 +1,223 @@
 {
   "ch12_start": {
-    "text": "When you return to the upper hub, you find that Maya has gone missing. Her rationing bar wrapper is torn on the floor, leading a trail into the dark, abandoned crew quarters.",
+    "chapter": 12,
+    "text": "Auxiliary power holds — a thin, temporary mercy. On the upper decks the vents where a child hid are torn open from the inside, metal petals curled outward. Before you chase the trail, you can still assemble what you know. Smart detectives do not arrive at truth by accident.",
     "choices": [
       {
-        "text": "Follow the trail into the dark quarters.",
+        "text": "Open the truth board — link failures, not villains.",
+        "nextNodeId": "ch12_truth_board"
+      },
+      {
+        "text": "Chase Maya's trail immediately.",
+        "nextNodeId": "ch12_search_gate"
+      }
+    ]
+  },
+  "ch12_truth_board": {
+    "text": "In your head the station becomes a diagram: doors left unlocked by shame. Each clue you hold is a hinge. Name the failures you can prove.",
+    "choices": [
+      {
+        "text": "Arthur cracked the cavern (telemetry / manifesto).",
+        "nextNodeId": "ch12_truth_board",
+        "requires": {
+          "cluesAny": ["drill_telemetry", "half_burned_manifesto"]
+        },
+        "effects": {
+          "flags": { "theory_arthur": true }
+        }
+      },
+      {
+        "text": "Miller silenced warnings (relay / bills / leave).",
+        "nextNodeId": "ch12_truth_board",
+        "requires": {
+          "cluesAny": ["bypassed_relay", "overdue_bills", "denied_leave"]
+        },
+        "effects": {
+          "flags": { "theory_miller": true }
+        }
+      },
+      {
+        "text": "Aris hid the first sick (vials / requisition / audio).",
+        "nextNodeId": "ch12_truth_board",
+        "requires": {
+          "cluesAny": ["mislabeled_vials", "rejected_requisition", "aris_audio_log"]
+        },
+        "effects": {
+          "flags": { "theory_aris": true }
+        }
+      },
+      {
+        "text": "David wiped the station's eyes (audit).",
+        "nextNodeId": "ch12_truth_board",
+        "requires": {
+          "clues": ["server_wipe_audit"]
+        },
+        "effects": {
+          "flags": { "theory_david": true }
+        }
+      },
+      {
+        "text": "Victor fed the vents (schematics).",
+        "nextNodeId": "ch12_truth_board",
+        "requires": {
+          "clues": ["altered_vent_schematics"]
+        },
+        "effects": {
+          "flags": { "theory_victor": true }
+        }
+      },
+      {
+        "text": "A child-sized vector moved the spores (prints / drawing / loop).",
+        "nextNodeId": "ch12_truth_board",
+        "requires": {
+          "cluesAny": ["muddy_footprints", "childs_drawing", "camera_loop_fragment", "makeshift_bed"]
+        },
+        "effects": {
+          "flags": { "theory_maya_vector": true }
+        }
+      },
+      {
+        "text": "Note: Gideon has never looked surprised by protocol.",
+        "nextNodeId": "ch12_truth_board",
+        "effects": {
+          "flags": { "theory_gideon_cold": true }
+        }
+      },
+      {
+        "text": "Close the board. Follow the trail.",
+        "nextNodeId": "ch12_search_gate"
+      }
+    ]
+  },
+  "ch12_search_gate": {
+    "text": "The trail is fresh. How you find her depends on cages you built earlier.",
+    "choices": [
+      {
+        "text": "Search the vents — she was never detained.",
+        "nextNodeId": "ch12_search",
+        "requires": {
+          "flags": { "maya_detained": false }
+        }
+      },
+      {
+        "text": "Check holding — she was detained earlier.",
+        "nextNodeId": "ch12_detained",
+        "requires": {
+          "flags": { "maya_detained": true }
+        }
+      },
+      {
+        "text": "Follow the only prints you can find.",
+        "nextNodeId": "ch12_search"
+      }
+    ]
+  },
+  "ch12_detained": {
+    "text": "The holding cell is a joke told by something stronger than bars. Metal bends outward in a bloom of force. Small muddy prints lead toward storage — not a monster's stride. A child's run.",
+    "choices": [
+      {
+        "text": "Follow the prints.",
         "nextNodeId": "ch12_trail"
       }
     ]
   },
-  "ch12_trail": {
-    "text": "The quarters are pitch black, illuminated only by patches of bioluminescent spores. You track small footprints through the glowing dust. You find Maya curled up in a corner, clutching a torn photograph of a young drill worker.",
+  "ch12_search": {
+    "text": "Footprints cross the corridor like a sentence written by someone who still believed adults could help. Too small for crew boots. Spores light the path in mock guidance strips — beautiful, wrong, patient.",
     "choices": [
       {
-        "text": "'Maya, why did you run off?'",
+        "text": "Follow the trail deeper.",
+        "nextNodeId": "ch12_trail",
+        "effects": {
+          "giveClue": "muddy_footprints"
+        }
+      }
+    ]
+  },
+  "ch12_trail": {
+    "text": "Storage bay. Cold. Maya huddles around a scrap of drill-team fabric as if cloth could resurrect. When she sees you she does not scream. She has used up screaming on quieter nights.",
+    "speaker": "Maya",
+    "choices": [
+      {
+        "text": "Kneel. Keep your voice small.",
         "nextNodeId": "ch12_maya_truth"
       }
     ]
   },
   "ch12_maya_truth": {
-    "text": "She looks up, her eyes wide with guilt. 'I'm sorry. I just wanted to find my brother. He was on the drill team. I sneaked down to the cavern two days ago to see him...'",
+    "text": "'I was looking for my brother,' she says, each word a carefully carried glass. 'He was drill team. They said static. Chloe's radios said static. I went down anyway. The mud glowed. It was on my boots. I climbed the vents because the cook said the dark was safer if you were small.' Her eyes shine. 'I didn't know the mud was a door.'",
     "speaker": "Maya",
     "choices": [
       {
-        "text": "'You went down there? Before the breach?'",
-        "nextNodeId": "ch12_maya_spores"
+        "text": "Fit her story into the chain of failures.",
+        "nextNodeId": "ch12_revelation"
       }
     ]
   },
-  "ch12_maya_spores": {
-    "text": "'I stepped in the glowing mud,' she cries. 'I tracked it back into the vents. I didn't know it was alive! I'm the one who brought the monsters in!' The outbreak was a tragic accident caused by a child looking for her family.",
-    "speaker": "Maya",
+  "ch12_revelation": {
+    "text": "Maya is a vector — not a villain. Dormant spores rode a child's search for family into the lungs of the station. That is one door. If you have been honest with your notebook, you already know it is not the only door.",
     "choices": [
       {
-        "text": "Comfort her. 'It's not your fault, Maya.'",
-        "nextNodeId": "ch12_end",
-        "setFlag": { "key": "forgave_maya", "value": true }
+        "text": "Speak the multi-cause truth — you assembled the chain.",
+        "nextNodeId": "ch12_revelation_full",
+        "requires": {
+          "flags": { "theory_maya_vector": true }
+        }
       },
       {
-        "text": "Look at her in horrified silence.",
-        "nextNodeId": "ch12_end"
+        "text": "You only half-understand — comfort her anyway.",
+        "nextNodeId": "ch12_revelation_partial"
+      },
+      {
+        "text": "Blame only the child. It is simpler.",
+        "nextNodeId": "ch12_revelation_wrong",
+        "effects": {
+          "flags": { "blamed_maya_only": true },
+          "trust": { "otto": -15 }
+        }
+      }
+    ]
+  },
+  "ch12_revelation_full": {
+    "text": "You say it plain, for her and for the record you are building in your blood: Arthur cracked the cavern trying to force mercy from a spreadsheet. Miller silenced alarms for a daughter on a beach he would never reach. Aris forged wellness while the first cells learned new grammar. David wiped the eyes of the station to hide a dying man's smuggling. Victor fed vents hunting a cure for his own unspooling mind. Maya carried spores without knowing. Every secret was a door. The organism walked through all of them. And somewhere above, a Director who never looked surprised is still holding a key labeled Omega.",
+    "choices": [
+      {
+        "text": "'It is not only your fault, Maya.'",
+        "nextNodeId": "ch12_end",
+        "effects": {
+          "flags": { "understood_chain": true, "fair_detective": true }
+        }
+      }
+    ]
+  },
+  "ch12_revelation_partial": {
+    "text": "You hold jagged pieces without the full mosaic. Maya's boots matter. So do wiped cameras, forged reports, a drill that punched too deep. The shape of a committee of failures is visible even when you cannot name every member. Comfort is still a kind of truth.",
+    "choices": [
+      {
+        "text": "Keep moving toward Command.",
+        "nextNodeId": "ch12_end",
+        "effects": {
+          "flags": { "understood_chain": true }
+        }
+      }
+    ]
+  },
+  "ch12_revelation_wrong": {
+    "text": "You put the catastrophe on a child looking for her brother. It is neat. It is also how Corporate will write the after-action: one disposable name, no boardroom fingerprints, no Director's biometric on a scuttle charge.",
+    "choices": [
+      {
+        "text": "Live with the easy lie.",
+        "nextNodeId": "ch12_end",
+        "effects": {
+          "flags": { "false_theory": true }
+        }
       }
     ]
   },
   "ch12_end": {
-    "text": "There's no time to dwell on the past. The station shudders violently. The upper pressure bulkheads are failing. You need to access the Command Center and find out if Corporate is sending help.",
+    "text": "You leave her as safe as this depth allows. Comfort is thin oxygen. Corporate has not answered. Someone in Command decided silence was cheaper than rescue — and if you have watched Gideon long enough, you already suspect that decision has a human face and a clean office.",
     "choices": [
       {
-        "text": "Head to the Command Center.",
+        "text": "Breach the Command Center.",
         "nextNodeId": "ch13_start"
       }
     ]

@@ -2,7 +2,7 @@
   "bypassed_relay": {
     "id": "bypassed_relay",
     "name": "Bypassed Relay Switch",
-    "description": "A physical piece of the station's alarm system, deliberately fried. Clean sabotage.",
+    "description": "A physical piece of the station's alarm system, deliberately fried. Clean sabotage — only a master mechanic could do this.",
     "category": "Sabotage"
   },
   "overdue_bills": {
@@ -20,13 +20,13 @@
   "server_wipe_audit": {
     "id": "server_wipe_audit",
     "name": "Server Wipe Audit",
-    "description": "Shows David's credentials were used to scrub all camera feeds in the lower decks at the exact time the infection breached.",
+    "description": "Shows David's credentials were used to scrub all camera feeds in the lower decks around the time the infection breached.",
     "category": "Cover-up"
   },
   "hidden_stash": {
     "id": "hidden_stash",
     "name": "Hidden Stash of Abyssal Quartz",
-    "description": "Packaged for smuggling.",
+    "description": "Unprocessed rare minerals packaged for smuggling. This is what David did not want the cameras to see.",
     "category": "Motive"
   },
   "medical_diagnosis": {
@@ -34,5 +34,119 @@
     "name": "Medical Diagnosis",
     "description": "Stage 4 terminal illness. 'Six months left. Get your affairs in order.'",
     "category": "Motive"
+  },
+  "inventory_discrepancies": {
+    "id": "inventory_discrepancies",
+    "name": "Inventory Discrepancies",
+    "description": "Official ration manifest: large quantities of high-calorie stores are missing — far more than one cook could eat.",
+    "category": "Theft"
+  },
+  "childs_drawing": {
+    "id": "childs_drawing",
+    "name": "A Child's Drawing",
+    "description": "Crayon sketch of a monster in the dark and a 'nice cook' handing out food.",
+    "category": "Witness"
+  },
+  "makeshift_bed": {
+    "id": "makeshift_bed",
+    "name": "Makeshift Bed",
+    "description": "A nest of blankets in dry storage, far too small for a grown man. Someone else has been living here.",
+    "category": "Witness"
+  },
+  "mislabeled_vials": {
+    "id": "mislabeled_vials",
+    "name": "Mislabeled Vials",
+    "description": "Blood samples labeled 'Severe Vitamin D Deficiency' that are violently mutating under magnification.",
+    "category": "Cover-up"
+  },
+  "rejected_requisition": {
+    "id": "rejected_requisition",
+    "name": "Rejected Medical Requisition",
+    "description": "Corporate response: 'Denied. Too expensive. Treat with local supplies and keep the drill running.'",
+    "category": "Corporate"
+  },
+  "drill_telemetry": {
+    "id": "drill_telemetry",
+    "name": "Drill Telemetry Data",
+    "description": "Manual override of the drill's torque limiters on the day of the breach. Not a mechanical failure.",
+    "category": "Sabotage"
+  },
+  "therapy_transcripts": {
+    "id": "therapy_transcripts",
+    "name": "Therapy Transcripts",
+    "description": "Arthur's psych evals: severe PTSD. 'I can hear the rocks groaning again. They're pushing us too fast.'",
+    "category": "Motive"
+  },
+  "comms_relay_log": {
+    "id": "comms_relay_log",
+    "name": "Comms Relay Log",
+    "description": "An incoming emergency channel was manually muted and purged from general broadcast.",
+    "category": "Cover-up"
+  },
+  "ghost_audio": {
+    "id": "ghost_audio",
+    "name": "Ghost Audio File",
+    "description": "The original distress call from the drill team. Screams, wet impacts, and a final plea that never reached Corporate.",
+    "category": "Cover-up"
+  },
+  "altered_vent_schematics": {
+    "id": "altered_vent_schematics",
+    "name": "Altered Ventilation Schematics",
+    "description": "Vents from the xenobiology lab to the lower decks marked in red — a map of where infected subjects were released.",
+    "category": "Sabotage"
+  },
+  "scuttling_auth_log": {
+    "id": "scuttling_auth_log",
+    "name": "Scuttling Protocol Auth Log",
+    "description": "Protocol Omega was not automated. Authorization: Gideon Stroud's personal biometrics.",
+    "category": "Conspiracy"
+  },
+  "unsent_transmission": {
+    "id": "unsent_transmission",
+    "name": "Unsent Transmission",
+    "description": "Draft to Earth Defense: 'The organism is highly adaptive... Do not send rescue. If this reaches the surface, humanity ends.'",
+    "category": "Conspiracy"
+  },
+  "muddy_footprints": {
+    "id": "muddy_footprints",
+    "name": "Small Muddy Footprints",
+    "description": "Tracks from the deep-sea airlocks into the core. Boots far too small for any adult crew member.",
+    "category": "Witness"
+  },
+  "half_burned_manifesto": {
+    "id": "half_burned_manifesto",
+    "name": "Half-Burned Manifesto",
+    "description": "Charred note in Arthur's hand: 'Corporate won't listen. I have to break the drill. A week of downtime is better than all of us dead.'",
+    "category": "Motive"
+  },
+  "empty_prescriptions": {
+    "id": "empty_prescriptions",
+    "name": "Empty Prescription Bottles",
+    "description": "Heavy sedatives from Chloe's quarters. She has not slept naturally since the breach.",
+    "category": "Motive"
+  },
+  "hydroponics_spores": {
+    "id": "hydroponics_spores",
+    "name": "Hydroponics Spore Sample",
+    "description": "Bioluminescent residue on grow-bed filters. Not native algae — same glow as the cavern mud.",
+    "category": "Science"
+  },
+  "camera_loop_fragment": {
+    "id": "camera_loop_fragment",
+    "name": "Camera Loop Fragment",
+    "description": "A salvaged 3-second loop from before the wipe: a small silhouette in a vent, then static.",
+    "category": "Witness"
+  },
+  "aris_audio_log": {
+    "id": "aris_audio_log",
+    "name": "Aris Personal Audio Log",
+    "description": "'If I report this now, they'll seal the sector with us inside. I can fix this. I just need more time.'",
+    "category": "Cover-up"
+  },
+  "family_photo_note": {
+    "id": "family_photo_note",
+    "name": "Gideon's Family Photo",
+    "description": "Pier sunlight, three faces. On the back: 'I'm sorry. I have to keep you safe from this. Don't look for me.'",
+    "category": "Conspiracy"
   }
 }

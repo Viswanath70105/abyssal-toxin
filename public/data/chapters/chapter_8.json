@@ -1,55 +1,156 @@
 {
   "ch8_start": {
-    "text": "You hear an incessant scratching and squealing coming from the ventilation shafts. Life support warnings are flashing across the corridor monitors. The noise is concentrated near the Xenobiology Lab.",
+    "chapter": 8,
+    "text": "Main power stutters, then dies in waves. Emergency strips only. The squeal in the vents is a chorus. Life support is dying in the dark.",
+    "effectsOnce": true,
+    "effects": {
+      "flags": { "decay_main_power": true },
+      "infection": 4
+    },
     "choices": [
       {
-        "text": "Enter the Xenobiology Lab.",
-        "nextNodeId": "ch8_lab_enter"
+        "text": "Enter the dark lab hub.",
+        "nextNodeId": "ch8_hub"
       }
     ]
   },
-  "ch8_lab_enter": {
-    "text": "The lab is a nightmare. Hundreds of rats, their bodies mutated by the glowing toxin, are tearing through the life support filters. In the center of the room, Victor, the senior xenobiologist, is writing frantically on the glass walls. His eyes are milky white, and black veins cover his neck.",
-    "speaker": "Victor",
+  "ch8_hub": {
+    "text": "Red emergency light. Every footstep sounds like two. Where do you go?",
     "choices": [
       {
-        "text": "'Victor, what did you do?!'",
-        "nextNodeId": "ch8_victor_reveal"
+        "text": "Xenobiology main lab — Victor",
+        "nextNodeId": "ch8_bio_lab"
+      },
+      {
+        "text": "Specimen vault",
+        "nextNodeId": "ch8_vault"
+      },
+      {
+        "text": "Ventilation junction (schematics room)",
+        "nextNodeId": "ch8_vent_junction"
+      },
+      {
+        "text": "Corridor toward Engineering (when ready)",
+        "nextNodeId": "ch8_end",
+        "requires": {
+          "flags": { "ch8_victor_done": true }
+        }
       }
     ]
   },
-  "ch8_victor_reveal": {
-    "text": "Victor turns slowly. 'Magnificent, aren't they?' he whispers. 'They adapt so quickly. The organism is breeding in them. It's rewriting their neural pathways. I thought... I thought it could fix my dementia. Restore my mind.'",
+  "ch8_vault": {
+    "text": "Locked specimen drawers. One is cracked. Inside: rat bones fused into a lattice that still faintly glows. A research tag: REGENERATION TRIAL 7 — V.",
+    "choices": [
+      {
+        "text": "Photograph the trial tag and leave.",
+        "nextNodeId": "ch8_hub",
+        "effects": {
+          "flags": { "saw_regen_trial": true },
+          "infection": 3
+        }
+      }
+    ]
+  },
+  "ch8_vent_junction": {
+    "text": "Wall schematics under a dying lamp. Routes from lab to lower decks inked red — a release map, not a maintenance plan.",
+    "choices": [
+      {
+        "text": "Take the altered schematics.",
+        "nextNodeId": "ch8_hub",
+        "effects": {
+          "giveClue": "altered_vent_schematics"
+        }
+      },
+      {
+        "text": "Return to hub.",
+        "nextNodeId": "ch8_hub"
+      }
+    ]
+  },
+  "ch8_bio_lab": {
+    "text": "Mutated rats swarm the filters. Victor sits with a notebook open, grading a successful apocalypse.",
+    "choices": [
+      {
+        "text": "Search his desk first.",
+        "nextNodeId": "ch8_desk"
+      },
+      {
+        "text": "Confront Victor immediately.",
+        "nextNodeId": "ch8_victor_confront"
+      },
+      {
+        "text": "Leave for now.",
+        "nextNodeId": "ch8_hub"
+      }
+    ]
+  },
+  "ch8_desk": {
+    "text": "Neurological scans with Victor's name. Margin: Losing time. Need a solution. Vent routes highlighted.",
+    "choices": [
+      {
+        "text": "Take the schematics from the desk.",
+        "nextNodeId": "ch8_victor_confront",
+        "effects": {
+          "giveClue": "altered_vent_schematics"
+        }
+      },
+      {
+        "text": "Confront him with empty hands.",
+        "nextNodeId": "ch8_victor_confront"
+      }
+    ]
+  },
+  "ch8_victor_confront": {
+    "text": "Milk-white eyes. Black veins like calligraphy. 'Magnificent. They adapt so quickly. Perfect.'",
     "speaker": "Victor",
     "choices": [
       {
-        "text": "'You infected them on purpose?'",
-        "nextNodeId": "ch8_victor_truth"
+        "text": "Present the altered vent schematics.",
+        "nextNodeId": "ch8_victor_truth",
+        "requires": {
+          "clues": ["altered_vent_schematics"]
+        }
+      },
+      {
+        "text": "'You infected them on purpose.'",
+        "nextNodeId": "ch8_victor_partial"
       }
     ]
   },
   "ch8_victor_truth": {
-    "text": "'I couldn't remember my wife's face anymore!' he cries, tearing at his hair. 'The mud... it gave me memories back. But they aren't mine. They belong to the swarm now. The swarm remembers everything.' He suddenly lunges at the containment glass, shattering it.",
+    "text": "'Dementia was taking the names first. The spores regenerate tissue. I released subjects to find a dose. The organism chose otherwise.'",
+    "speaker": "Victor",
     "choices": [
       {
-        "text": "Run out of the lab and seal it.",
-        "nextNodeId": "ch9_start"
-      },
-      {
-        "requiresMinInfection": 20,
-        "text": "Listen to the memories of the swarm before fleeing.",
-        "nextNodeId": "ch8_listen_swarm"
+        "text": "Leave him to his ruin.",
+        "nextNodeId": "ch8_hub",
+        "effects": {
+          "flags": { "victor_confessed": true, "ch8_victor_done": true },
+          "infection": 8
+        }
       }
     ]
   },
-  "ch8_listen_swarm": {
-    "text": "You close your eyes. The squealing of the rats becomes a choir of whispers. You see visions of ancient, dark waters and hunger. You understand the organism's simple desire: to consume and record all life. The knowledge burns your mind, but you understand your enemy.",
+  "ch8_victor_partial": {
+    "text": "'On purpose is such a moral word. I was dying slower than the station.' The rats turn toward you as one.",
+    "speaker": "Victor",
     "choices": [
       {
-        "text": "Flee the lab.",
-        "nextNodeId": "ch9_start",
-        "addInfection": 5,
-        "setFlag": { "key": "understands_swarm", "value": true }
+        "text": "Run back to hub.",
+        "nextNodeId": "ch8_hub",
+        "effects": {
+          "infection": 12,
+          "flags": { "ch8_victor_done": true }
+        }
+      }
+    ]
+  },
+  "ch8_end": {
+    "text": "Engineering is the last place that might still answer to human hands — if Arthur is still human enough to care.",
+    "choices": [
+      {
+        "text": "Run to the Engineering Bay.",
+        "nextNodeId": "ch9_start"
       }
     ]
   }
