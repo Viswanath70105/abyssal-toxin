@@ -11,10 +11,10 @@ export const GameEngine = {
         const cleanId = chapterId.replace('ch', '');
         if (!cleanId) return;
         const url = import.meta.env?.BASE_URL 
-            ? `${import.meta.env.BASE_URL}data/chapters/chapter_${cleanId}.json`
-            : `/abyssal-toxin/data/chapters/chapter_${cleanId}.json`;
+            ? `${import.meta.env.BASE_URL}data/chapters/chapter_${cleanId}.json?t=${Date.now()}`
+            : `/abyssal-toxin/data/chapters/chapter_${cleanId}.json?t=${Date.now()}`;
             
-        const response = await fetch(url);
+        const response = await fetch(url, { cache: 'no-store' });
         if (!response.ok) {
             console.error("Failed to load chapter", chapterId);
             return;
