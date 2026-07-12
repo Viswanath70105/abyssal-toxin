@@ -1,122 +1,129 @@
 {
   "ch3_hub": {
-    "text": "You stand in the main central corridor (Sector A). The station is quiet, the tension palpable. You need to gather evidence. Where do you want to investigate?",
+    "text": "The central hub is eerily quiet. Emergency power casts long, flickering shadows. The station is on lockdown. You need to figure out why the structural alarms failed before the breach. You can check the Security Hub or try to access Miller's personal quarters.",
     "choices": [
       {
-        "text": "Go to Security Hub",
+        "text": "Go to Security Hub.",
         "nextNodeId": "ch3_security"
       },
       {
-        "text": "Go to Mess Hall",
-        "nextNodeId": "ch3_mess_hall"
+        "text": "Go to Miller's Quarters.",
+        "nextNodeId": "ch3_miller_quarters"
       },
       {
-        "text": "Go to Medbay",
-        "nextNodeId": "ch3_medbay"
-      },
-      {
-        "text": "Review findings and rest (End Chapter)",
+        "text": "Rest and process what happened. (End Chapter)",
         "nextNodeId": "ch3_end"
       }
     ]
   },
   "ch3_security": {
-    "text": "You enter the Security Hub. David is glaring at a bank of monitors, sweating profusely. 'What do you want? I'm busy locking down the sectors.'",
+    "text": "You enter the Security Hub. David is glaring at a bank of monitors, sweating profusely. 'What do you want? I'm busy rerouting power to life support.'",
     "speaker": "David",
     "choices": [
+      {
+        "text": "'Why didn't the alarms sound before the cavern breached?'",
+        "nextNodeId": "ch3_security_ask"
+      },
       {
         "text": "Sneak a peek at his terminal.",
         "nextNodeId": "ch3_security_terminal"
       },
       {
-        "text": "Ask him about the cameras.",
-        "nextNodeId": "ch3_security_ask"
-      },
-      {
-        "text": "Return to corridor.",
+        "text": "Return to the hub.",
         "nextNodeId": "ch3_hub"
       }
     ]
   },
   "ch3_security_ask": {
-    "text": "'The cameras in the lower decks are down. They've been down for two days. Probably corrosion. Nothing I can do about it now.' He refuses to make eye contact.",
+    "text": "'Sensors in the lower decks have been blind for two days,' David snaps. 'I logged it. Miller was supposed to fix them.' He glares at you. 'Now leave me alone.'",
     "speaker": "David",
     "choices": [
       {
-        "text": "Return to corridor.",
+        "text": "'I need to see the logs.'",
+        "nextNodeId": "ch3_security_push",
+        "modifyTrust": { "character": "David", "amount": -2 }
+      },
+      {
+        "text": "Leave him alone and return to the hub.",
         "nextNodeId": "ch3_hub"
+      }
+    ]
+  },
+  "ch3_security_push": {
+    "text": "David slams his fist on the console. 'I said leave it! I wiped the logs, okay? There was some off-the-books salvage I didn't want Corporate seeing. But I didn't cause the breach!'",
+    "speaker": "David",
+    "choices": [
+      {
+        "text": "Record his confession. (Gain Clue: Wiped Logs)",
+        "nextNodeId": "ch3_hub",
+        "giveClue": "wiped_logs",
+        "modifyTrust": { "character": "David", "amount": -5 }
       }
     ]
   },
   "ch3_security_terminal": {
-    "text": "While David is distracted by a comms ping, you glance at the main terminal log. You spot a 'Server Wipe Audit'. It clearly shows David's credentials were used to manually scrub all camera feeds in the lower decks 48 hours ago.",
+    "text": "While David is distracted by a comms ping, you glance at the main terminal log. You spot a 'Server Wipe Audit'. David manually scrubbed the camera feeds 48 hours ago.",
     "choices": [
       {
         "text": "Download the log to your PDA (Gain Clue: Server Wipe Audit).",
-        "nextNodeId": "ch3_security_clue_get",
+        "nextNodeId": "ch3_hub",
         "giveClue": "server_wipe_audit"
+      }
+    ]
+  },
+  "ch3_miller_quarters": {
+    "text": "Miller's door is unlocked. His room is sparse, but his desk is covered in mechanical schematics and overdue medical bills for his daughter on Earth. There is also a small, secure locker.",
+    "choices": [
+      {
+        "text": "Examine the medical bills.",
+        "nextNodeId": "ch3_miller_bills"
       },
       {
-        "text": "Return to corridor.",
-        "nextNodeId": "ch3_hub"
-      }
-    ]
-  },
-  "ch3_security_clue_get": {
-    "text": "You quietly download the audit log. David deleted the footage. But why? To cover up Miller's murder, or something else?",
-    "choices": [
-      {
-        "text": "Return to corridor.",
-        "nextNodeId": "ch3_hub"
-      }
-    ]
-  },
-  "ch3_mess_hall": {
-    "text": "The Mess Hall is sealed off with crime scene tape. It's eerily quiet. The tipped-over pot of stew is still there.",
-    "choices": [
-      {
-        "text": "Look around the pantry.",
-        "nextNodeId": "ch3_mess_pantry"
+        "text": "Try to open the locker.",
+        "nextNodeId": "ch3_miller_locker"
       },
       {
-        "text": "Return to corridor.",
+        "text": "Leave.",
         "nextNodeId": "ch3_hub"
       }
     ]
   },
-  "ch3_mess_pantry": {
-    "text": "You pry open the pantry door. It's suspiciously bare. For a station this size, there should be months of high-calorie rations, but huge quantities are missing. Did Otto steal them?",
+  "ch3_miller_bills": {
+    "text": "The bills are astronomical. Attached is a denial of loan from Corporate. Beneath them is an email draft from Miller to an unknown buyer, offering to sell 'unregistered biological samples' for a huge sum.",
     "choices": [
       {
-        "text": "Return to corridor.",
-        "nextNodeId": "ch3_hub"
+        "text": "Take the email draft. (Gain Clue: Miller's Debt)",
+        "nextNodeId": "ch3_hub",
+        "giveClue": "miller_debt"
       }
     ]
   },
-  "ch3_medbay": {
-    "text": "Medbay is locked, but you can see Dr. Aris pacing frantically through the reinforced glass. She's talking to herself, holding a vial that seems to be glowing faintly green.",
+  "ch3_miller_locker": {
+    "text": "The locker is sealed with a biometric lock. You can't open it without Miller's fingerprint. Or... maybe you can bypass it?",
     "choices": [
       {
-        "text": "Try to open the door.",
-        "nextNodeId": "ch3_medbay_locked"
+        "text": "Attempt to hotwire the lock. (Risk of shock)",
+        "nextNodeId": "ch3_miller_shock"
       },
       {
-        "text": "Return to corridor.",
+        "text": "Leave it alone.",
         "nextNodeId": "ch3_hub"
       }
     ]
   },
-  "ch3_medbay_locked": {
-    "text": "The door is sealed tight. 'Biohazard lockdown,' the automated voice chimes. You'll need to find a way in later.",
+  "ch3_miller_shock": {
+    "text": "You pry open the panel and cross the wires. Sparks fly, burning your hand, but the locker clicks open. Inside is a large, sealed canister pulsing with green light. The Abyssal Toxin.",
     "choices": [
       {
-        "text": "Return to corridor.",
-        "nextNodeId": "ch3_hub"
+        "text": "Examine the canister closely.",
+        "nextNodeId": "ch3_hub",
+        "addInfection": 10,
+        "setFlag": { "key": "found_canister", "value": true }
       }
     ]
   },
   "ch3_end": {
-    "text": "You retreat to your quarters to process the information. Miller is dead. The stew was poisoned. The security logs are wiped. Everyone has something to hide, and the station is slowly falling apart around you.",
+    "text": "You retreat to your quarters. Miller wasn't a hero. He disabled the sensors to smuggle the glowing mud out, blinding the station to the creature that breached the hull. And David wiped the cameras to hide his own theft. The crew is compromised.",
     "choices": [
       {
         "text": "Sleep and prepare for the next cycle.",

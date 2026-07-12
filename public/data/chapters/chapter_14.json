@@ -1,45 +1,45 @@
 {
   "ch14_start": {
-    "text": "The PA system blares: 'WARNING. PROTOCOL OMEGA INITIATED. SCUTTLING CHARGES DETONATING IN T-MINUS 10 MINUTES.' The station isn't just collapsing under the ocean pressure; it's being intentionally destroyed.",
+    "text": "Before you can even process the betrayal, the main station lights turn a deep, bloody red. A siren begins to wail. An automated voice echoes: 'SCUTTLE PROTOCOL INITIATED. EXPLOSIVE CHARGES ARMED. DETONATION IN T-MINUS 10 MINUTES.'",
     "choices": [
       {
-        "text": "Check the scuttling logs.",
-        "nextNodeId": "ch14_logs"
+        "text": "'Gideon...'",
+        "nextNodeId": "ch14_gideon_realize"
       }
     ]
   },
-  "ch14_logs": {
-    "text": "You rapidly type on the terminal. The scuttling sequence wasn't automated by a system failure. The logs show a manual initiation code. Authorization: GIDEON STROUD. He's sinking the station himself.",
+  "ch14_gideon_realize": {
+    "text": "You check the terminal logs. The protocol wasn't automated by the breach. Gideon Stroud manually initiated the self-destruct sequence ten minutes ago, right after abandoning the lower decks.",
     "choices": [
       {
-        "text": "Track Gideon's location.",
-        "nextNodeId": "ch14_track_gideon"
+        "text": "Check the location of the escape pods.",
+        "nextNodeId": "ch14_pods"
       }
     ]
   },
-  "ch14_track_gideon": {
-    "text": "The internal sensors locate his biometric tag. He is in the Escape Bay. There is only one Bathysphere left. He initiated the self-destruct and is planning to leave everyone else to die in the abyss.",
+  "ch14_pods": {
+    "text": "You pull up the schematics. All the escape pods in the lower sectors have been jettisoned empty or destroyed by the organism. There is only one pod left, located in Gideon's private Executive Bay.",
     "choices": [
       {
-        "text": "Run to the Escape Bay.",
+        "text": "Run for the Executive Bay.",
         "nextNodeId": "ch14_run"
       }
     ]
   },
   "ch14_run": {
-    "text": "You sprint through the collapsing corridors. Water is spraying from buckling bulkheads, and the groaning of the titanium hull is deafening. Behind you, you hear the wet, heavy footsteps of the assimilated horde pouring out of the lower decks.",
+    "text": "You sprint through the collapsing corridors. The station is tearing itself apart. The organism is everywhere, bursting from the pipes and vents, but the impending explosion seems to have thrown the hive mind into a frenzy.",
     "choices": [
       {
-        "text": "Push through to the Escape Bay.",
+        "text": "Force your way to the Executive Bay.",
         "nextNodeId": "ch14_end"
       }
     ]
   },
   "ch14_end": {
-    "text": "You reach the heavy blast doors of the Escape Bay just as a massive structural beam crashes down behind you, sealing the corridor. You are trapped between the rising ocean and the final escape pod.",
+    "text": "You reach the heavy, ornate doors of the Executive Bay. Inside is the only way back to the surface. And inside is Gideon.",
     "choices": [
       {
-        "text": "Enter the Escape Bay.",
+        "text": "Enter the Executive Bay.",
         "nextNodeId": "ch15_start"
       }
     ]

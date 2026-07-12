@@ -1,52 +1,49 @@
 {
   "ch12_start": {
-    "text": "With auxiliary power restored, you return to the upper decks. But something is wrong. Maya is missing. The vents where she was hiding have been torn open from the inside.",
+    "text": "When you return to the upper hub, you find that Maya has gone missing. Her rationing bar wrapper is torn on the floor, leading a trail into the dark, abandoned crew quarters.",
     "choices": [
       {
-        "text": "Search for Maya.",
-        "nextNodeId": "ch12_search"
-      }
-    ]
-  },
-  "ch12_search": {
-    "text": "You follow a trail of small, muddy footprints leading away from the vents. The corridors here are pitch black, illuminated only by patches of glowing, bioluminescent spores growing on the walls.",
-    "choices": [
-      {
-        "text": "Follow the trail deeper.",
+        "text": "Follow the trail into the dark quarters.",
         "nextNodeId": "ch12_trail"
       }
     ]
   },
   "ch12_trail": {
-    "text": "The footprints lead to a desolate storage bay. You find Maya huddled in the corner, holding a dirty, torn piece of fabric. She is shaking violently.",
+    "text": "The quarters are pitch black, illuminated only by patches of bioluminescent spores. You track small footprints through the glowing dust. You find Maya curled up in a corner, clutching a torn photograph of a young drill worker.",
     "choices": [
       {
-        "text": "Approach her slowly.",
+        "text": "'Maya, why did you run off?'",
         "nextNodeId": "ch12_maya_truth"
       }
     ]
   },
   "ch12_maya_truth": {
-    "text": "'I was looking for my brother,' she cries. 'He was on the drill team. I sneaked down to the lower decks days ago. The mud... it glowed. It was on my boots.'",
+    "text": "She looks up, her eyes wide with guilt. 'I'm sorry. I just wanted to find my brother. He was on the drill team. I sneaked down to the cavern two days ago to see him...'",
     "speaker": "Maya",
     "choices": [
       {
-        "text": "Realize what she's saying.",
-        "nextNodeId": "ch12_revelation"
+        "text": "'You went down there? Before the breach?'",
+        "nextNodeId": "ch12_maya_spores"
       }
     ]
   },
-  "ch12_revelation": {
-    "text": "The pieces fall into place. The outbreak wasn't sabotage. It was a tragic accident. Maya, looking for her brother, unknowingly tracked the dormant spores from the quarantine zone straight into the station's ventilation system.",
+  "ch12_maya_spores": {
+    "text": "'I stepped in the glowing mud,' she cries. 'I tracked it back into the vents. I didn't know it was alive! I'm the one who brought the monsters in!' The outbreak was a tragic accident caused by a child looking for her family.",
+    "speaker": "Maya",
     "choices": [
       {
-        "text": "'It's not your fault, Maya.'",
+        "text": "Comfort her. 'It's not your fault, Maya.'",
+        "nextNodeId": "ch12_end",
+        "setFlag": { "key": "forgave_maya", "value": true }
+      },
+      {
+        "text": "Look at her in horrified silence.",
         "nextNodeId": "ch12_end"
       }
     ]
   },
   "ch12_end": {
-    "text": "You try to comfort her, but the reality is crushing. The enemy didn't break in; it was carried in by a child looking for her family. Now, the station is dying, and Corporate still hasn't answered your distress calls.",
+    "text": "There's no time to dwell on the past. The station shudders violently. The upper pressure bulkheads are failing. You need to access the Command Center and find out if Corporate is sending help.",
     "choices": [
       {
         "text": "Head to the Command Center.",

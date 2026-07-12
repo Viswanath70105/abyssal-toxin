@@ -1,4 +1,4 @@
-import { GameState, hasClue, addClue, recordHistory } from './state.js';
+import { GameState, hasClue, addClue, recordHistory, setFlag, getFlag, addInfection, getInfection, modifyTrust, getTrust } from './state.js';
 import { UI } from './ui.js';
 
 export const GameEngine = {
@@ -50,8 +50,14 @@ export const GameEngine = {
         UI.updateChapterTitle(title);
 
         const availableChoices = (node.choices || []).filter(choice => {
-            if (choice.requiresClue && !hasClue(choice.requiresClue)) {
-                return false;
+            if (choice.requiresClue && !hasClue(choice.requiresClue)) return false;
+            if (choice.requiresFlag && getFlag(choice.requiresFlag.key) !== choice.requiresFlag.value) return false;
+            if (choice.requiresMinInfection && getInfection() < choice.requiresMinInfection) return false;
+            if (choice.requiresMaxInfection && getInfection() > choice.requiresMaxInfection) return false;
+            if (choice.requiresTrust) {
+                const currentTrust = getTrust(choice.requiresTrust.character);
+                if (typeof choice.requiresTrust.min !== 'undefined' && currentTrust < choice.requiresTrust.min) return false;
+                if (typeof choice.requiresTrust.max !== 'undefined' && currentTrust > choice.requiresTrust.max) return false;
             }
             return true;
         });
@@ -64,8 +70,14 @@ export const GameEngine = {
         if (!node) return;
 
         const availableChoices = (node.choices || []).filter(choice => {
-            if (choice.requiresClue && !hasClue(choice.requiresClue)) {
-                return false;
+            if (choice.requiresClue && !hasClue(choice.requiresClue)) return false;
+            if (choice.requiresFlag && getFlag(choice.requiresFlag.key) !== choice.requiresFlag.value) return false;
+            if (choice.requiresMinInfection && getInfection() < choice.requiresMinInfection) return false;
+            if (choice.requiresMaxInfection && getInfection() > choice.requiresMaxInfection) return false;
+            if (choice.requiresTrust) {
+                const currentTrust = getTrust(choice.requiresTrust.character);
+                if (typeof choice.requiresTrust.min !== 'undefined' && currentTrust < choice.requiresTrust.min) return false;
+                if (typeof choice.requiresTrust.max !== 'undefined' && currentTrust > choice.requiresTrust.max) return false;
             }
             return true;
         });
@@ -77,9 +89,10 @@ export const GameEngine = {
         recordHistory(node.text, choice.text);
 
         // Execute data-driven logic
-        if (choice.giveClue) {
-            addClue(choice.giveClue);
-        }
+        if (choice.giveClue) addClue(choice.giveClue);
+        if (choice.setFlag) setFlag(choice.setFlag.key, choice.setFlag.value);
+        if (choice.addInfection) addInfection(choice.addInfection);
+        if (choice.modifyTrust) modifyTrust(choice.modifyTrust.character, choice.modifyTrust.amount);
 
         if (choice.nextNodeId) {
             this.renderNode(choice.nextNodeId);

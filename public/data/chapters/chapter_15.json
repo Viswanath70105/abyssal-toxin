@@ -1,70 +1,88 @@
 {
   "ch15_start": {
-    "text": "You step into the Escape Bay. The Bathysphere's launch lights are flashing amber. Gideon Stroud stands at the console, holding a heavy pneumatic rivet gun. Behind you, the blast doors buckle violently. The organism is battering them down.",
-    "choices": [
-      {
-        "text": "Confront Gideon.",
-        "nextNodeId": "ch15_confront_gideon"
-      }
-    ]
-  },
-  "ch15_confront_gideon": {
-    "text": "'You're too late,' Gideon says coldly. 'The scuttling sequence can't be stopped.' He raises the rivet gun. 'The Toxin adapts too quickly. If it reaches the surface, it will rewrite the biosphere in days. I am burying it. I am saving Earth.'",
+    "text": "You burst into the Executive Bay. Gideon Stroud is standing in front of the open escape pod. He holds a heavy corporate-issue sidearm. Beyond the reinforced glass, you can see the organism battering the bay doors, threatening to break through before the station detonates.",
     "speaker": "Gideon",
     "choices": [
       {
-        "text": "'By murdering your entire crew?'",
-        "nextNodeId": "ch15_gideon_logic"
+        "text": "'Gideon, stop! We can both fit in the pod!'",
+        "nextNodeId": "ch15_gideon_refusal"
       }
     ]
   },
-  "ch15_gideon_logic": {
-    "text": "'It's simple math. A hundred lives down here for billions up there,' he states flatly. The blast doors behind you dent inward with a horrifying screech. 'There's only one seat in the pod anyway. And I am taking it.'",
+  "ch15_gideon_refusal": {
+    "text": "'No one leaves this station,' Gideon says calmly. 'You've breathed the air. You've touched the water. If you go to the surface, it goes with you. The Scuttle Protocol is the only way to bury this mistake forever.'",
     "speaker": "Gideon",
     "choices": [
       {
-        "text": "Accept his logic and surrender (Ending: Abyssal Grave)",
-        "nextNodeId": "ch15_ending_abyssal_grave"
+        "requiresMaxInfection": 10,
+        "text": "Try to reason with him. 'I'm clean! Look at me!'",
+        "nextNodeId": "ch15_reason_clean"
       },
       {
-        "text": "Fight him for the pod (Ending: Surface Tension)",
-        "nextNodeId": "ch15_ending_surface_tension"
+        "requiresMinInfection": 30,
+        "text": "Embrace the infection. Let the organism speak through you.",
+        "nextNodeId": "ch15_patient_zero"
       },
       {
-        "text": "Give in to the infection (Ending: Patient Zero)",
-        "nextNodeId": "ch15_ending_patient_zero"
+        "text": "Rush him and fight for the pod.",
+        "nextNodeId": "ch15_fight_gideon"
+      },
+      {
+        "text": "Accept his logic. 'You're right. We can't risk the surface.'",
+        "nextNodeId": "ch15_abyssal_grave"
       }
     ]
   },
-  "ch15_ending_abyssal_grave": {
-    "text": "You lower your hands. The cold logic of his words sinks in. If you escape, you might carry the infection with you. You nod slowly. Gideon enters the pod, sealing the hatch. You sit on the cold floor as the blast doors give way, welcoming the dark water.",
+  "ch15_reason_clean": {
+    "text": "Gideon looks at you, his gun wavering. 'You... you survived without the taint? It's impossible.' The bay doors begin to buckle. 'Take the pod,' he whispers, lowering the gun. 'I'll hold the doors.'",
     "choices": [
       {
-        "text": "Game Over",
-        "nextNodeId": "game_over"
+        "text": "Board the pod and launch.",
+        "nextNodeId": "ch15_surface_tension"
       }
     ]
   },
-  "ch15_ending_surface_tension": {
-    "text": "You refuse to die in the dark. You lunge at Gideon, dodging a rivet that grazes your shoulder. You tackle him into the freezing water pooling on the deck. As the blast doors shatter and the horde pours in, you kick Gideon into them and dive into the pod, launching toward the surface. You survived... but at what cost?",
+  "ch15_fight_gideon": {
+    "text": "You lunge at Gideon. He fires, but misses in his panic. You tackle him into the pod, wrestling for the controls. You manage to hit the launch sequence, but in the struggle, he shoots you in the shoulder. The pod ejects into the dark ocean.",
     "choices": [
       {
-        "text": "Game Over",
-        "nextNodeId": "game_over"
+        "text": "Watch the station explode.",
+        "nextNodeId": "ch15_surface_tension_wounded"
       }
     ]
   },
-  "ch15_ending_patient_zero": {
-    "text": "You feel the black veins on your arm burning. The voices in your head grow loud and harmonious. You smile at Gideon. Your jaw unhinges, and a cloud of bioluminescent spores erupts from your mouth, blinding him. As you tear him apart, you know you will take the pod. You are going to the surface, and you will share this gift with the world.",
+  "ch15_patient_zero": {
+    "text": "You don't speak with your own voice. The words come out wet and rhythmic, echoing the hum of the swarm. 'We are already legion, Gideon.' Your dark veins pulse with power. Gideon fires his weapon in terror, but you feel no pain as the organism knits the wounds together.",
     "choices": [
       {
-        "text": "Game Over",
-        "nextNodeId": "game_over"
+        "text": "Consume him.",
+        "nextNodeId": "ch15_patient_zero_ending"
       }
     ]
   },
-  "game_over": {
-    "text": "Thank you for playing Abyssal Toxin. The story is now complete.",
+  "ch15_abyssal_grave": {
+    "text": "You drop your weapon. Gideon nods slowly, a sad smile on his face. 'It is a heavy burden, but it is the right thing to do.' You both stand and watch the bay doors finally give way. The dark water and the writhing mass flood in.",
+    "choices": [
+      {
+        "text": "Accept the end.",
+        "nextNodeId": "ch15_abyssal_grave_ending"
+      }
+    ]
+  },
+  "ch15_surface_tension": {
+    "text": "ENDING: SURFACE TENSION. \n\nYou watch Nereus Station detonate in a brilliant flash of light, swallowed by the abyss. You reach the surface, hailed as a survivor. But as you look at your reflection in the pod's window, you wonder... did you truly leave it all behind?",
+    "choices": []
+  },
+  "ch15_surface_tension_wounded": {
+    "text": "ENDING: SURFACE TENSION (WOUNDED). \n\nThe pod shoots toward the surface. Nereus Station explodes below you. Gideon lies dead in the pod with you. You clutch your bleeding shoulder, realizing you survived, but you will carry the scars of the abyss forever.",
+    "choices": []
+  },
+  "ch15_patient_zero_ending": {
+    "text": "ENDING: PATIENT ZERO. \n\nYou leave Gideon's broken body behind and enter the pod alone. As you launch toward the surface, you look down at your hands, completely black and pulsing with the hive mind. The surface world has no idea what is coming for them.",
+    "choices": []
+  },
+  "ch15_abyssal_grave_ending": {
+    "text": "ENDING: THE ABYSSAL GRAVE. \n\nYou are consumed by the dark water and the crushing pressure, but your sacrifice ensures the organism never reaches the surface. You rest peacefully in the deep, a silent guardian of humanity.",
     "choices": []
   }
 }

@@ -1,38 +1,49 @@
 {
   "ch6_start": {
-    "text": "The muffled scream came from the Comms Tower. The corridor is freezing, and you feel a strange itch on your arm. The air tastes faintly of copper.",
+    "text": "You enter the Comms Tower. It's freezing. Chloe, the comms officer, is huddled in a corner, hands over her ears. The radio is broadcasting on all channels. It's Miller's voice, distorted and wet. 'It's warm down here... join us...'",
     "choices": [
       {
-        "text": "Enter the Comms Tower.",
-        "nextNodeId": "ch6_comms_tower"
-      }
-    ]
-  },
-  "ch6_comms_tower": {
-    "text": "Inside, Chloe the comms officer is shivering in the corner. The radio console is broadcasting a voice. It's Miller's voice. 'It's so cold... why did you leave me in the dark...'",
-    "speaker": "Miller (Radio)",
-    "choices": [
-      {
-        "text": "'Miller is dead. That's not him.'",
-        "nextNodeId": "ch6_chloe_breakdown"
-      }
-    ]
-  },
-  "ch6_chloe_breakdown": {
-    "text": "Chloe covers her ears. 'I deleted the first distress call! I thought it was a prank, and I didn't want to wake Corporate! Now they're dead, and they won't stop talking to me!'",
-    "speaker": "Chloe",
-    "choices": [
-      {
-        "text": "Shut off the radio console.",
+        "text": "Turn off the radio.",
         "nextNodeId": "ch6_radio_off"
+      },
+      {
+        "requiresMinInfection": 15,
+        "text": "Listen closely to the broadcast.",
+        "nextNodeId": "ch6_radio_listen"
       }
     ]
   },
   "ch6_radio_off": {
-    "text": "You smash the power switch. The room falls silent, except for Chloe's sobbing. You look down at your arm. The veins are turning a faint, sickly black. The infection has begun.",
+    "text": "You smash the power switch. The room falls silent, except for Chloe's sobbing. 'They've been broadcasting for hours,' she cries. 'I tried to send a distress call before the breach... but Gideon made me delete it. He said Corporate would handle it.'",
+    "speaker": "Chloe",
     "choices": [
       {
-        "text": "Leave the Comms Tower and look for medical help.",
+        "text": "Comfort Chloe. 'We'll get out of here.'",
+        "nextNodeId": "ch6_end",
+        "modifyTrust": { "character": "Chloe", "amount": 5 }
+      },
+      {
+        "text": "'You doomed us all to save your job.'",
+        "nextNodeId": "ch6_end",
+        "modifyTrust": { "character": "Chloe", "amount": -10 }
+      }
+    ]
+  },
+  "ch6_radio_listen": {
+    "text": "You lean in. Beneath Miller's voice, you hear a rhythmic, pulsating hum. The sound doesn't just enter your ears; it vibrates inside your skull. You feel a strange sense of... belonging. Your arm begins to itch where the mud touched you.",
+    "choices": [
+      {
+        "text": "Snap out of it and turn off the radio.",
+        "nextNodeId": "ch6_radio_off",
+        "addInfection": 10
+      }
+    ]
+  },
+  "ch6_end": {
+    "text": "You leave Chloe in the Comms Tower. As you walk down the hall, you roll up your sleeve. The veins in your forearm are turning a faint, sickly black. The infection has begun.",
+    "choices": [
+      {
+        "text": "Head to Medbay.",
         "nextNodeId": "ch7_start"
       }
     ]

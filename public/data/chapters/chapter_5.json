@@ -1,39 +1,84 @@
 {
   "ch5_start": {
-    "text": "Leaving Maya safely hidden with Otto, you realize you need to see exactly what breached the station. You head to the Security Hub, only to find it in total blackout.",
+    "text": "Knowing David wiped the main security servers, you decide to access the localized backup node in the old Archives. It's the only way to see what actually came out of the cavern. The Archives are in total blackout.",
     "choices": [
       {
-        "text": "Reboot the backup generator.",
-        "nextNodeId": "ch5_hub_reboot"
+        "text": "Enter the dark Archives.",
+        "nextNodeId": "ch5_archives_dark"
       }
     ]
   },
-  "ch5_hub_reboot": {
-    "text": "The lights flicker on. David is slumped in his chair, head in his hands. 'It's gone. I wiped it all.'",
-    "speaker": "David",
+  "ch5_archives_dark": {
+    "text": "You power up your flashlight. The beam cuts through thick, floating dust. You hear a soft, wet slithering sound from the ceiling grates above.",
     "choices": [
       {
-        "text": "Demand to know why he wiped the footage.",
-        "nextNodeId": "ch5_david_confession"
+        "text": "Shine the light up at the ceiling.",
+        "nextNodeId": "ch5_look_up"
+      },
+      {
+        "text": "Keep moving toward the backup node terminal.",
+        "nextNodeId": "ch5_terminal_reach"
       }
     ]
   },
-  "ch5_david_confession": {
-    "text": "'I was smuggling Abyssal Quartz,' David sobs. 'I have a terminal diagnosis. I needed the money for my family. I scrubbed the feeds so Corporate wouldn't catch me... I didn't know something else came out of the cavern.'",
-    "speaker": "David",
+  "ch5_look_up": {
+    "text": "Your light catches a mass of dark, pulsating flesh squeezing through the ventilation grate. It recoils violently from the light, screeching—a sound that mimics metal tearing. A drop of black viscous fluid lands on your arm.",
     "choices": [
       {
-        "text": "'You've blinded us to whatever is hunting us.'",
-        "nextNodeId": "ch5_end"
+        "text": "Wipe it off and sprint to the terminal.",
+        "nextNodeId": "ch5_terminal_reach",
+        "addInfection": 15
       }
     ]
   },
-  "ch5_end": {
-    "text": "By trying to hide his petty crime, David has doomed the station. We have no idea what the creature looks like, or how many there are. A muffled scream echoes through the hull.",
+  "ch5_terminal_reach": {
+    "text": "You reach the backup node and boot it up. The screen flickers, bringing up the un-wiped footage from Lower Maintenance right before the breach.",
     "choices": [
       {
-        "text": "Investigate the scream.",
+        "text": "Play the footage.",
+        "nextNodeId": "ch5_footage"
+      }
+    ]
+  },
+  "ch5_footage": {
+    "text": "On the grainy screen, you see Miller before you arrived. He's trying to seal the door, but the water is filled with thousands of microscopic, bioluminescent spores. They clump together, forming tendrils that force the door open. It's not a single creature. It's a colony.",
+    "choices": [
+      {
+        "text": "Eject the data drive.",
+        "nextNodeId": "ch5_eject"
+      }
+    ]
+  },
+  "ch5_eject": {
+    "text": "As you grab the drive, the terminal sparks and dies. The slithering sound is directly behind you now.",
+    "choices": [
+      {
+        "requiresMaxInfection": 10,
+        "text": "Turn quickly and shine the flashlight to blind it, then run.",
+        "nextNodeId": "ch5_escape_clean"
+      },
+      {
+        "text": "Run blindly for the door.",
+        "nextNodeId": "ch5_escape_infected"
+      }
+    ]
+  },
+  "ch5_escape_clean": {
+    "text": "You blind the mass of tendrils just long enough to slip past it and slam the Archive doors shut. You are safe, for now. (Act 1 Complete)",
+    "choices": [
+      {
+        "text": "Proceed to Act 2.",
         "nextNodeId": "ch6_start"
+      }
+    ]
+  },
+  "ch5_escape_infected": {
+    "text": "You sprint for the door, but a tendril whips out from the dark, slashing your shoulder. You manage to escape and seal the door, but you can feel the wound burning with a strange, numb heat. (Act 1 Complete)",
+    "choices": [
+      {
+        "text": "Proceed to Act 2.",
+        "nextNodeId": "ch6_start",
+        "addInfection": 20
       }
     ]
   }

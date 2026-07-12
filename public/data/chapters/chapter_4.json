@@ -1,15 +1,15 @@
 {
   "ch4_start": {
-    "text": "You wake up to the sound of klaxons. The station's PA system crackles to life. 'Attention. Mess Hall lockdown in effect. Mandatory rationing protocols activated.' The air feels heavier. Paranoia is setting in.",
+    "text": "You wake up to the blaring of the station's PA system. 'Attention. Mess Hall lockdown in effect. Mandatory rationing protocols activated.' The air feels heavier. Paranoia is setting in across the station.",
     "choices": [
       {
-        "text": "Head to the Mess Hall to see what happened.",
+        "text": "Head to the Mess Hall.",
         "nextNodeId": "ch4_mess_hall"
       }
     ]
   },
   "ch4_mess_hall": {
-    "text": "The Mess Hall is sealed, but you can hear shouting inside. Otto Finch, the quartermaster, is arguing with Dr. Aris. 'Someone is stealing the reserves!' Otto yells. Then, your comms radio picks up a burst of static... and a ghostly voice.",
+    "text": "The Mess Hall is sealed, but you slip in using your auditor override codes. Otto Finch, the quartermaster, is desperately inventorying the pantry. 'Half the high-calorie reserves are gone!' he mutters. Then, a static-filled voice crackles from the kitchen radio.",
     "speaker": "Radio",
     "choices": [
       {
@@ -19,16 +19,42 @@
     ]
   },
   "ch4_radio": {
-    "text": "'...drill team alpha... it's in the walls... help us...' The voice sounds exactly like the drill team commander who went missing hours ago.",
+    "text": "'...drill team alpha... it's in the walls... help us...' The voice sounds exactly like Commander Vance, who died in the initial breach 24 hours ago.",
     "choices": [
       {
-        "text": "Confront Otto about the missing food.",
-        "nextNodeId": "ch4_confront_otto"
+        "text": "'How is Vance broadcasting?'",
+        "nextNodeId": "ch4_otto_freakout"
       }
     ]
   },
-  "ch4_confront_otto": {
-    "text": "You pull Otto aside. 'Where is the food, Otto?' He looks terrified and points to the ventilation shaft. 'I didn't steal it! I've been leaving scraps up there. There's a stowaway.'",
+  "ch4_otto_freakout": {
+    "text": "Otto slams the radio off. 'It's a glitch! Magnetic echoes! Just like the missing food... probably an inventory glitch!' He is sweating profusely.",
+    "speaker": "Otto",
+    "choices": [
+      {
+        "text": "Accuse him. 'You're stealing the food, Otto.'",
+        "nextNodeId": "ch4_confront_otto_harsh",
+        "modifyTrust": { "character": "Otto", "amount": -5 }
+      },
+      {
+        "text": "'Otto, calm down. Where did the food go?'",
+        "nextNodeId": "ch4_confront_otto_calm",
+        "modifyTrust": { "character": "Otto", "amount": 2 }
+      }
+    ]
+  },
+  "ch4_confront_otto_harsh": {
+    "text": "Otto looks terrified. 'I didn't steal it! I've been leaving scraps in the vents! There's a stowaway! A kid!' He points shakily to the large ventilation shaft above the stove.",
+    "speaker": "Otto",
+    "choices": [
+      {
+        "text": "Open the vent.",
+        "nextNodeId": "ch4_vent"
+      }
+    ]
+  },
+  "ch4_confront_otto_calm": {
+    "text": "Otto sighs, trembling. 'I haven't been eating it. I've been... feeding someone. There's a stowaway in the vents. A little girl.' He points to the ventilation shaft.",
     "speaker": "Otto",
     "choices": [
       {
@@ -38,11 +64,36 @@
     ]
   },
   "ch4_vent": {
-    "text": "You pry open the vent. Peering back at you is a terrified young girl. 'I'm Maya,' she whispers. She's been hiding here since launch.",
+    "text": "You pry open the heavy grate. Deep inside the ductwork, a pair of wide, terrified eyes stares back at you. It's a young girl, no older than ten, clutching a rationing bar.",
+    "choices": [
+      {
+        "text": "'It's okay. Come out. I'm not going to hurt you.'",
+        "nextNodeId": "ch4_maya_trust",
+        "setFlag": { "key": "maya_trusts_you", "value": true }
+      },
+      {
+        "text": "Reach in and grab her arm. 'Get out here now.'",
+        "nextNodeId": "ch4_maya_fear",
+        "setFlag": { "key": "maya_trusts_you", "value": false }
+      }
+    ]
+  },
+  "ch4_maya_trust": {
+    "text": "She hesitates, then slowly crawls out. 'I'm Maya,' she whispers. 'The monsters took my brother.'",
     "speaker": "Maya",
     "choices": [
       {
-        "text": "Reassure her and move to the next sector.",
+        "text": "Assure her she is safe here and leave.",
+        "nextNodeId": "ch5_start"
+      }
+    ]
+  },
+  "ch4_maya_fear": {
+    "text": "She screams and scrambles further back into the dark vents, out of reach. 'Leave me alone!' she cries.",
+    "speaker": "Maya",
+    "choices": [
+      {
+        "text": "Leave her there and exit the Mess Hall.",
         "nextNodeId": "ch5_start"
       }
     ]

@@ -1,68 +1,75 @@
 {
   "ch11_start": {
-    "text": "Without power, the life support scrubbers will fail in minutes. The only way to restore auxiliary power is the manual override in Lower Maintenance. The catch: Lower Maintenance is flooded.",
+    "text": "The main power grid fails. The station goes completely dark, leaving only the bioluminescent glow of the spores. To restore auxiliary power, you must swim through the completely flooded Lower Maintenance sector.",
     "choices": [
       {
-        "text": "Equip an emergency rebreather and dive in.",
-        "nextNodeId": "ch11_water"
-      }
-    ]
-  },
-  "ch11_water": {
-    "text": "The water is freezing and murky. Your HUD glitches constantly, static interfering with your vision. You swim through the submerged corridors, guided only by the faint red glow of emergency lights.",
-    "choices": [
-      {
-        "text": "Swim towards the generator room.",
-        "nextNodeId": "ch11_generator"
-      }
-    ]
-  },
-  "ch11_generator": {
-    "text": "You reach the generator room, but a massive shape blocks the override panel. It's human, but twisted—covered in bioluminescent barnacles and black sludge. It turns to look at you. It's Miller.",
-    "speaker": "Miller (Assimilated)",
-    "choices": [
-      {
-        "text": "Try to reason with him.",
-        "nextNodeId": "ch11_reason"
+        "requiresFlag": { "key": "has_rebreather", "value": true },
+        "text": "Equip your rebreather and dive in.",
+        "nextNodeId": "ch11_dive_safe"
       },
       {
-        "text": "Draw your stun baton.",
-        "nextNodeId": "ch11_fight"
+        "text": "Hold your breath and dive in.",
+        "nextNodeId": "ch11_dive_unsafe"
       }
     ]
   },
-  "ch11_reason": {
-    "text": "'Miller, it's me,' your voice sounds tinny over the rebreather comms. The husk just tilts its head. 'We are... cold...' it gurgles, lunging at you with terrifying speed.",
+  "ch11_dive_safe": {
+    "text": "The rebreather provides steady air as you navigate the dark, freezing water. You swim past floating debris and assimilated crew members, arriving at the auxiliary power terminal.",
     "choices": [
       {
-        "text": "Fight back.",
-        "nextNodeId": "ch11_fight"
+        "text": "Approach the terminal.",
+        "nextNodeId": "ch11_miller_encounter"
       }
     ]
   },
-  "ch11_fight": {
-    "text": "The fight is brutal and desperate. You swing the stun baton, electrocuting the water around you. The shock forces the husk back just long enough for you to slam the manual override lever.",
+  "ch11_dive_unsafe": {
+    "text": "You hold your breath and plunge in. The freezing water burns your lungs. You accidentally swallow a mouthful of the spore-infested water. You reach the auxiliary power terminal, gasping for air.",
     "choices": [
       {
-        "text": "Swim back to the surface.",
-        "nextNodeId": "ch11_escape"
+        "text": "Approach the terminal.",
+        "nextNodeId": "ch11_miller_encounter",
+        "addInfection": 25
       }
     ]
   },
-  "ch11_escape": {
-    "text": "The auxiliary lights flicker on. You swim back up the stairwell as fast as you can, breaking the surface and gasping for air. The power is back, but your infection level has spiked from the contaminated water.",
+  "ch11_miller_encounter": {
+    "text": "As you reach for the breaker, a massive shape shifts in the water. It's Miller. But he is fully assimilated, a hulking monstrosity of flesh and tendrils, his face fused with the metal of his hazard suit. He lunges at you.",
     "choices": [
       {
-        "text": "Catch your breath and move on.",
+        "text": "Fight him off with a floating pipe.",
+        "nextNodeId": "ch11_fight_miller"
+      },
+      {
+        "requiresFlag": { "key": "understands_swarm", "value": true },
+        "text": "Project the memory of his daughter into the hive mind.",
+        "nextNodeId": "ch11_spare_miller"
+      }
+    ]
+  },
+  "ch11_fight_miller": {
+    "text": "You swing the heavy pipe, crushing the fused helmet of the husk. It screams with Miller's voice and thrashes violently before sinking into the abyss. You flip the breaker. Auxiliary power is restored.",
+    "choices": [
+      {
+        "text": "Swim back up.",
+        "nextNodeId": "ch11_end",
+        "addInfection": 10
+      }
+    ]
+  },
+  "ch11_spare_miller": {
+    "text": "You focus your infected mind on the memory of the medical bills, of Miller's desperate love for his daughter. The husk freezes. The tendrils loosen. It looks at you with human sadness, then sinks peacefully into the dark.",
+    "choices": [
+      {
+        "text": "Flip the breaker and swim back up.",
         "nextNodeId": "ch11_end"
       }
     ]
   },
   "ch11_end": {
-    "text": "You survived the flooded sector, but the victory feels hollow. Miller's assimilated corpse is proof that death is not the end down here. It is just the beginning of something worse.",
+    "text": "You break the surface, gasping for air. The red emergency lights flicker back on. You survived Lower Maintenance, but the station is still dying.",
     "choices": [
       {
-        "text": "Continue.",
+        "text": "Head back to the hub.",
         "nextNodeId": "ch12_start"
       }
     ]

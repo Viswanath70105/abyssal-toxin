@@ -1,48 +1,55 @@
 {
   "ch8_start": {
-    "text": "The squealing from the vents grows louder. The ventilation system is completely compromised. Life support is failing. The noise is coming from the direction of the Xenobiology Lab.",
+    "text": "You hear an incessant scratching and squealing coming from the ventilation shafts. Life support warnings are flashing across the corridor monitors. The noise is concentrated near the Xenobiology Lab.",
     "choices": [
       {
-        "text": "Head to the Xenobiology Lab.",
-        "nextNodeId": "ch8_bio_lab"
+        "text": "Enter the Xenobiology Lab.",
+        "nextNodeId": "ch8_lab_enter"
       }
     ]
   },
-  "ch8_bio_lab": {
-    "text": "You enter the lab. It's a nightmare. Hundreds of mutated, glowing rats are swarming the life support filters, tearing them apart with unnaturally sharp teeth. In the center of the room sits Victor, the senior xenobiologist, calmly taking notes.",
-    "choices": [
-      {
-        "text": "Yell at Victor to do something.",
-        "nextNodeId": "ch8_victor_confront"
-      }
-    ]
-  },
-  "ch8_victor_confront": {
-    "text": "Victor looks up. His eyes are milky white, and black veins cover his neck. 'Magnificent, aren't they?' he whispers. 'They adapt so quickly. The organism is breeding in them. It's perfect.'",
+  "ch8_lab_enter": {
+    "text": "The lab is a nightmare. Hundreds of rats, their bodies mutated by the glowing toxin, are tearing through the life support filters. In the center of the room, Victor, the senior xenobiologist, is writing frantically on the glass walls. His eyes are milky white, and black veins cover his neck.",
     "speaker": "Victor",
     "choices": [
       {
-        "text": "'You infected them on purpose?!'",
-        "nextNodeId": "ch8_victor_confession"
+        "text": "'Victor, what did you do?!'",
+        "nextNodeId": "ch8_victor_reveal"
       }
     ]
   },
-  "ch8_victor_confession": {
-    "text": "'My mind was slipping. The dementia was taking everything,' Victor mutters, losing his train of thought for a moment. 'The spores... they regenerate brain tissue. I infected the rats to find the right dosage. But the organism... it has a mind of its own now.'",
+  "ch8_victor_reveal": {
+    "text": "Victor turns slowly. 'Magnificent, aren't they?' he whispers. 'They adapt so quickly. The organism is breeding in them. It's rewriting their neural pathways. I thought... I thought it could fix my dementia. Restore my mind.'",
     "speaker": "Victor",
     "choices": [
       {
-        "text": "'You're out of your mind.'",
-        "nextNodeId": "ch8_end"
+        "text": "'You infected them on purpose?'",
+        "nextNodeId": "ch8_victor_truth"
       }
     ]
   },
-  "ch8_end": {
-    "text": "Victor has doomed the station's life support for a selfish, desperate cure. The rats suddenly stop tearing at the filters and turn their glowing eyes toward you. A massive metallic groan reverberates through the floorboards. The station is tearing itself apart.",
+  "ch8_victor_truth": {
+    "text": "'I couldn't remember my wife's face anymore!' he cries, tearing at his hair. 'The mud... it gave me memories back. But they aren't mine. They belong to the swarm now. The swarm remembers everything.' He suddenly lunges at the containment glass, shattering it.",
     "choices": [
       {
-        "text": "Run to the Engineering Bay.",
+        "text": "Run out of the lab and seal it.",
         "nextNodeId": "ch9_start"
+      },
+      {
+        "requiresMinInfection": 20,
+        "text": "Listen to the memories of the swarm before fleeing.",
+        "nextNodeId": "ch8_listen_swarm"
+      }
+    ]
+  },
+  "ch8_listen_swarm": {
+    "text": "You close your eyes. The squealing of the rats becomes a choir of whispers. You see visions of ancient, dark waters and hunger. You understand the organism's simple desire: to consume and record all life. The knowledge burns your mind, but you understand your enemy.",
+    "choices": [
+      {
+        "text": "Flee the lab.",
+        "nextNodeId": "ch9_start",
+        "addInfection": 5,
+        "setFlag": { "key": "understands_swarm", "value": true }
       }
     ]
   }

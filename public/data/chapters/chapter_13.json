@@ -1,45 +1,36 @@
 {
   "ch13_start": {
-    "text": "You leave Maya in a secure secondary airlock and finally breach the Command Center. The room is immaculate compared to the rest of the station, humming with auxiliary power. Director Gideon Stroud's private terminal is glowing.",
+    "text": "You finally reach the Command Center. The heavy blast doors are sealed from the inside. You use the auditor override codes to force them open. The room is empty, except for Gideon Stroud's private terminal, which is unlocked.",
     "choices": [
       {
-        "text": "Hack into Gideon's terminal.",
-        "nextNodeId": "ch13_hack_terminal"
+        "text": "Access Gideon's terminal.",
+        "nextNodeId": "ch13_terminal"
       }
     ]
   },
-  "ch13_hack_terminal": {
-    "text": "You bypass the security protocols. The screen displays an encrypted transmission log to Corporate Command. You open the most recent message, expecting a rescue timeline. Instead, you find a sterile cost-benefit analysis.",
+  "ch13_terminal": {
+    "text": "You quickly scan through his encrypted emails. You find a transmission sent 12 hours ago, right after the breach. It reads: 'CONTAINMENT FAILED. SAMPLES COMPROMISED. REQUESTING IMMEDIATE EXTRACTION.'",
     "choices": [
       {
-        "text": "Read the transmission.",
-        "nextNodeId": "ch13_transmission"
+        "text": "Check the response from Corporate.",
+        "nextNodeId": "ch13_corporate_response"
       }
     ]
   },
-  "ch13_transmission": {
-    "text": "'Subject: Nereus Station Contamination. The Abyssal Toxin is highly volatile. Recovery of samples is impossible without surface outbreak. Recommendation: Total asset denial. Insurance payout covers drill loss.'",
+  "ch13_corporate_response": {
+    "text": "The response from Corporate is brief and terrifying: 'REQUEST DENIED. ASSET RECOVERY DEEMED TOO RISKY. INITIATE SCUTTLE PROTOCOL. DO NOT LET THE ORGANISM REACH THE SURFACE.'",
     "choices": [
       {
-        "text": "Read Corporate's reply.",
-        "nextNodeId": "ch13_corporate_reply"
-      }
-    ]
-  },
-  "ch13_corporate_reply": {
-    "text": "The reply is a single line: 'Recommendation accepted. No rescue team will be dispatched. Enact Protocol Omega.' They aren't coming. They were never coming.",
-    "choices": [
-      {
-        "text": "Search for Gideon.",
+        "text": "Realize what this means.",
         "nextNodeId": "ch13_end"
       }
     ]
   },
   "ch13_end": {
-    "text": "The realization hits you like a physical blow. You and the crew were written off days ago to protect Corporate's bottom line. The station suddenly lurches as a deafening siren begins to wail.",
+    "text": "Corporate isn't sending a rescue team. They never were. We are all meant to die down here.",
     "choices": [
       {
-        "text": "Investigate the siren.",
+        "text": "Wait... what is the Scuttle Protocol?",
         "nextNodeId": "ch14_start"
       }
     ]

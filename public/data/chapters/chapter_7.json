@@ -1,48 +1,79 @@
 {
   "ch7_start": {
-    "text": "The dark veins on your arm are pulsing. You need a doctor, now. You rush to the Medbay, but the heavy blast doors are sealed. A biohazard warning flashes in bright red: 'TOXIC SPORE CONTAMINATION'.",
+    "text": "The dark veins on your arm are pulsing. You rush to the Medbay, but the heavy blast doors are sealed. A biohazard warning flashes in bright red: 'TOXIC SPORE CONTAMINATION'. Through the reinforced glass, you see Dr. Aris wearing a hazard suit.",
     "choices": [
       {
-        "text": "Override the door lock and enter.",
-        "nextNodeId": "ch7_medbay_enter"
+        "text": "Bang on the glass.",
+        "nextNodeId": "ch7_aris_talk"
       }
     ]
   },
-  "ch7_medbay_enter": {
-    "text": "You force the doors open. The air inside is thick with green, glowing spores. Crew members are strapped to beds, writhing and coughing up a black fluid. Dr. Aris is frantically mixing chemicals at her station, ignoring the suffering around her.",
-    "choices": [
-      {
-        "text": "Confront Dr. Aris about the infection.",
-        "nextNodeId": "ch7_confront_aris"
-      }
-    ]
-  },
-  "ch7_confront_aris": {
-    "text": "You show her your arm. 'What is this? Why didn't you call Corporate for a quarantine team?' She drops a vial, shattering it on the floor. She looks terrified, but also strangely defiant.",
+  "ch7_aris_talk": {
+    "text": "Dr. Aris jumps, then approaches the intercom. 'You can't come in here. The air is saturated with spores. I've been trying to synthesize a cure from the samples I... acquired. But it's mutating too fast.'",
     "speaker": "Dr. Aris",
     "choices": [
       {
-        "text": "Demand answers.",
-        "nextNodeId": "ch7_aris_hubris"
+        "text": "'You knew about this? Before the breach?'",
+        "nextNodeId": "ch7_aris_confession"
+      },
+      {
+        "requiresFlag": { "key": "found_canister", "value": true },
+        "text": "'Miller was selling the mud to you, wasn't he?'",
+        "nextNodeId": "ch7_aris_canister"
       }
     ]
   },
-  "ch7_aris_hubris": {
-    "text": "'Corporate would have just purged the station!' she screams. 'I can cure this! I just need more time. These spores... they're rewriting DNA. It's fascinating. I thought I could control it.' You notice the vials on her desk are mislabeled; she's been experimenting blindly.",
+  "ch7_aris_confession": {
+    "text": "'I didn't know it was this aggressive! I thought it was just a localized extremophile bacteria. If I synthesized a cure, Corporate would have promoted me to the orbital labs.' She looks at her hands, trembling. 'I was wrong.'",
     "speaker": "Dr. Aris",
     "choices": [
       {
-        "text": "'Your hubris is going to kill us all.'",
-        "nextNodeId": "ch7_end"
+        "text": "'Let me in. I'm infected. I need help.'",
+        "nextNodeId": "ch7_beg_entry"
       }
     ]
   },
-  "ch7_end": {
-    "text": "There is no cure here, only a desperate doctor playing god. Suddenly, the station shudders violently, and the ventilation fans grind to a halt. A high-pitched squealing echoes through the vents above you.",
+  "ch7_aris_canister": {
+    "text": "She pales. 'He needed the money. I needed the samples off the books. We didn't know it was part of a larger... hive mind.' She looks at her hands, trembling. 'I was so arrogant.'",
+    "speaker": "Dr. Aris",
     "choices": [
       {
-        "text": "Investigate the vents.",
-        "nextNodeId": "ch8_start"
+        "text": "'Let me in. I'm infected. I need help.'",
+        "nextNodeId": "ch7_beg_entry"
+      }
+    ]
+  },
+  "ch7_beg_entry": {
+    "text": "'I can't risk the spores escaping into Sector A,' Aris says, her voice breaking. 'The only prototype suppressant I have is in here. I'm sorry.' She turns off the intercom.",
+    "choices": [
+      {
+        "text": "Try to force the airlock override.",
+        "nextNodeId": "ch7_force_lock"
+      },
+      {
+        "requiresTrust": { "character": "David", "min": 0 },
+        "text": "Use the auditor security codes David verified earlier.",
+        "nextNodeId": "ch7_code_entry"
+      }
+    ]
+  },
+  "ch7_force_lock": {
+    "text": "You bash the panel, trying to cross the wires, but the system locks down permanently. Dr. Aris is sealed inside. You have no cure. You stagger away as the pain in your arm intensifies.",
+    "choices": [
+      {
+        "text": "Move to the next sector.",
+        "nextNodeId": "ch8_start",
+        "addInfection": 20
+      }
+    ]
+  },
+  "ch7_code_entry": {
+    "text": "The doors hiss open. Aris screams as you step inside, grabbing the prototype injector from the counter and slamming it into your thigh. The pain recedes slightly. 'You fool!' Aris yells. 'You've compromised the seal!'",
+    "choices": [
+      {
+        "text": "Seal the door behind you and leave her.",
+        "nextNodeId": "ch8_start",
+        "addInfection": -15
       }
     ]
   }

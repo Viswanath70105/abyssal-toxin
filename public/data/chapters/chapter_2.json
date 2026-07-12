@@ -1,93 +1,116 @@
 {
   "ch2_start": {
-    "text": "You are awakened by the blaring of the station's general alarm. Red emergency lights bathe your quarters in a harsh glow. The intercom crackles to life.",
-    "speaker": "Intercom",
+    "text": "You are awakened by the blaring of the station's general alarm. Red emergency lights bathe your quarters in a harsh glow. The station shudders violently.",
     "choices": [
       {
-        "text": "Listen to the announcement.",
-        "nextNodeId": "ch2_announcement"
-      }
-    ]
-  },
-  "ch2_announcement": {
-    "text": "'Attention all personnel. Station lockdown initiated. All bulkheads sealed. Please remain calm. We have a... situation in the Mess Hall.' Gideon Stroud's voice is calm, but tense.",
-    "speaker": "Gideon Stroud",
-    "choices": [
-      {
-        "text": "Rush to the Mess Hall.",
-        "nextNodeId": "ch2_mess_hall_scene"
-      }
-    ]
-  },
-  "ch2_mess_hall_scene": {
-    "text": "You manage to slip through the blast doors before they fully seal. In the Mess Hall, chaos has erupted. Miller is on the ground, clutching his throat, his face purple. Otto Finch, the cook, is standing near a tipped-over pot of stew, looking horrified.",
-    "speaker": "Otto Finch",
-    "choices": [
-      {
-        "text": "Run to Miller to help.",
-        "nextNodeId": "ch2_miller_dies"
+        "text": "Run out into the corridor.",
+        "nextNodeId": "ch2_corridor"
       },
       {
-        "text": "Examine the stew.",
-        "nextNodeId": "ch2_examine_stew"
+        "text": "Grab your emergency rebreather first, then run out.",
+        "nextNodeId": "ch2_corridor",
+        "setFlag": { "key": "has_rebreather", "value": true }
       }
     ]
   },
-  "ch2_examine_stew": {
-    "text": "The stew smells faintly metallic, almost sweet. Before you can investigate further, Dr. Aris bursts in.",
+  "ch2_corridor": {
+    "text": "The corridor is chaotic. Water is pooling at your feet. An automated voice blares: 'CAVERN INTEGRITY COMPROMISED. LOWER MAINTENANCE FLOODING. QUARANTINE PROTOCOL INITIATED.' You see Miller sprinting towards the lower levels.",
     "choices": [
       {
-        "text": "Watch Dr. Aris.",
-        "nextNodeId": "ch2_miller_dies"
+        "text": "Follow Miller down to Lower Maintenance.",
+        "nextNodeId": "ch2_lower_maint"
+      },
+      {
+        "text": "Head to the escape pods.",
+        "nextNodeId": "ch2_escape_attempt"
       }
     ]
   },
-  "ch2_miller_dies": {
-    "text": "Dr. Aris drops to her knees next to Miller, pulling out a syringe, but she's too late. Miller gasps one last time, his eyes wide with a horrific realization, and goes still. The room falls dead silent.",
-    "speaker": "Dr. Aris",
+  "ch2_escape_attempt": {
+    "text": "You run for the escape pods, but a heavy quarantine blast door slams shut right in front of you. You are trapped in Sector B. You have no choice but to head down to Lower Maintenance.",
     "choices": [
       {
-        "text": "'What happened to him?'",
-        "nextNodeId": "ch2_poison_suspect"
+        "text": "Turn back and head to Lower Maintenance.",
+        "nextNodeId": "ch2_lower_maint"
       }
     ]
   },
-  "ch2_poison_suspect": {
-    "text": "'It looks like... acute poisoning,' Aris stammers, her hands shaking. 'Anaphylactic shock or a rapid neurotoxin. He was eating the stew...' Everyone slowly turns to look at Otto.",
-    "speaker": "Dr. Aris",
+  "ch2_lower_maint": {
+    "text": "You find Miller wrestling with a jammed manual override wheel on the main pressure door. Behind the thick glass, dark, sludgy water is rising fast. But it's not just water. A dark, writhing mass is moving within it, slamming against the glass.",
+    "speaker": "Miller",
     "choices": [
       {
-        "text": "'Otto, what did you put in that stew?'",
-        "nextNodeId": "ch2_otto_defends"
+        "text": "Help Miller turn the wheel.",
+        "nextNodeId": "ch2_help_miller"
+      },
+      {
+        "text": "'What is that thing?!'",
+        "nextNodeId": "ch2_question_miller"
       }
     ]
   },
-  "ch2_otto_defends": {
-    "text": "'Nothing! I swear! Just standard rations! I've been telling you we are out of fresh supplies! I didn't do this!' Otto backs away, trembling.",
-    "speaker": "Otto Finch",
+  "ch2_question_miller": {
+    "text": "'Just pull, dammit!' Miller screams, veins bulging in his neck. The glass cracks under the pressure of the mass.",
+    "speaker": "Miller",
     "choices": [
       {
-        "text": "Wait for Gideon to arrive.",
-        "nextNodeId": "ch2_gideon_arrives"
+        "text": "Help him pull.",
+        "nextNodeId": "ch2_help_miller"
       }
     ]
   },
-  "ch2_gideon_arrives": {
-    "text": "Gideon Stroud steps into the room, flanked by David, the Security Officer. 'Seal the room. Nobody touches the body. We are under full quarantine protocol. David, I want a full lockdown.'",
-    "speaker": "Gideon Stroud",
+  "ch2_help_miller": {
+    "text": "You both pull with all your might. The wheel groans, turning an inch. Suddenly, the glass shatters. The dark mass surges through, wrapping around Miller's leg. It burns through his suit like acid.",
     "choices": [
       {
-        "text": "'We need to find out who did this.'",
+        "text": "Try to pull Miller free.",
+        "nextNodeId": "ch2_pull_miller"
+      },
+      {
+        "text": "Back away. It's too dangerous.",
+        "nextNodeId": "ch2_abandon_miller",
+        "modifyTrust": { "character": "Miller", "amount": -10 }
+      }
+    ]
+  },
+  "ch2_pull_miller": {
+    "text": "You grab Miller's arm, but the mass is too strong. It's pulling him into the flooded chamber. 'Go!' he screams. 'Lock the secondary door! Save the upper decks!' He kicks you back.",
+    "choices": [
+      {
+        "text": "Run to the secondary door and seal it.",
+        "nextNodeId": "ch2_seal_door"
+      }
+    ]
+  },
+  "ch2_abandon_miller": {
+    "text": "You stumble backward in horror. Miller looks at you, betrayal flashing in his eyes before determination takes over. 'Lock the secondary door!' he roars, as the mass engulfs him.",
+    "choices": [
+      {
+        "text": "Run to the secondary door and seal it.",
+        "nextNodeId": "ch2_seal_door"
+      }
+    ]
+  },
+  "ch2_seal_door": {
+    "text": "You scramble through the secondary bulkhead and hit the emergency seal. The heavy steel doors slam shut, cutting off Miller's screams. You watch through the porthole as he is pulled under by the writhing darkness.",
+    "choices": [
+      {
+        "text": "Stare in shock.",
         "nextNodeId": "ch2_end"
+      },
+      {
+        "requiresFlag": { "key": "has_rebreather", "value": true },
+        "text": "Use your rebreather to calm your hyperventilation.",
+        "nextNodeId": "ch2_end",
+        "addInfection": -5
       }
     ]
   },
   "ch2_end": {
-    "text": "'That is exactly what we are going to do,' Gideon says coldly. 'Starting now, everyone is a suspect. Return to your quarters or designated safe zones. The investigation begins immediately.'",
-    "speaker": "Gideon Stroud",
+    "text": "Miller is dead. Whatever that was, it wasn't just water. It was alive. The intercom crackles: 'Sector A secured. All survivors report to the central hub.' The nightmare has begun.",
     "choices": [
       {
-        "text": "Begin your investigation.",
+        "text": "Head to the central hub.",
         "nextNodeId": "ch3_hub"
       }
     ]
